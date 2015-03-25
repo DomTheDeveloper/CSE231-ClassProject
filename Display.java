@@ -1,18 +1,81 @@
 package edu.oakland.production.ClassProject;
 
-import java.io.*;
+package cse231;
 import java.util.*;
 
+/**
+ * 
+ * @author Display Group
+ * @version 1.0 The start
+ * @since 3/24/2015
+ */
 public class Display
 {
+	/**
+	 * Constructor
+	 */
 	public Display(){
 
 	}
 
-
 	Middleware middleware = new Middleware();
 	
-	private void HashTable(){
+	public void BinaryTree(){
+		long start_time = 0;
+		long end_time = 0;  
+		Scanner scan = new Scanner(System.in);
+		while(true){
+			System.out.println("Choose the number of elements.");
+			System.out.println("1. 100k Elements (A)");
+			System.out.println("2. 200k Elements (B)");
+			System.out.println("3. 400k Elements (C)");
+            System.out.print(">");
+			
+			String response = scan.next();
+			
+			switch(response)
+			{
+			case "A":
+				start_time = System.currentTimeMillis();
+				//Call some method
+				end_time = System.currentTimeMillis();
+				System.out.println("100k element created");
+				break;
+			case "B":
+				start_time = System.currentTimeMillis();
+				//Call some method
+				end_time = System.currentTimeMillis();
+				System.out.println("200k element created");
+				break;
+			case "C":
+				start_time = System.currentTimeMillis();
+				//Call some method
+				end_time = System.currentTimeMillis();
+				System.out.println("400k element created");
+				break;
+			case "D":
+				break;
+				
+			}
+			System.out.println("Binary search took : "+ (end_time - start_time)+ " ms");
+			System.out.println("Would you like to do another search? (y/n)");
+            response = scan.next();
+            if ("y".equals(response))
+            {
+                   //Run again
+            }
+            else
+            {
+                break;
+            }
+		}
+		scan.close();
+	
+	
+	}
+	
+	
+	public void HashTable(){
         final Scanner sc = new Scanner(System.in);
         
         do{
@@ -49,66 +112,87 @@ public class Display
             
         } while(true);
         
+        sc.close();
     }
 
-
-
-	private void SchedulingClass(){
+	public void SchedulingClass(){
 		boolean isClassMade = false;
-		boolean getOut = false;
-
-		do
-		{
-			System.out.println("Select an option");
-			System.out.println("1.) Input student data into class. Enter 1");
-			
-			//option 2 shows the following
-			//Shows grizzy ids and names of students cut
-			//shows description of last student cut
-			//Show grizzy ids and names of the remaining students
-			System.out.println("2.) Cut Last 5 students Enter 2");
-
-
-			//option 3
-			//show students on scholarship
-			//show students that are not on scholarship
-			System.out.println("3.) Process Scholarships Enter 3");
+		boolean stayIn = true;
 		
-			System.out.println("4.) Reinstate Students to class Enter 4" );
-			System.out.println("5.) Exit Enter 5" );
+		Scanner scan = new Scanner(System.in);
+		do {
+			System.out.println("Select an option");
+			System.out.println("1.) Input student data into class. Enter A");
+			System.out.println("2.) Cut Last 5 students Enter B");
+			System.out.println("3.) Process Scholarships Enter C");
+			System.out.println("4.) Reinstate Students to class Enter D");
+			System.out.println("5.) Exit Enter E" );
+            System.out.print(">");
+			String response = scan.next();
+			String temp = "";
 			
-			Scanner scan = new Scanner(System.in);
-			String answer = scan.Next();
-			
-			if (isClassMade == false && answer != "1"){
-				System.out.println("Class has not been made");
-			
+			if ("E".equals(response)){
+				stayIn = false;
+			}
+			else if (!"A".equals(response) && isClassMade == false){
+				System.out.println("Class has not been made yet. Do you want to make the class? (y/n)");
+	            response = scan.next();
+	            if ("y".equals(response))
+	            {
+					temp = middleware.CreateClass();
+					isClassMade = true;
+	            }
+
 			}
 			else{
-				if (answer == "1"){
 				
-					//DONT KNOW WHAT YOU ARE RETURNING YET, THESE METHODS WILL RETURN SOMETHIKNG FOR US TO PRINT
-					middleware.CreateClass();
+				switch(response)
+				{
+				case "A":
+					if (isClassMade){
+						System.out.println("Class already was made, do you want to enter new data? (y/n)");
+			            if ("y".equals(response))
+			            {
+			            	//CLEAR 
+							temp = middleware.CreateClass();
+							isClassMade = true;
+			            }
+					}
+					else{
+						temp = middleware.CreateClass();
+						System.out.println("Class Made");
+						isClassMade = true;
+					}
+					break;
+				case "B":
+					temp = middleware.CutClass();
+					System.out.println("Cut Class");
+					break;
+				case "C":
+					temp = middleware.Scholarship();
+					System.out.println("Scholar");
+					break;
+				case "D":
+					temp = middleware.ResetClass();
+					System.out.println("Reset Class");
+					break;
 				}
-				else if (answer == "2"){
-					middleware.CutClass();
-				}
-				else if (answer == "3"){
-					middleware.Scholarship();
-				}
-				else if (answer == "4"){
-					String blah = middleware.ResetClass(){
-				}
-				else if (answer == "5"){
-					getOut = true;
-				}
-				else {
-					System.out.println("You suck at typing.");
-				}
+
+				System.out.println("Would you like to do continue in the class edit menu? (y/n)");
+	            response = scan.next();
+	            if ("y".equals(response))
+	            {
+	                   //Run again
+	            }
+	            else
+	            {
+	                stayIn = false;
+	            }
 				
-			scan.close();
-			}while (getOut == false);
+			}
+				
+		}while(stayIn);
+		scan.close();
 		
-		}
 	}
 }
