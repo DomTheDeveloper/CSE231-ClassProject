@@ -1,10 +1,10 @@
- package edu.oakland.production.ClassProject;
+package edu.oakland.production.ClassProject;
 import java.util.*;
 
 /**
  * 
  * @author Display Group
- * @version 1.0 The start
+ * @version 1.1 Hopefully this works
  * @since 3/24/2015
  */
 public class Display
@@ -210,7 +210,7 @@ public class Display
 			System.out.println("2.) Cut Last 5 students Enter 2");
 			System.out.println("3.) Process Scholarships Enter 3");
 			System.out.println("4.) Reinstate Students to class Enter 4");
-			System.out.println("5.) Exit Enter E" );
+			System.out.println("5.) Exit Enter 5" );
 			String response = scan.next();
 			String temp = "";
 			
@@ -237,12 +237,12 @@ public class Display
 			            if ("y".equals(response))
 			            {
 			            	//CLEAR 
-							temp = middleware.CreateClass();
+							createClass();
 							isClassMade = true;
 			            }
 					}
 					else{
-						temp = middleware.CreateClass();
+						createClass();
 						System.out.println("Class Made");
 						isClassMade = true;
 					}
@@ -277,5 +277,77 @@ public class Display
 		}while(stayIn);
 		
 	}
-
+	
+	private void createClass(){
+	
+		boolean stayIn = true;
+		
+		do{
+			boolean notSuccessful = true;
+			String tempToParse;
+			String temp;
+			int grizzlyID;
+			String name;
+			String major;
+			double gpa;
+			int thesisGrade;
+			System.out.println("Enter student data:");
+			System.out.println("What is the student's Grizzly ID?");
+			tempToParse = scan.next();
+			do{
+				try{
+					grizzlyID = Integer.parseInt(tempToParse);
+					notSuccessful = false;
+				} catch (Exception e) {
+					System.out.println("ID Entered is not a valid number, What is the student's Grizzly ID?");
+					tempToParse = scan.next();
+				}
+			} while (notSuccessful);
+			notSuccessful = true;
+			
+			System.out.println("What is the student's name?");
+			name = scan.next();
+			System.out.println("What is the major of the student");
+			major = scan.next();
+		
+			System.out.println("What is the GPA");
+			tempToParse = scan.next();
+			do{
+				try{
+					gpa = Double.parseDouble(tempToParse);
+					notSuccessful = false;
+				} catch (Exception e) {
+					System.out.println("GPA Entered is not a valid number, What is the GPA?");
+					tempToParse = scan.next();
+				}
+			} while (notSuccessful);
+			notSuccessful = true;
+			System.out.println("Thesis grade?");
+			tempToParse = scan.next();
+			do{
+				try{
+					thesisGrade = Integer.parseInt(tempToParse);
+					notSuccessful = false;
+				} catch (Exception e) {
+					System.out.println("Thesis Entered is not a valid number, What is the student's thesis grade?");
+					tempToParse = scan.next();
+				}
+			} while (notSuccessful);
+			notSuccessful = true;
+		
+			/// CREATE STUDENT
+			
+			System.out.println("Would you like to do continue in the class edit menu? (y/n)");
+			temp = scan.next();
+			if ("y".equals(temp))
+			{
+				   //Run again
+			}
+			else
+			{
+				stayIn = false;
+			}
+		} while (stayIn);
+		
+	}
 }
