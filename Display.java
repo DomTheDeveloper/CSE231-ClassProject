@@ -4,13 +4,16 @@ import java.util.*;
 /**
  * 
  * @author Display Group
- * @version 1.1 Hopefully this works
- * @since 3/24/2015
+ * @version 2.1 Hopefully this works
+ * @since 3/30/2015
  */
 public class Display
 {
 	Middleware middleware = new Middleware();
 	Scanner scan = new Scanner(System.in);
+	String first;
+	String second;
+	String third;
 	/**
 	 * Constructor
 	 */
@@ -28,17 +31,17 @@ public class Display
 			switch (scan.next())
 			{
 				case "1":
-					//Lists()
+					Lists()
 					System.out.println("lists done");
 					break;
 			
 				case "2":
-					HashTable();
-					System.out.println("Hash Completed");
-					break;
-				case "3":
 					BinaryTree();
 					System.out.println("Binary Completed");
+					break;
+				case "3":
+					HashTable();
+					System.out.println("Hash Completed");
 					break;
 				case "4":
 					SchedulingClass();
@@ -73,48 +76,87 @@ public class Display
 		scan.close();
 	}
 	
-	public void HashTable(){
+	public void Lists(){
         boolean stayIn = true;
+		boolean notSuccessful = true;
+		boolean invalidOption = false;
+		int numberOfElements;
+		int element;
+		String tempToParse;
         do{
 
-            System.out.println("Choose the amount of elements for your Random HashTable: ");
+            System.out.println("Choose the amount of elements for your arraylist and linkedlist: ");
             System.out.println("1.) 100,000 Elements (1)");
             System.out.println("2.) 200,000 Elements (2)");
             System.out.println("3.) 400,000 Elements (3)");
-            System.out.println("4.) Exit Hashtable Menu (4)");
+            System.out.println("4.) Exit ArrayList and LinkedList Menu (4)");
             System.out.print("");
 
             switch (scan.next())
 			{
             	case "1":
-                    //Call Method with 100,000 elements
-                    System.out.println("You have selected 100,000 elements");
+                    numberOfElements = 100000;
+            		System.out.println("You have selected 100,000 elements");
                     break;
 				case "2":
-	                //Call Method with 200,000 elements
+                    numberOfElements = 200000;
 	                System.out.println("You have selected 200,000 elements");
 					break;
 				case "3":
-	                //Call Method with 400,000 elements
+                    numberOfElements = 400000;
 	                System.out.println("You have selected 400,000 elements");
 					break;
 				case "4":
-					//SchedulingClass();
-					System.out.println("Schedule");
-					break;
-				case "5":
 					stayIn = false;
 					break;
 				default:
 					System.out.println("Invalid Entry");
+					invalidOption = true;
+					break;
+					
 			}
           
 			if (stayIn == false){
 				System.out.println("Exit");
 				break;
-			}          
+			}       
+			
+			if (!invalidOption){
+				// CREATE LIST
+				// middleware.list(numberOfElements);
+				
+				// ASK TO SORT THE LISTS
+				// sortLinked();
+				// sortArray();
+				// ASK FOR THE TIME TO SORT
+				// sortTimeLinked();
+				// sortTimeArray();
+				// ASK FOR THE BIGO PARAMETER
+				// bigOLink();
+				// bigOArray();
+				System.out.println("What element do you want to see?");
+				tempToParse = scan.next();
+				
+				do{
+					try{
+						element = Integer.parseInt(tempToParse);
+						notSuccessful = false;
+					} catch (Exception e) {
+						System.out.println("NOT A VALID NUMBER, GIVE A NUMBER");
+						tempToParse = scan.next();
+					}
+				} while (notSuccessful);
+				notSuccessful = true;
+				// SEARCH THE STRUCTURE Linear
+				// searchLinear(element);
+				// SEARCH THE STRUCTURE BINARY
+				// searchBinary(element);
+			}
+			invalidOption = false;
+			
 
-            System.out.println("Would you like to do another hashtable search? (y/n) search");
+
+            System.out.println("Would you like to do another LinkedList search? (y/n) search");
             switch (scan.next())
             {
             	case "y":
@@ -130,10 +172,12 @@ public class Display
     }
 	
 	public void BinaryTree(){
-		long start_time = 0;
-		long end_time = 0;  
-        boolean stayIn = true;
 
+        boolean stayIn = true;
+		String temp;
+		int numberOfElements;
+		boolean invalidOption = false;
+		
 		do{
 			System.out.println("Choose the number of elements.");
 			System.out.println("1. 100k Elements (1)");
@@ -152,30 +196,65 @@ public class Display
 			switch(response)
 			{
 			case "1":
-				start_time = System.currentTimeMillis();
-				//Call some method
-				end_time = System.currentTimeMillis();
-				System.out.println("100k element created");
-				System.out.println("Binary search took : "+ (end_time - start_time)+ " ms");
+				numberOfElements = 100000;
 				break;
 			case "2":
-				start_time = System.currentTimeMillis();
-				//Call some method
-				end_time = System.currentTimeMillis();
-				System.out.println("200k element created");
-				System.out.println("Binary search took : "+ (end_time - start_time)+ " ms");
+				numberOfElements = 200000;
 				break;
 			case "3":
-				start_time = System.currentTimeMillis();
-				//Call some method
-				end_time = System.currentTimeMillis();
-				System.out.println("400k element created");
-				System.out.println("Binary search took : "+ (end_time - start_time)+ " ms");
+				numberOfElements = 400000;
+				break;
+			case "4":
+				stayIn = false;
 				break;
 			default :
 				System.out.println("Did not choose a correct version");
+				invalidOption = true;
 				break;
-				
+			}
+  
+			if (stayIn == false){
+				System.out.println("Exit");
+				break;
+			}       
+	
+			if (!invalidOption){
+				//middleware.binary(numberofElements);
+				// SELECT 3 STRINGS
+				if (first == "" && second == "" && third == "")
+				{
+					System.out.println("What is the first string to search?");
+					first = scan.next();
+					System.out.println("What is the second string to search?");
+					second = scan.next();
+					System.out.println("What is the third string to search?");
+					third = scan.next();
+				}
+				else
+				{
+					System.out.println("Values of the search have been set, replace? (y/n)");
+					temp = scan.next();
+					if ("y".equals(response))
+					{
+						System.out.println("What is the first string to search?");
+						first = scan.next();
+						System.out.println("What is the second string to search?");
+						second = scan.next();
+						System.out.println("What is the third string to search?");
+						third = scan.next();
+					}
+				}
+				invalidOption = false;
+	
+	
+				// PREORDER SEARCH
+				// searchPreorderBinary(first, second, third);
+				// ORDER SEARCH
+				// searchOrderedBinary(first, second, third);
+				// GET TIME ELAPSED
+				// teimElapsedBinary();
+				// GET BIG O RELATIONSHIP
+				//	bigOBinary();
 			}
 
 			System.out.println("Would you like to do another search? (y/n)");
@@ -200,7 +279,102 @@ public class Display
 	
 	
 	
+	public void HashTable(){
+        boolean stayIn = true;
+		String temp;
+		int numberOfElements;
+		boolean invalidOption = false;
+        do{
 
+            System.out.println("Choose the amount of elements for your Random HashTable: ");
+            System.out.println("1.) 100,000 Elements (1)");
+            System.out.println("2.) 200,000 Elements (2)");
+            System.out.println("3.) 400,000 Elements (3)");
+            System.out.println("4.) Exit Hashtable Menu (4)");
+            System.out.print("");
+
+            switch (scan.next())
+			{
+				case "1":
+					numberOfElements = 100000;
+					break;
+				case "2":
+					numberOfElements = 200000;
+					break;
+				case "3":
+					numberOfElements = 400000;
+					break;
+				case "4":
+					stayIn = false;
+					break;
+				default :
+					System.out.println("Did not choose a correct version");
+					invalidOption = true;
+					break;
+				}
+	  
+				if (stayIn == false){
+					System.out.println("Exit");
+					break;
+				}       
+		
+				if (!invalidOption){
+					//middleware.binary(numberofElements);
+					// SELECT 3 STRINGS
+					if (first == "" && second == "" && third == "")
+					{
+						System.out.println("What is the first string to search?");
+						first = scan.next();
+						System.out.println("What is the second string to search?");
+						second = scan.next();
+						System.out.println("What is the third string to search?");
+						third = scan.next();
+					}
+					else
+					{
+						System.out.println("Values of the search have been set, replace? (y/n)");
+						temp = scan.next();
+						if ("y".equals(temp))
+						{
+							System.out.println("What is the first string to search?");
+							first = scan.next();
+							System.out.println("What is the second string to search?");
+							second = scan.next();
+							System.out.println("What is the third string to search?");
+							third = scan.next();
+						}
+					}
+					invalidOption = false;
+		
+		
+					// PREORDER SEARCH
+					// searchPreorderHash(first, second, third);
+					// ORDER SEARCH
+					// searchOrderedHash(first, second, third);
+					// GET TIME ELAPSED
+					// timeElapsedHash();
+					// GET BIG O RELATIONSHIP
+					//	bigOHash();
+				}
+			
+			
+
+			
+            System.out.println("Would you like to do another hashtable search? (y/n) search");
+            switch (scan.next())
+            {
+            	case "y":
+            		break;
+            	case "n":
+            	default:
+            		stayIn = false;
+            		break;
+            }
+
+           
+        } while(stayIn);
+    }
+	
 	public void SchedulingClass(){
 		boolean isClassMade = false;
 		boolean stayIn = true;
@@ -336,6 +510,7 @@ public class Display
 			notSuccessful = true;
 		
 			/// CREATE STUDENT
+			
 			
 			System.out.println("Would you like to do continue in the class edit menu? (y/n)");
 			temp = scan.next();
