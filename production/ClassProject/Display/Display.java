@@ -1,4 +1,5 @@
-package edu.oakland.production.ClassProject;
+package edu.oakland.production.ClassProject.Display;
+
 import java.util.*;
 
 /**
@@ -31,7 +32,7 @@ public class Display
 			switch (scan.next())
 			{
 				case "1":
-					Lists()
+					Lists();
 					System.out.println("lists done");
 					break;
 			
@@ -76,7 +77,7 @@ public class Display
 		scan.close();
 	}
 	
-	public void Lists(){
+	public void lists(){
         boolean stayIn = true;
 		boolean notSuccessful = true;
 		boolean invalidOption = false;
@@ -171,7 +172,7 @@ public class Display
         } while(stayIn);
     }
 	
-	public void BinaryTree(){
+	public void binaryTree(){
 
         boolean stayIn = true;
 		String temp;
@@ -270,16 +271,10 @@ public class Display
             }
 
 
-		}while (stayIn);
-
-	
-	
+		} while (stayIn);
 	}
-
 	
-	
-	
-	public void HashTable(){
+	public void hashTable(){
         boolean stayIn = true;
 		String temp;
 		int numberOfElements;
@@ -375,7 +370,7 @@ public class Display
         } while(stayIn);
     }
 	
-	public void SchedulingClass(){
+	public void schedulingClass(){
 		boolean isClassMade = false;
 		boolean stayIn = true;
 		do {
@@ -523,6 +518,5 @@ public class Display
 				stayIn = false;
 			}
 		} while (stayIn);
-		
 	}
 }
