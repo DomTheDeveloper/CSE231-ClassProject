@@ -3,8 +3,8 @@ package edu.oakland.production;
 import java.util.*;
 
 /**
- *
- * @author Sam
+ * @version "version 2.0" "20150104"
+ * @author Sam Bell and Binh Ton
  */
 public class StackCut extends Stack<Object>{
     private int stackSize;

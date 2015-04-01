@@ -1,8 +1,10 @@
-
 package edu.oakland.production;
 
 import java.util.*;
-
+/**
+ * @version "version 2.0" "20150104"
+ * @author Sam Bell and Binh Ton
+ */
 public class Student{
 	private int gID;
 	private String name;
@@ -33,7 +35,8 @@ public class Student{
         return TG;
     }
     public static void main(String [] args){
-    	Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);	
+    	Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);
+    	Student student2 = new Student(177993, "Smith", "IT", 3.47, 78);
 		Student student3 = new Student(444811, "Breaux", "CS", 3.95, 98);
 		Student student4 = new Student(113625, "Brady", "CS", 3.77, 92);
 		Student student5 = new Student(382707, "Rominske", "CS", 3.82, 79);
