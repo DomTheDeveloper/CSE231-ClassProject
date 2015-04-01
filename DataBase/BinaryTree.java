@@ -1,4 +1,6 @@
- //package edu.oakland.production.ClassProject.Database
+package edu.oakland.production;
+
+import edu.oakland.production.*;
 
 /**
 *@author Nicholas Herman
@@ -8,7 +10,7 @@
 
 public class BinaryTree<T> {
 
-	Node <T> root;
+	Node<T> root;
 	
 /*
 *The addNode method adds a node to the binary tree
@@ -247,34 +249,5 @@ public class BinaryTree<T> {
 		System.out.println("ie. Removing 25");
 		theTree.remove(25);
 		theTree.preorderTraverseTree(theTree.root);	
-	}
-}
-
-class Node<T> {
-
-	int key;
-	T val;
-	
-	Node<T> leftChild;
-	Node<T> rightChild;
-	
-	Node(int key, T value){
-	
-		this.key = key;
-		
-		this.val = value;
-	}
-	
-	public T getValue(){
-		return val;
-	}
-	
-	public int getKey(){
-		return key;
-	}
-	
-	public String toString(){
-	
-		return val + " has a key " + key;
 	}
 }

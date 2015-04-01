@@ -1,6 +1,6 @@
-package edu.oakland.production.ClassProject.Database;
+package edu.oakland.test;
 
-import edu.oakland.production.ClassProject.*;
+import edu.oakland.production.*;
 import junit.framework.*;
 
 /** This class utilizes JUnit to test the ATM's ability to verify whether
