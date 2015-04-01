@@ -1,6 +1,4 @@
-package edu.oakland.production;
-
-import edu.oakland.production.*;
+package edu.oakland.production.ClassProject.Database;
 
 /**
 *@author Nicholas Herman
