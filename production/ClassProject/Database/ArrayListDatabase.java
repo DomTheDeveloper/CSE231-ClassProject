@@ -1,4 +1,5 @@
 package edu.oakland.production.ClassProject.Database;
+
 import java.util.*;
 
 /**
@@ -10,16 +11,18 @@ import java.util.*;
 *@version "version 1.1"
 *@since "152503"
 */
-public class ArrayListDatabase{
+public class ArrayListDatabase<T>{
 	
 	/** Declare arraylist 
 	*/
-	private ArrayList<Integer> students;
+
+	//private static int students;
 	
+	private ArrayList<T> students;
 	/**Overloaded constructor to create ArrayList object of size "size"
 	*/
-	ArrayListDatabase(int size){
-		students = new ArrayList<Integer>(size);
+	public ArrayListDatabase(int size){
+		students = new ArrayList<T>(size);
 	}
 	
 	/**Get Student Method
@@ -27,36 +30,42 @@ public class ArrayListDatabase{
 	* @param index of student from array
 	* @return student from selected index
 	*/
-	public Integer getStudent(int i){
+	public T getStudent(int i){
 		return students.get(i);
 	}
 
 	/**set Student Method
 	* @param index of student from array
 	*/
-	 public void setStudent(int i, int j){
-	 	 students.add(i,j);
-	 }
+	
+	 public void set(int i, T obj){
+	 	 students.add(i,obj);
+	 	 System.out.println("Student: " + obj + " has been added");
+	 }// change the array list
 	 
 	/**Add student method
 	*/
-	 public  void addStudent(int i){
-	 	 students.add(i);
-	 } 
+	 public  void add(T obj){
+	 	 students.add(obj);
+	 	 System.out.println("Student: " + obj + " has been added");
+	 
+	 } //This is to add to the end of the array list
 
 	/**remove Student Method
 	* @param index of student from array
 	*/
-	 public void removeStudent(int i){
+	 public void remove(int i){
 	 	 students.remove(i);
+	 	 System.out.println("Student #" + i + " has been removed");
 	 }
-	 
 	 
 	 public int returnSize(){
-	 	 return students.size();
+	 	 return students.size(); 
 	 }
 	 
-	 public void clearAllStudents(){
+	 public void clearAll(){
 	 	 students.clear();
+	 	 System.out.println("Cleared all students");
+	 	 
 	 }
 }

@@ -1,4 +1,7 @@
 package edu.oakland.production.ClassProject.Database;
+/**
+* Used with Binary Tree Database class.
+*/
 
 public class Node<T> {
 
