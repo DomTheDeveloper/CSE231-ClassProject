@@ -55,7 +55,10 @@ public class BinaryTree<T> {
 	}
 				
 	
-	
+/*
+*The inOrderTraverseTree method uses an In-Order search and prints out the value of each node as it traverses
+*@param focusNode The node that you want to begin your search at
+*/
 	public void inOrderTraverseTree(Node focusNode) {
 	
 		if( focusNode != null){
@@ -67,7 +70,10 @@ public class BinaryTree<T> {
 			inOrderTraverseTree(focusNode.rightChild);
 		}
 	}
-	
+/*
+*The preorderTraverseTree method uses an Pre-Order search and prints out the value of each node as it traverses
+*@param focusNode The node that you want to begin your search at
+*/	
 	public void preorderTraverseTree(Node focusNode) {
 	
 		if( focusNode != null){
