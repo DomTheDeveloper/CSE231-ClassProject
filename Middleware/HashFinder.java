@@ -1,7 +1,7 @@
 package edu.oakland.production.GroupProject.Middleware;
 /**
 *@author Jared Okoniewski, Jesse Rominske, Dean DeHart
-*@version version 2.0 150330
+*@version version 3.0 150401
 *@since version 1.0 152403
 */
 public class HashFinder {
@@ -57,7 +57,7 @@ public class HashFinder {
 		
 		System.out.println(items + " items were searched"); //spit out the number of items searched
 		
-		return hashOutput;//spit out the value found
+		return arrayIndex;//spit out the index of the value found
 	}
 }
 /**
