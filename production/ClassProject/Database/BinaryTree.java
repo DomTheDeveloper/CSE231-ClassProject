@@ -1,16 +1,16 @@
 package edu.oakland.production.ClassProject.Database;
 
 /**
-*@author Nicholas Herman
+*@author Bryan J. & David M.
 *@version version 2.0 150324
 *@since version 1.0
 */
 
-public class BinaryTree<T> {
+public class BinaryTreeDB<T> {
 
 	Node<T> root;
 	
-/*
+/**
 *The addNode method adds a node to the binary tree
 *@param key The integer being added/stored withing the binaryTree
 *@param name The name of the node being added/stored
@@ -55,7 +55,7 @@ public class BinaryTree<T> {
 	}
 				
 	
-/*
+/**
 *The inOrderTraverseTree method uses an In-Order search and prints out the value of each node as it traverses
 *@param focusNode The node that you want to begin your search at
 */
@@ -70,7 +70,7 @@ public class BinaryTree<T> {
 			inOrderTraverseTree(focusNode.rightChild);
 		}
 	}
-/*
+/**
 *The preorderTraverseTree method uses an Pre-Order search and prints out the value of each node as it traverses
 *@param focusNode The node that you want to begin your search at
 */	
@@ -86,7 +86,7 @@ public class BinaryTree<T> {
 		}	
 	}
 	
-/*
+/**
 *The findNode method finds a node containing the specified key value
 *@param key The int value you want to find
 *@return The node containing the specified int value
@@ -112,7 +112,7 @@ public class BinaryTree<T> {
 		return focusNode;
 	}
 	
-/*
+/**
 *The remove method removes a node from the tree
 *@param key The integer you want to remove
 *@return A boolean representing whether the node was removed or not, true for yes, false for no
@@ -227,7 +227,7 @@ public class BinaryTree<T> {
 		}
 		
 			
-/*
+/**
 *The getRootNode method finds the root node for the given Binary Tree
 *@param tree The Binary Tree of which you're trying to find the root node
 *@return The root node
@@ -238,7 +238,7 @@ public class BinaryTree<T> {
 	
 	public static void main(String[] args) {
 	
-		BinaryTree<String> theTree = new BinaryTree<String>();
+		BinaryTreeDB<String> theTree = new BinaryTreeDB<String>();
 		
 		theTree.addNode(1, "first");
 		theTree.addNode(5, "second");
@@ -247,9 +247,9 @@ public class BinaryTree<T> {
 		theTree.addNode(50, "fifth");
 		theTree.addNode(100, "sixth");
 		
-		BinaryTree<String> theTree1 = new BinaryTree<String>();
+		BinaryTreeDB<String> theTree1 = new BinaryTreeDB<String>();
 		
-		BinaryTree<String> theTree2 = new BinaryTree<String>();
+		BinaryTreeDB<String> theTree2 = new BinaryTreeDB<String>();
 		System.out.println("ie. Removing 25");
 		theTree.remove(25);
 		theTree.preorderTraverseTree(theTree.root);	
