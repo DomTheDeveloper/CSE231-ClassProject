@@ -10,7 +10,7 @@ import junit.framework.*;
 *@since version 1.0 dated 150329
 */
 public class testBinaryTree extends TestCase{
-	BinaryTree tree;
+	BinaryTreeDB tree;
 	/** The testAdd() method tests whether the binary tree may add a node to
 	* the existing set of nodes that it contains 
 	*/
@@ -49,7 +49,7 @@ public class testBinaryTree extends TestCase{
 	* populates it with nodes in order to prepare the class for each test.
 	*/
 	public void initTest(){
-		tree = new BinaryTree<String>();
+		tree = new BinaryTreeDB<String>();
 		tree.addNode(0,"Tim");
 		tree.addNode(1,"John");
 		tree.addNode(2,"Jim");
