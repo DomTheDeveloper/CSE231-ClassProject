@@ -5,16 +5,16 @@ import java.util.*;
 /**
  * 
  * @author Display Group
- * @version 2.1 Hopefully this works
+ * @version 3.0  Integration with Middleware
  * @since 3/30/2015
  */
 public class Display
 {
-	Middleware middleware = new Middleware();
+	Middleware mw = new Middleware();
 	Scanner scan = new Scanner(System.in);
-	String first;
-	String second;
-	String third;
+	int first;
+	int second;
+	int third;
 	/**
 	 * Constructor
 	 */
@@ -29,6 +29,13 @@ public class Display
 		do{
 
 			System.out.println("What do you want to do, 1,2,3,4");
+			System.out.println("1 Create ArrayList and LinkedList and Search");
+			System.out.println("2 Create Binary and Search");
+			System.out.println("3 Create HashTable and Search");
+			System.out.println("4 Class Schedule");	
+			System.out.println("Anything else will quit.");
+			
+			
 			switch (scan.next())
 			{
 				case "1":
@@ -123,18 +130,35 @@ public class Display
 			}       
 			
 			if (!invalidOption){
-				// CREATE LIST
-				// middleware.list(numberOfElements);
+			
+				//Linked List
+				mw.LinkedListMiddleware(numberofElements);
+				//Select Sort
+				String timeLinkedSelectSort = mw.LinkedListSelectSort();
+				System.out.println("It took " + timeLinkedSelectSort + " ms to sort the Linked List by Select sort");
+				String bigOhLinkedSelectSort = mw.LinkedListSelectBigOh();
+				System.out.println("Select Sort BIG OH is " + bigOhLinkedSelectSort);
 				
-				// ASK TO SORT THE LISTS
-				// sortLinked();
-				// sortArray();
-				// ASK FOR THE TIME TO SORT
-				// sortTimeLinked();
-				// sortTimeArray();
-				// ASK FOR THE BIGO PARAMETER
-				// bigOLink();
-				// bigOArray();
+				//Bubble Sort
+				String timeLinkedBubbleSort = mw.LinkedListBubbleSort();
+				System.out.println("It took " + timeLinkedBubbleSort + " ms to sort the Linked List by Bubble sort");
+				String bigOhLinkedBubbleSort = mw.LinkedListBubbleBigOh();
+				System.out.println("Bubble Sort BIG OH is " + bigOhLinkedBubbleSort);
+			
+				//Array List
+				mw.ArrayListMiddleware(numberofElements);
+				//Select Sort
+				String timeArraySelectSort = mw.ArrayListSelectSort();
+				System.out.println("It took " + timeArraySelectSort + " ms to sort the Array List by Select sort");
+				String bigOhArraySelectSort = mw.ArrayListSelectBigOh();
+				System.out.println("Select Sort BIG OH is " + bigOhArraySelectSort);
+				
+				//Bubble Sort				
+				String timeArrayBubbleSort = mw.ArrayListBubbleSort();
+				System.out.println("It took " + timeArrayBubbleSort + " ms to sort the Array List by Bubble sort");
+				String bigOhArrayBubbleSort = mw.LinkedListArrayBigOh();
+				System.out.println("Bubble Sort BIG OH is " + bigOhArrayBubbleSort);
+			
 				System.out.println("What element do you want to see?");
 				tempToParse = scan.next();
 				
@@ -148,14 +172,12 @@ public class Display
 					}
 				} while (notSuccessful);
 				notSuccessful = true;
-				// SEARCH THE STRUCTURE Linear
-				// searchLinear(element);
-				// SEARCH THE STRUCTURE BINARY
-				// searchBinary(element);
+				
+				String linearTimes = mw.linearSearch(element);
+				String binaryTimes = mw.binarySearch(element);
+
 			}
 			invalidOption = false;
-			
-
 
             System.out.println("Would you like to do another LinkedList search? (y/n) search");
             switch (scan.next())
@@ -220,16 +242,16 @@ public class Display
 			}       
 	
 			if (!invalidOption){
-				//middleware.binary(numberofElements);
-				// SELECT 3 STRINGS
+				mw.createBinaryTree(numberofElements);
+				// SELECT 3 Ints
 				if (first == "" && second == "" && third == "")
 				{
 					System.out.println("What is the first string to search?");
-					first = scan.next();
+					first = scan.nextInt();
 					System.out.println("What is the second string to search?");
-					second = scan.next();
+					second = scan.nextInt();
 					System.out.println("What is the third string to search?");
-					third = scan.next();
+					third = scan.nextInt();
 				}
 				else
 				{
@@ -238,24 +260,27 @@ public class Display
 					if ("y".equals(response))
 					{
 						System.out.println("What is the first string to search?");
-						first = scan.next();
+						first = scan.nextInt();
 						System.out.println("What is the second string to search?");
-						second = scan.next();
+						second = scan.nextInt();
 						System.out.println("What is the third string to search?");
-						third = scan.next();
+						third = scan.nextInt();
 					}
 				}
 				invalidOption = false;
-	
-	
+		
 				// PREORDER SEARCH
-				// searchPreorderBinary(first, second, third);
+				mw.calculatePreorderNodesSearched(int first, int second, int third);
+				
 				// ORDER SEARCH
-				// searchOrderedBinary(first, second, third);
-				// GET TIME ELAPSED
-				// teimElapsedBinary();
-				// GET BIG O RELATIONSHIP
-				//	bigOBinary();
+				mw.calculateInOrderNodesSearched(int first, int second, int third);
+
+				// Duration
+				mw.calculatePreorderSearchDuration(int first, int second, int third);
+				mw.calculateInOrderSearchDuration(int first, int second, int third);
+				
+				// Get BigOh Relationship
+				mw.calculateBigORelationship();
 			}
 
 			System.out.println("Would you like to do another search? (y/n)");
@@ -314,15 +339,15 @@ public class Display
 				}       
 		
 				if (!invalidOption){
-					//middleware.binary(numberofElements);
-					// SELECT 3 STRINGS
+					mw.createHashTable(numberofElements);
+					// SELECT 3 Int
 					if (first == "" && second == "" && third == "")
 					{
-						System.out.println("What is the first string to search?");
-						first = scan.next();
-						System.out.println("What is the second string to search?");
+						System.out.println("What is the first int to search?");
+						first = scan.nextInt();
+						System.out.println("What is the second int to search?");
 						second = scan.next();
-						System.out.println("What is the third string to search?");
+						System.out.println("What is the third int to search?");
 						third = scan.next();
 					}
 					else
@@ -331,11 +356,11 @@ public class Display
 						temp = scan.next();
 						if ("y".equals(temp))
 						{
-							System.out.println("What is the first string to search?");
+							System.out.println("What is the first int to search?");
 							first = scan.next();
-							System.out.println("What is the second string to search?");
+							System.out.println("What is the second int to search?");
 							second = scan.next();
-							System.out.println("What is the third string to search?");
+							System.out.println("What is the third int to search?");
 							third = scan.next();
 						}
 					}
@@ -391,7 +416,7 @@ public class Display
 	            response = scan.next();
 	            if ("y".equals(response))
 	            {
-					temp = middleware.CreateClass();
+					temp = mw.CreateClass();
 					isClassMade = true;
 	            }
 
@@ -417,15 +442,15 @@ public class Display
 					}
 					break;
 				case "2":
-					temp = middleware.CutClass();
+					temp = mw.CutClass();
 					System.out.println("Cut Class");
 					break;
 				case "3":
-					temp = middleware.Scholarship();
+					temp = mw.Scholarship();
 					System.out.println("Scholar");
 					break;
 				case "4":
-					temp = middleware.ResetClass();
+					temp = mw.ResetClass();
 					System.out.println("Reset Class");
 					break;
 				default:
