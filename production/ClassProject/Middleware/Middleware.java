@@ -1,5 +1,5 @@
-package edu.oakland.production.ClassProject.middleware;
-import edu.oakland.production.ClassProject.middleware.*;
+package edu.oakland.production.ClassProject.Middleware;
+import edu.oakland.production.ClassProject.Middleware.*;
 /**
 *@author Eldari Gogiashvili
 *@version version 2.0.0 date 150405
@@ -40,57 +40,59 @@ public class Middleware {
 	StackCut mw5 = new StackCut();
 	StudentStack studentStack = new StudentStack(10);
 	/**
-	*Constructor for LinkedListMiddleware.
 	*@param ListSize Takes an integer and passes it to the LinkedListMiddleware instance.
 	*Calls the LinkedListMiddleware, selectSort, bubbleSort,linearSearch, and binarySearch methods.
 	*/
 	public void llMW(){
-	mw.LinkedListMiddleware(int ListSize);
+		mw.LinkedListMiddleware(int ListSize);
 	}
 	public void selectSortLL(){
-	mw.selectSort();
-	return int TaskTime
+		mw.selectSort();
+		return int TaskTime
 	}
 	public void bubbleSortLL(){
-	mw.bubbleSort();
-	return int TaskTime
+		mw.bubbleSort();
+		return int TaskTime
 	}
 	public void linearSearchLL(){
-	mw.linearSearch();
-	return int TaskTime
+		mw.linearSearch();
+		return int TaskTime
 	}
 	public String binarySearchLL(){
-	mw.binarySearch();
-	return int TaskTime +" "+ int TimesThrough
+		mw.binarySearch();
+		return int TaskTime +" "+ int TimesThrough
 	}
+	x
+	
 	
 	/**
-	*Constructor for MidArrayList.
 	*@param Size Takes an integer and passes it to the MidArrayList instance.
 	*Calls the MidArrayList, bubbleSort, selectionSort, linearSearch, and binarySearch methods.
 	*/	
-	public void alMW(){
-	mw1.MidArrayList(int Size);
+	public void alMW(int size){
+		mw1.MidArrayList(size);
 	}
 	public void bubbleSortAL(){
-	mw1.bubbleSort();
-	return int TaskTime
+		mw1.bubbleSort();
+		return int TaskTime
 	}
-	public void selectionSortAL(){
-	mw1.selectionSort();
-	return int TaskTime
+	public long selectionSortAL(){
+		return mw1.selectionSort();
 	}
-	public void linearSearchAL(){
-	mw1.linearSearch();
-	return int TaskTime
+	public long linearSearchAL(){
+		return mw1.linearSearch();
 	}
+	public String bigO() {
+	}
+	
+	
+	
 	public String binarySearchAL(){
-	mw1.binarySearch();
-	return int TaskTime +" "+ int TimesThrough
+		mw1.binarySearch();
+		return int TaskTime +" "+ int TimesThrough
 	}
 
 	/**
-	*Constructor for BinaryTree.
 	*@param size Takes an integer and passes it to the BinaryTree instance.
 	*@param key1 Passes random string value to the BinaryTree instance.
 	*@param key2 Passes random string value to the BniaryTree instance.
@@ -119,7 +121,6 @@ public class Middleware {
 	}
 
 	/**
-	*Constructor for HashClient.
 	*@param n Takes an integer and passes it to the HashClient instance.
 	*Calls the createHashTable, findHashTableValue, and BigONotation methods.
 	*/
@@ -133,7 +134,6 @@ public class Middleware {
 		return mw3.bigONotation();
 	}
 	/**
-	*Constructor for HashFinder.
 	*@param input Passes integer to the HashFinder instance.
 	*@param size  Passes integer to the HashFinder instance.
 	*@param array Passes array to the HashFinder instance.
@@ -144,7 +144,6 @@ public class Middleware {
 	}
 	
 	/**
-	*Constructor for StackCut.
 	*@param param Passes a parameter to the StackCut instance.
 	*/
 	public void StackCut() {
@@ -174,8 +173,10 @@ public class Middleware {
 	/**
 	* This method cuts the list of students down to size
 	*/
-	public String[] cutStudents() {
-		studentStack.cut(5);
+	public String[] cutStudents(int count) {
+		String[] out = new String[count];
+		for(int i = 0; i < count; i++)
+			out[i] = studentStack.pop().toString();
 	}
 	
 	/**
@@ -183,6 +184,7 @@ public class Middleware {
 	*/
 	public String[] getScholarships() {
 	}
+	
 }
 /**
 *This class was created for Middleware.
