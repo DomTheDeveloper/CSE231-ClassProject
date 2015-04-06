@@ -1,4 +1,4 @@
-package edu.oakland.test.ClassProject.Middleware;
+package edu.oakland.production.ClassProject.middleware;
 import junit.framework.*;
 import edu.oakland.production.ClassProject.middleware.*;
 //version 2.2
@@ -157,7 +157,6 @@ public class StudentTest extends TestCase{
                 System.out.println("The student with GID: "+unluckystudenttwo+" also did not receive the scholarship.");
 				
 				
-						
 				Object sgid = stackcut.peek();
 				System.out.println();
 				System.out.println("The Student with GID: " + sgid + " received the Scholarship.");
@@ -173,6 +172,33 @@ public class StudentTest extends TestCase{
 				System.out.println("The Student with GID: " + sgid + " received the Scholarship.");
 				assertEquals(sgid, 677422);
 				stackcut.pop();
-					
 	}
+	 public void testTree(){
+	 	  BinaryTree tree = new BinaryTree();
+
+	 	  System.out.println();
+	 	  tree.addNode(student1.getName(),student1.getGPA(),student1.getTG());
+	 	  tree.addNode(student2.getName(),student2.getGPA(),student2.getTG());
+		  tree.addNode(student3.getName(),student3.getGPA(),student3.getTG());
+		  tree.addNode(student4.getName(),student4.getGPA(),student4.getTG());
+		  tree.addNode(student5.getName(),student5.getGPA(),student5.getTG());
+		  tree.addNode(student6.getName(),student6.getGPA(),student6.getTG());
+		  tree.addNode(student7.getName(),student7.getGPA(),student7.getTG());
+		  tree.addNode(student8.getName(),student8.getGPA(),student8.getTG());
+		  tree.addNode(student9.getName(),student9.getGPA(),student9.getTG());
+		  tree.addNode(student10.getName(),student10.getGPA(),student10.getTG());
+		  
+		  tree.preorderTraverseTree(tree.root);
+		  System.out.println();
+		  System.out.println("Students with a tg of less than 90");
+		  System.out.println(tree.findNode(90));
+		  
+		  System.out.println();
+		  
+	  }
 }
+
+
+
+
+

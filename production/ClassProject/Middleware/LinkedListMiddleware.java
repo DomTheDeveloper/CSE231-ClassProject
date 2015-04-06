@@ -1,12 +1,11 @@
-package edu.oakland.production.ClassProject.Middleware;
+package edu.oakland.production.ClassProject;
 
 import java.util.*;
-//import edu.oakland.helper.*;
-import edu.oakland.production.ClassProject.Database.LinkedListDB;
+import edu.oakland.production.ClassProject.*;
 
 /**
 *@author Zack Waldrup
-*@version version 2.1 150325
+*@version version 2.4 150403
 *@since version 1.0 150323
 */
 public class LinkedListMiddleware {
@@ -16,9 +15,10 @@ public class LinkedListMiddleware {
 	*/
 	int listSize;
 	int iMin;
-	int taskTime;
+	long taskTime;
 	int value;
 	static long startTime, endTime;
+	public boolean valuePresent = false;
 	LinkedListDB db;
 	
 	/**
@@ -34,6 +34,7 @@ public class LinkedListMiddleware {
 	
 	/**
 	*This method performs a Selection Sort on a LinkedList
+	*Big O: O(n^2)
 	*/
 	public void selectSort() {
 		startTime = System.currentTimeMillis();
@@ -51,11 +52,12 @@ public class LinkedListMiddleware {
         }
         endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Selection Sort time taken: " + tasktime);
+		System.out.println("Selection Sort time taken: " + taskTime);
 	}
 	
 	/**
 	*This method performs a Bubble Sort on a LinkedList
+	*Big O: O(n^2)
 	*/
 	public void bubbleSort() {
 		startTime = System.currentTimeMillis();
@@ -69,16 +71,17 @@ public class LinkedListMiddleware {
 		}
 		endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Bubble Sort time taken: " + tasktime);
+		System.out.println("Bubble Sort time taken: " + taskTime);
 	}
 	
 	/**
 	*This method linearly searches a LinkedList
+	*Big O: O(n)
 	*@param value of type "int"
 	*/
 	public void linearSearch(int value) {
 		this.value = value;
-		boolean valuePresent = false;
+		valuePresent = false;
 		String indexWithValue = "";
 		startTime = System.currentTimeMillis();
 		
@@ -91,11 +94,12 @@ public class LinkedListMiddleware {
 		System.out.println("Value found: " + valuePresent);
 		endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Linear Search time taken: " + tasktime);
+		System.out.println("Linear Search time taken: " + taskTime);
 	}
 	
 	/**
 	*This method conducts a binary searche on a LinkedList
+	*Big O: O(log(n))
 	*@param value of type "int"
 	*/
 	public void binarySearch(int value) {
@@ -111,16 +115,19 @@ public class LinkedListMiddleware {
 				lowIndex = middleIndex + 1;
 			} else if(db.get(middleIndex) > value) {
 				highIndex = middleIndex - 1;
-			} else {
+			} else if(db.get(middleIndex) == value){
+				valuePresent = true;
 				System.out.println("Found " + value + "at " + middleIndex);
 				lowIndex = highIndex + 1;
+			} else {
+				System.out.println("Value is not in this list");
 			}
 			timesThrough++;
 		}
 		
 		endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Binary Search time taken: " + tasktime);
+		System.out.println("Binary Search time taken: " + taskTime);
 		System.out.println("Binary Search times through: " + timesThrough);
 	}
 	
@@ -144,7 +151,7 @@ public class LinkedListMiddleware {
 		this.listSize = listSize;
 		
 		for(int i = 0; i < listSize; i++) {
-			db.add(i, randomInt(100, 1000));
+			db.add(randomInt(100, 1000));
 		}
 	}
 	
