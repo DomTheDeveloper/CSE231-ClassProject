@@ -57,11 +57,11 @@ public class Middleware {
 	}
 	public void linearSearchLL(){
 	mw.linearSearch();
-	return 
+	return int TaskTime
 	}
-	public void binarySearchLL(){
+	public String binarySearchLL(){
 	mw.binarySearch();
-	return 
+	return int TaskTime +" "+ int TimesThrough
 	}
 	
 	/**
@@ -74,15 +74,19 @@ public class Middleware {
 	}
 	public void bubbleSortAL(){
 	mw1.bubbleSort();
+	return int TaskTime
 	}
 	public void selectionSortAL(){
 	mw1.selectionSort();
+	return int TaskTime
 	}
 	public void linearSearchAL(){
 	mw1.linearSearch();
+	return int TaskTime
 	}
-	public void binarySearchAL(){
+	public String binarySearchAL(){
 	mw1.binarySearch();
+	return int TaskTime +" "+ int TimesThrough
 	}
 
 	/**
@@ -94,22 +98,24 @@ public class Middleware {
 	*Calls the createBinaryTree, calculatePreorderNodesSearched, calculateInOrderNodesSearched, calculatePreorderSearchDuration, calculateInOrderSearchDuration, calculateBigORelationship, getDatabase, and setDatabase methods.
 	*/
 	public void BinaryTreeMW(){
-	mw2.BinaryTreeMW(int size);
+		mw2.BinaryTreeMW(int size);
 	}
-	public void calculatePreorderNodesSearched(){
-	mw2.calculatePreorderNodesSearched(int key1, int key2, int key3);
+	public String calculatePreorderNodesSearched() {	
+		return mw2.calculatePreorderNodesSearched(int key1, int key2, int key3);
 	}
-	public void calculateInOrderNodesSearched(){
-	mw2.calculateInOrderNodesSearched(int key1, int key2, int key3);
+	public String calculateInOrderNodesSearched() {
+		return mw2.calculateInOrderNodesSearched(int key1, int key2, int key3);
+	
 	}
-	public void calculatePreorderSearchDuration(){
-	mw2.calculatePreorderSearchDuration(int key1, int key2, int key3);
+	public String calculatePreorderSearchDuration() {
+		return mw2.calculatePreorderSearchDuration(int key1, int key2, int key3);
 	}
-	public void calculateInOrderSearchDuration(){
-	mw2.calculateInOrderSearchDuration(int key1, int key2, int key3);
+	public String calculateInOrderSearchDuration() {
+		return mw2.calculateInOrderSearchDuration(int key1, int key2, int key3);
 	}
-	public void calculateBigORelationship(){
-	mw2.calculateBigORelationship();
+	
+	public String calculateBigORelationship() {
+		return mw2.calculateBigORelationship();
 	}
 
 	/**
@@ -118,44 +124,37 @@ public class Middleware {
 	*Calls the createHashTable, findHashTableValue, and BigONotation methods.
 	*/
 	public void createHashTable(){
-	mw3.createHashTable(int n);
+		mw3.createHashTable(int n);
 	}
-	public void findHashTableValue(int value){
-	mw3.findHashTableValue(int value);
-	return int index
+	public int findHashTableValue(int value){
+		return mw3.findHashTableValue(int value);
 	}
-	public void bigONotation(){
-	mw3.bigONotation();
-	return string Time
+	public String bigONotation() {
+		return mw3.bigONotation();
 	}
 	/**
 	*Constructor for HashFinder.
 	*@param input Passes integer to the HashFinder instance.
 	*@param size  Passes integer to the HashFinder instance.
 	*@param array Passes array to the HashFinder instance.
+	*@return the location of the value
 	*/
-	public void findHashValue(){
-	mw4.findHashValue(int input, int size, int array);
+	public int findHashValue(){
+		return mw4.findHashValue(int input, int size, int array);
 	}
 	
 	/**
 	*Constructor for StackCut.
 	*@param param Passes a parameter to the StackCut instance.
 	*/
-	public void StackCut(){
-	mw5.StackCut(int param);
+	public void StackCut() {
+		mw5.StackCut(int param);
 	}
-	public void push(){
-	mw5.push(Object param);
+	public String displayStacks(){
+		return mw5.displayStacks();
 	}
-	public void pop(){
-	mw5.pop(Object param);
-	}
-	public void displayStacks(){
-	mw5.displayStacks();
-	}
-	public void peek(){
-	mw5.peek();
+	public String peek(){
+		return mw5.peek().toString();
 	}
 	
 	/**
@@ -167,10 +166,23 @@ public class Middleware {
 	*@param TG
 	*Creates a Student Object and pushes it to the stack.
 	*/
-	public static void createStudent(int ID, string Name, string Major, double GPA, double TG){
-	Student newStudent = new Student(ID, Name, Major, GPA, TG);
-	studentStack.push(newStudent);
-}
+	public void createStudent(int ID, string Name, string Major, double GPA, double TG) {
+		Student newStudent = new Student(ID, Name, Major, GPA, TG);
+		studentStack.push(newStudent);
+	}
+	
+	/**
+	* This method cuts the list of students down to size
+	*/
+	public String[] cutStudents() {
+		studentStack.cut(5);
+	}
+	
+	/**
+	* This method will return an array of Who got Scholarships
+	*/
+	public String[] getScholarships() {
+	}
 }
 /**
 *This class was created for Middleware.
