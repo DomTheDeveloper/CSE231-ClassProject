@@ -1,7 +1,7 @@
 package edu.oakland.production.ClassProject.Database;
 
 /**
-*@author Bryan J. & David M.
+*@author Bryan J. and David M.
 *@version version 2.0 150324
 *@since version 1.0
 */

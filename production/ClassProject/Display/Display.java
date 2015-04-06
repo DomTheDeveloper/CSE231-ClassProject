@@ -1,6 +1,7 @@
 package edu.oakland.production.ClassProject.Display;
 
 import java.util.*;
+import edu.oakland.production.ClassProject.Middleware.Middleware;
 
 /**
  * 
@@ -270,14 +271,14 @@ public class Display
 				invalidOption = false;
 		
 				// PREORDER SEARCH
-				mw.calculatePreorderNodesSearched(int first, int second, int third);
+				mw.calculatePreorderNodesSearched(first, second, third);
 				
 				// ORDER SEARCH
-				mw.calculateInOrderNodesSearched(int first, int second, int third);
+				mw.calculateInOrderNodesSearched(first, second, third);
 
 				// Duration
-				mw.calculatePreorderSearchDuration(int first, int second, int third);
-				mw.calculateInOrderSearchDuration(int first, int second, int third);
+				mw.calculatePreorderSearchDuration(first, second, third);
+				mw.calculateInOrderSearchDuration(first, second, third);
 				
 				// Get BigOh Relationship
 				mw.calculateBigORelationship();

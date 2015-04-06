@@ -12,29 +12,24 @@ package edu.oakland.production.ClassProject.Database;
 * in a LinkedList.
 */
 
-class LinkedListDB<T> {
+public class LinkedListDB<T> {
 
 	public Link<T> firstLink;
 	
-	LinkedList(){
-	
+	public LinkedListDB(){
 		firstLink = null;
 	}
 	
 	/**
 	*This method sets the the firstLink to null
 	*/
-	
 	public boolean isEmpty(){
-	
-		
 		return(firstLink == null);
 	}
 	
 	/**
 	*This method inserts a link and assigns it to first link
 	*/
-	
 	public void insertFirstLink( T obj ){
 	
 		Link<T> newLink = new Link<T>(obj);
@@ -152,12 +147,8 @@ class LinkedListDB<T> {
         public void setLink(int index){
         	
         	 if (id <= 0)
-        	     return null,
+        	     return;
              
              Link currentLink = firstLink.next;
         }
-      
 }
-
-
-

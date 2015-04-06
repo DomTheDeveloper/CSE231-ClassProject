@@ -1,7 +1,6 @@
-package edu.oakland.production.GroupProject.Middleware;
+package edu.oakland.production.ClassProject.Middleware;
 
 import java.util.*;
-import edu.oakland.production.GroupProject.Middleware.*;
 
 /**
  * @author Dean DeHart, Middleware

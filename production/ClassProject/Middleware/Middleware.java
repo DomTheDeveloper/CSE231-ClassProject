@@ -1,3 +1,4 @@
+package edu.oakland.production.ClassProject.Middleware;
 
 /**
 *@author Eldari Gogiashvili
@@ -29,7 +30,7 @@ public class Middleware {
 	int size;
 	int array;
 	
-	int param
+	int param;
 	
 	/**
 	*Constructor for LinkedListMiddleware.
@@ -110,3 +111,5 @@ public class Middleware {
 /**
 *This class was created for Middleware.
 */
+
+}

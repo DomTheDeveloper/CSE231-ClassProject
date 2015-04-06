@@ -1,6 +1,6 @@
-package edu.oakland.production.ClassProject.middleware;
+package edu.oakland.production.ClassProject.Middleware;
 import java.util.*;
-import edu.oakland.production.ClassProject.middleware.*;
+import edu.oakland.production.ClassProject.Middleware.*;
 //version 2.0
 public class Student{
 	private int gID;

@@ -1,4 +1,5 @@
-package edu.oakland.production.GroupProject.Middleware;
+package edu.oakland.production.ClassProject.Middleware;
+
 /**
 *@author Jared Okoniewski, Jesse Rominske, Dean DeHart
 *@version version 2.0 150330

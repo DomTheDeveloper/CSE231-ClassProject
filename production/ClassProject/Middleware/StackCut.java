@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.oakland.production.ClassProject.middleware;
+package edu.oakland.production.ClassProject.Middleware;
 import java.util.*;
 /**
  *@version 1.0

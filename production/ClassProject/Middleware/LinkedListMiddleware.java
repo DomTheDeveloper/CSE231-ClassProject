@@ -1,7 +1,8 @@
-package edu.oakland.production;
+package edu.oakland.production.ClassProject.Middleware;
 
 import java.util.*;
-import edu.oakland.helper.*;
+//import edu.oakland.helper.*;
+import edu.oakland.production.ClassProject.Database.LinkedListDB;
 
 /**
 *@author Zack Waldrup
@@ -27,7 +28,7 @@ public class LinkedListMiddleware {
 	*/
 	public LinkedListMiddleware(int listSize) {
 		this.listSize = listSize;
-		db = new /*Databaseclassname*/();
+		db = new LinkedListDB();
 		this.createLinkedList(listSize);
 	}	
 	
