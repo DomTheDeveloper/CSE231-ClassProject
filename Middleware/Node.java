@@ -8,10 +8,10 @@ public class Node{
 	public Node leftChild;
 	public Node rightChild;
 	
-	Node(int intTg, String stringName, double doubleGpa){
-		this.tg = intTg;
+	Node(String stringName, double doubleGpa, int intTg){
 		this.name = stringName;
 		this.gpa = doubleGpa;
+		this.tg = intTg;
 	}
 	public String toString(){
 		return name + " has a thesis grade of " + tg;

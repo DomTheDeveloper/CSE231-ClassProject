@@ -6,7 +6,7 @@ import edu.oakland.production.ClassProject.*;
 
 /**
 *@author Zack Waldrup
-*@version version 1.0 150401
+*@version version 1.1 150403
 *@since version 1.0 150401
 */
 public class LLMiddlewareTest extends TestCase {
@@ -57,7 +57,7 @@ public class LLMiddlewareTest extends TestCase {
 	*This method tests whether the linear search finds the given integer
 	*/
 	public void testLinearSearch() {
-		mw1.db.add(1, searchInt);
+		mw1.db.add(searchInt);
 		mw1.selectSort();
 		mw1.linearSearch(searchInt);
 		assertTrue(valuePresent);
@@ -67,7 +67,7 @@ public class LLMiddlewareTest extends TestCase {
 	*This method tests whether the binary search finds the given integer
 	*/
 	public void testBinarySearch() {
-		mw1.db.add(1, searchInt);
+		mw1.db.add(searchInt);
 		mw1.selectSort();
 		mw1.binarySearch(searchInt);
 		assertTrue(valuePresent);

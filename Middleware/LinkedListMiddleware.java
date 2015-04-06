@@ -5,7 +5,7 @@ import edu.oakland.production.ClassProject.*;
 
 /**
 *@author Zack Waldrup
-*@version version 2.3 150401
+*@version version 2.4 150403
 *@since version 1.0 150323
 */
 public class LinkedListMiddleware {
@@ -151,7 +151,7 @@ public class LinkedListMiddleware {
 		this.listSize = listSize;
 		
 		for(int i = 0; i < listSize; i++) {
-			db.add(i, randomInt(100, 1000));
+			db.add(randomInt(100, 1000));
 		}
 	}
 	
