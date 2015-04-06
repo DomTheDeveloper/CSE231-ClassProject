@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package edu.oakland.production.ClassProject.middleware;
+package edu.oakland.production.ClassProject.Database;
+
 import java.util.*;
+
 /**
- *@version 1.0
- * @author Sam
+ * @version "version 2.0" "20150104"
+ * @author Sam Bell and Binh Ton
  */
 public class StackCut extends Stack<Object>{
     private int stackSize;

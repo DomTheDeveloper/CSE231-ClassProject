@@ -7,7 +7,7 @@ import java.util.*;
 import edu.oakland.production.ClassProject.Middleware.*;
 
 //Import BinaryTree.java
-import edu.oakland.production.ClassProject.Database.*;
+import edu.oakland.production.ClassProject.BinaryTreeDB.*;
 
 
 /*
@@ -17,7 +17,7 @@ import edu.oakland.production.ClassProject.Database.*;
  * @version version 1.1
  * @since version 1.0
  */
-public class Middleware {
+public class BinaryTreeMiddleware {
 	
 	/// Minimum possible key value, used with generating a random key.
 	private int minimumKeyValue = 400000;
@@ -29,16 +29,16 @@ public class Middleware {
 	/// Maximum possible key value, used with generating a random name.
 	private int maximumNameValue = 600000;
 	
-	Database database;
+    BinaryTreeDB database;
 	
 	/*
 	 * Default constructor for the Middleware Class.
 	 * 
-	 * @param database Database object.
+	 * @param database BinaryTreeDB object.
 	 * 
 	 * @returns Middleware
 	 */
-	public Middleware(Database database){
+	public BinaryTreeMiddleware(BinaryTreeDB database){
 		
 		//Link the database 
 		this.database = database
@@ -409,18 +409,18 @@ public class Middleware {
 	/*
 	 * Retrieves the database object.
 	 * 
-	 * @returns database Database object.
+	 * @returns database BinaryTreeDB object.
 	 */
-	public Database getDatabase(){
+	public BinaryTreeDB getBinaryTreeDB(){
 		return this.database;
 	}
 	
 	/*
 	 * Modifies the database object stored in Middleware.
 	 * 
-	 * @param database Database object corresponding to the new database.
+	 * @param database BinaryTreeDB object corresponding to the new database.
 	 */
-	public void setDatabase(Database database){
+	public void setBinaryTreeDB(BinaryTreeDB database){
 		this.database = database;
 	}
 }

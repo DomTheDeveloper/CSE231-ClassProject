@@ -1,7 +1,7 @@
-package edu.oakland.production.ClassProject;
+package edu.oakland.production.ClassProject.Middleware;
 
 import java.util.ArrayList;
-import edu.oakland.production.ClassProject.*;
+import edu.oakland.production.ClassProject.Database.ArrayListDatabase;
 
 /**
 *@author Toufiq Hussain
@@ -24,7 +24,7 @@ public class MidArrayList {
 	*/
 	MidArrayList(int size){
 		arraySize =size;
-		theArray = new ArrayListDatabase(size);
+		ArrayListDatabase theArray = new ArrayListDatabase(size);
 	}
 	
 	/**
