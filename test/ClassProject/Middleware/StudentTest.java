@@ -191,8 +191,9 @@ public class StudentTest extends TestCase{
 		  tree.preorderTraverseTree(tree.root);
 		  System.out.println();
 		  System.out.println("Students with a tg of less than 90");
-		  System.out.println(tree.findNode(90));
-		  
+		   System.out.println();
+		//  System.out.println(tree.findNode(90));
+		  System.out.println(tree.getLess(90));
 		  System.out.println();
 		  
 	  }
