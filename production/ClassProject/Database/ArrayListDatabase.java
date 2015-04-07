@@ -8,7 +8,7 @@ import java.util.*;
 *ructure shall have (1) 100K elements; (2) 200K elements; (3) 400K elements;
 *1.Create an ArrayList
 *@author "Arpan Rughani and Bryan Purakal"
-*@version "version 1.1"
+*@version "version 1.2"
 *@since "152503"
 */
 public class ArrayListDatabase<T>{
@@ -18,11 +18,11 @@ public class ArrayListDatabase<T>{
 
 	//private static int students;
 	
-	private ArrayList<T> students;
+	private ArrayList<Integer> students;
 	/**Overloaded constructor to create ArrayList object of size "size"
 	*/
 	public ArrayListDatabase(int size){
-		students = new ArrayList<T>(size);
+		students = new ArrayList<Integer>(size);
 	}
 	
 	/**Get Student Method
@@ -30,7 +30,7 @@ public class ArrayListDatabase<T>{
 	* @param index of student from array
 	* @return student from selected index
 	*/
-	public T getStudent(int i){
+	public Integer getStudent(int i){
 		return students.get(i);
 	}
 
@@ -38,34 +38,32 @@ public class ArrayListDatabase<T>{
 	* @param index of student from array
 	*/
 	
-	 public void set(int i, T obj){
-	 	 students.add(i,obj);
-	 	 System.out.println("Student: " + obj + " has been added");
+	 public void setStudent(int i, int j){
+	 	 students.set(i,j);
 	 }// change the array list
 	 
 	/**Add student method
 	*/
-	 public  void add(T obj){
-	 	 students.add(obj);
-	 	 System.out.println("Student: " + obj + " has been added");
-	 
+	 public  void addStudent(int i){
+	 	 students.add(i);
 	 } //This is to add to the end of the array list
 
 	/**remove Student Method
 	* @param index of student from array
 	*/
-	 public void remove(int i){
+	 public void removeStudent(int i){
 	 	 students.remove(i);
-	 	 System.out.println("Student #" + i + " has been removed");
 	 }
 	 
 	 public int returnSize(){
 	 	 return students.size(); 
 	 }
 	 
-	 public void clearAll(){
+	 public void clearAllStudents(){
 	 	 students.clear();
-	 	 System.out.println("Cleared all students");
-	 	 
+	 }
+	 
+	 public void trimSize() {
+	 	students.trimToSize();
 	 }
 }
