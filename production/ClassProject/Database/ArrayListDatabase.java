@@ -1,24 +1,21 @@
 package edu.oakland.production.ClassProject.Database;
-
 import java.util.*;
 
 /**
-* This is a class for ArrayList 
+*This is a class for ArrayList 
 *Fill the following Data Structures with Random Numbers from 100 to 1000 Each Data St
 *ructure shall have (1) 100K elements; (2) 200K elements; (3) 400K elements;
 *1.Create an ArrayList
 *@author "Arpan Rughani and Bryan Purakal"
-*@version "version 1.2"
+*@version "version 1.1"
 *@since "152503"
 */
-public class ArrayListDatabase<T>{
+public class ArrayListDatabase{
 	
-	/** Declare arraylist 
+		/** Declare arraylist 
 	*/
-
-	//private static int students;
+	public ArrayList<Integer> students;
 	
-	private ArrayList<Integer> students;
 	/**Overloaded constructor to create ArrayList object of size "size"
 	*/
 	public ArrayListDatabase(int size){
@@ -26,7 +23,6 @@ public class ArrayListDatabase<T>{
 	}
 	
 	/**Get Student Method
-	* 
 	* @param index of student from array
 	* @return student from selected index
 	*/
@@ -37,16 +33,15 @@ public class ArrayListDatabase<T>{
 	/**set Student Method
 	* @param index of student from array
 	*/
-	
 	 public void setStudent(int i, int j){
 	 	 students.set(i,j);
-	 }// change the array list
+	 }
 	 
 	/**Add student method
 	*/
 	 public  void addStudent(int i){
 	 	 students.add(i);
-	 } //This is to add to the end of the array list
+	 } 
 
 	/**remove Student Method
 	* @param index of student from array
@@ -56,14 +51,14 @@ public class ArrayListDatabase<T>{
 	 }
 	 
 	 public int returnSize(){
-	 	 return students.size(); 
+	 	 return students.size();
 	 }
 	 
 	 public void clearAllStudents(){
 	 	 students.clear();
 	 }
 	 
-	 public void trimSize() {
-	 	students.trimToSize();
+	 public void trimSize(){
+	 	 students.trimToSize();
 	 }
 }
