@@ -9,8 +9,8 @@ import junit.framework.*;
 *@version "1.1" dated 150329
 *@since version 1.0 dated 150329
 */
-public class testBinaryTree extends TestCase{
-	BinaryTreeDB tree;
+public class TestBinaryTree extends TestCase{
+	BinaryTreeDB<String> tree;
 	/** The testAdd() method tests whether the binary tree may add a node to
 	* the existing set of nodes that it contains 
 	*/
