@@ -1,8 +1,7 @@
 package edu.oakland.production.ClassProject.Middleware;
 
 import java.util.*;
-import edu.oakland.production.middleware.*;
-import edu.oakland.production.database.*;
+import edu.oakland.production.ClassProject.Database.*;
 /**
  * @author Dean DeHart, Middleware
  * @version 2.0 150401
@@ -13,17 +12,12 @@ public class HashClient {
 	 * Creates an instance of the Database HashTable class.
 	 * Error is currently caused by missing import statement for this class. -Dean
 	 */
-	private HashTable hashTable;
+	private DatabaseHashTable hashTable;
 	/**
 	 * Creates an instance of the Middleware HashDataFinder class, located in the
 	 * edu.oakland.production.GroupProject.Middleware package. -Dean
 	 */
 	private HashFinder hashFinder;
-	/**
-	 * Creates an instance of the Middleware HashClient class, located in the
-	 * edu.oakland.production.GroupProject.Middleware package. -Dean
-	 */
-	private HashClient hashClient = new HashClient();
 	/**
 	 *See findHashTableValue(); -Dean
 	 */
@@ -45,7 +39,7 @@ public class HashClient {
 		return bigO;
 	}	
 	public void createHashTable(int n) {
-		hashTable = new HashTable(n);
+		hashTable = new DatabaseHashTable(n);
 		hashTableArray = hashTable.containerArray;
 	}
 	/**
@@ -59,4 +53,18 @@ public class HashClient {
 		int valueIndex = hashFinder.findHashValue(hashValue, hashTableArraySize, hashTableArray);
 		return valueIndex;
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+

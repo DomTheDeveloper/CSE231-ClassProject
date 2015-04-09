@@ -12,19 +12,18 @@ import java.util.Hashtable;
 
 public class DatabaseHashTable {
 	private Hashtable<Integer, Integer> hashTable;
-	private int[] hashTableElementContainer;
 	private int[] hashTableArray;
 	private int hashTableArraySize;
 
 	/**
     	* Constructor for DatabaseHashTable 
     	* Generates the hash table
-    	* 
-    	* @param containerArray An array that contains the elements to be added. This will be specified by middleware unless changed
-    	* @param hashArraySize The size of the hash table to be made. This is changeable to allow more flexibility and possible speed improvements. 
+    	* * @param hashArraySize The size of the hash table to be made. This is changeable to allow more flexibility and possible speed improvements. 
     	*/
-	public DatabaseHashTable(int[] containerArray, int hashArraySize){
-		generateHashTable(containerArray,  hashArraySize);
+	public DatabaseHashTable( int hashArraySize){
+//		generateHashTable(hashArraySize);
+		hashTableArraySize = hashArraySize;
+		hashTable = new HashTable<Integer,Integer>(hashArraySize);
 	}
 	
     	/**
@@ -34,7 +33,7 @@ public class DatabaseHashTable {
     	* possible speed improvements. 
     	*/
 	public void generateHashTable(int[] containerArray, int hashArraySize){ 
-		hashTableElementContainer = containerArray;
+		int[] hashTableElementContainer = containerArray;
 		hashTableArraySize = hashArraySize;
 		hashTableArray = new int[hashTableArraySize];
 		
@@ -72,6 +71,17 @@ public class DatabaseHashTable {
 		return(hashTable.get(key));
 	}
 
+	/** This Method returns -1 if not found
+	* and anything else if it is in the array
+	* @param value the value to find
+	*/
+	public int getLocation(int value) {
+		if(hashTable.contains(value))
+			return value % hashTableArraySize;
+		else
+			return -1;
+	}
+	
     	/**
     	* Resets the value of the element with the specified key to -1.
     	* 
@@ -87,7 +97,7 @@ public class DatabaseHashTable {
     	* @param key Where the hashtable will look to set the value.
     	* @param value The value that will be put into the hashtable at the specified key location.
     	*/
-	public void insert(int key, int value){
-		hashTable.put(key, value);
+	public void insert(int value){
+		hashTable.put(value % hashTableArraySize, value);
 	}	
 }
