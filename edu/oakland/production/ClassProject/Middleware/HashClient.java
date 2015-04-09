@@ -57,6 +57,6 @@ public class HashClient {
 		hashValue = value;
 		System.out.println("The hash value to be retrieved is: " + hashValue);
 		int valueIndex = hashFinder.findHashValue(hashValue, hashTableArraySize, hashTableArray);
-		return valueindex;
+		return valueIndex;
 	}
 }
