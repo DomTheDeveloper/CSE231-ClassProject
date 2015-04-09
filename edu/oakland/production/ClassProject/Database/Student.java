@@ -19,21 +19,27 @@ public class Student{
 	    this.GPA = GPA;
 	    this.TG = TG;
 	}
+	
 	public int getID(){
 		return gID;
 	}
+	
 	public String getName(){
 		return name;
 	}
+	
     	public String getMajor(){
         	return major;
     	}
+    	
     	public double getGPA(){
         	return GPA;
     	}
+    	
     	public int getTG(){
         	return TG;
     	}
+    	
     	public static void main(String [] args){
     		Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);
     		Student student2 = new Student(177993, "Smith", "IT", 3.47, 78);
@@ -119,26 +125,28 @@ public class Student{
                 		System.out.println(student9.getName()+" had a major of: "+student9.getMajor()+" a GPA of: "+student9.getGPA()+" and a thesis grade of: "+student9.getTG());
                 		System.out.println();
             		}
-            if(h == student10.getID()){
-                System.out.println("Student of name: "+student10.getName()+" and GID: "+student10.getID()+" was removed from the list.");
-                System.out.println(student10.getName()+" had a major of: "+student10.getMajor()+" a GPA of: "+student10.getGPA()+" and a thesis grade of: "+student10.getTG());
-                System.out.println();
-            }
-            stackcut.pop();    
-        }
-        System.out.println();
-        System.out.println("The stack after the cut is: ");
-        stackcut.displayStacks();
-        System.out.println();
-        Object unluckystudentone =stackcut.peek();
-        stackcut.pop();
-        Object unluckystudenttwo = stackcut.peek();
-        stackcut.pop();
-        System.out.println("The stack after the cut is: ");
-        stackcut.displayStacks();
-        System.out.println();
-        System.out.println("The student with GID: "+unluckystudentone+" did not recieve the scholarship.");
-        System.out.println("The student with GID: "+unluckystudenttwo+" also did not recieve the scholarship.");
-                     
+            
+            		if(h == student10.getID()){
+                		System.out.println("Student of name: "+student10.getName()+" and GID: "+student10.getID()+" was removed from the list.");
+                		System.out.println(student10.getName()+" had a major of: "+student10.getMajor()+" a GPA of: "+student10.getGPA()+" and a thesis grade of: "+student10.getTG());
+	             		System.out.println();
+            		}
+            
+            		stackcut.pop();    
+        	}
+        
+        	System.out.println();
+        	System.out.println("The stack after the cut is: ");
+        	stackcut.displayStacks();
+        	System.out.println();
+        	Object unluckystudentone =stackcut.peek();
+        	stackcut.pop();
+        	Object unluckystudenttwo = stackcut.peek();
+        	stackcut.pop();
+        	System.out.println("The stack after the cut is: ");
+        	stackcut.displayStacks();
+        	System.out.println();
+        	System.out.println("The student with GID: "+unluckystudentone+" did not recieve the scholarship.");
+        	System.out.println("The student with GID: "+unluckystudenttwo+" also did not recieve the scholarship.");
 	}
 }
