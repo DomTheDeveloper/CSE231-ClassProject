@@ -1,6 +1,5 @@
 /**
-* This class stores the data structure to store an array of values passed to us by middleware. 
-* If we need to populate the array (or make any other changes), just let Chris or Mike know.
+* This class stores the data structure which stores an array of values passed to us by Middleware. 
 *
 * @author Chris Spencer and Mike Opiola
 * @version "version-1.0" "150330"
@@ -18,17 +17,22 @@ public class DatabaseHashTable {
 	private int hashTableArraySize;
 
 	/**
-    *Construcor for DatabaseHashTable
-    */
+    	* Constructor for DatabaseHashTable 
+    	* Generates the hash table
+    	* 
+    	* @param containerArray An array that contains the elements to be added. This will be specified by middleware unless changed
+    	* @param hashArraySize The size of the hash table to be made. This is changeable to allow more flexibility and possible speed improvements. 
+    	*/
 	public DatabaseHashTable(int[] containerArray, int hashArraySize){
 		generateHashTable(containerArray,  hashArraySize);
 	}
 	
-    /**
-    *This function generates a hash table based upon an array and hash table size specified
-    * @param containerArray An array that contains the elements to be added. This will be specified by middleware unless changed
-    * @param hashArraySize The size of the hash table to be made. This is changeable to allow more flexibility and possible speed improvements. 
-    */
+    	/**
+    	* This function generates a hash table based upon an array and hash table size specified.
+    	* @param containerArray An array that contains the elements to be added. This will be specified by middleware unless changed.
+    	* @param hashArraySize The size of the hash table to be made. This is changeable to allow more flexibility and 
+    	* possible speed improvements. 
+    	*/
 	public void generateHashTable(int[] containerArray, int hashArraySize){ 
 		hashTableElementContainer = containerArray;
 		hashTableArraySize = hashArraySize;
@@ -59,27 +63,30 @@ public class DatabaseHashTable {
 	}
 
 	/**
-    *select takes a key and returns the integer value of what is stored at said key
-    * @param key Where the hashtable will look to find the value that it will return
-    * @return int Value found at key
-    */
+     	* Takes a key and returns the integer value of what is stored at said key.
+     	* 
+    	* @param key Where the hashtable will look to find the value that it will return.
+    	* @return int Value found at key.
+    	*/
 	public int select(int key){
 		return(hashTable.get(key));
 	}
 
-    /**
-    *remove resets the value of the element with the specified key to -1
-    * @param key Where the hashtable will look to find the value to be reset to -1
-    */
+    	/**
+    	* Resets the value of the element with the specified key to -1.
+    	* 
+    	* @param key Where the hashtable will look to find the value that is to be reset to -1.
+    	*/
 	public void remove(int key){
 		hashTable.put(key, -1);
 	}
 
-    /**
-    *insert Takes a value and inserts it into the hash table at the specified key
-    * @param key Where the hashtable will look to set the value
-    * @param value The value to be put into the hashtable
-    */
+    	/**
+    	* Takes a value and inserts it into the hash table at the specified key.
+    	* 
+    	* @param key Where the hashtable will look to set the value.
+    	* @param value The value that will be put into the hashtable at the specified key location.
+    	*/
 	public void insert(int key, int value){
 		hashTable.put(key, value);
 	}	
