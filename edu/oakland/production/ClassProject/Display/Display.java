@@ -58,7 +58,7 @@ public class Display {
 					switch (menuString) {
 					case "1":
 						System.out.println("You have selected 100,000 elements.");
-						middleware.setNumberOfElements(100);
+						middleware.setNumberOfElements(100000);
 						middleware.createArrayList();
 						returnTime = middleware.sortArrayList(true);
 						System.out.println("The search time for arrayList selection sort was: " + returnTime);
