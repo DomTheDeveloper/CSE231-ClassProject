@@ -1,5 +1,6 @@
 package edu.oakland.production.ClassProject.Middleware;
 import java.util.*;
+import edu.oakland.production.ClassProject.Database.*;
 /**
 *@author Eldari Gogiashvili
 *@version version 2.0.0 date 150405
@@ -30,42 +31,41 @@ public class Middleware {
 	private String Major;
 	private double GPA;
 	private double TG;
+	private String bigO;
 
-	private LinkedListMiddleware mw = new LinkedListMiddleware(10);
-	private MidArrayList mw1 = new MidArrayList(10);
-	private BinaryTreeMW mw2 = new BinaryTreeMW();
-	private HashClient mw3 = new HashClient();
-	private HashFinder mw4 = new HashFinder();
-	private StackCut mw5 = new StackCut(5);
-	private Stack<Integer> stack = new Stack<Integer>();
-	
+	private LinkedListMiddleware mwLL = new LinkedListMiddleware(10);
+	private MidArrayList mwAL = new MidArrayList(10);
+	private BinaryTreeMW mwBT = new BinaryTreeMW();
+	private HashClient mwHC = new HashClient();
+	private HashFinder mwHF = new HashFinder();
+	private StackCut stack = new StackCut(5);
 	
 	/**
 	*@param ListSize Takes an integer and passes it to the LinkedListMiddleware instance.
 	*Calls the LinkedListMiddleware, selectSort, bubbleSort,linearSearch, and binarySearch methods.
 	*/
 	public void llMW(int listSize){
-		mw.createLinkedList(listSize);
+		mwLL.createLinkedList(listSize);
 	}
 	
 	public long selectSortLL(){
-		mw.selectSort();
-		return mw.taskTime;
+		mwLL.selectSort();
+		return mwLL.taskTime;
 	}
 	
 	public long bubbleSortLL(){
-		mw.bubbleSort();
-		return mw.taskTime;
+		mwLL.bubbleSort();
+		return mwLL.taskTime;
 	}
 	
 	public long linearSearchLL(int value){
-		mw.linearSearch(value);
-		return mw.taskTime;
+		mwLL.linearSearch(value);
+		return mwLL.taskTime;
 	}
 	
 	public String binarySearchLL(int value){
-		mw.binarySearch(value);
-		String stuff = " " + mw.taskTime + " " + mw.timesThrough;
+		mwLL.binarySearch(value);
+		String stuff = " " + mwLL.taskTime + " " + mwLL.timesThrough;
 		return stuff;
 	}
 	
@@ -75,35 +75,34 @@ public class Middleware {
 	*Calls the MidArrayList, bubbleSort, selectionSort, linearSearch, and binarySearch methods.
 	*/	
 	/*public void alMW(int size){
-		mw1.MidArrayList(size);
+		mwAL.MidArrayList(size);
 	}*/
-	
+	/*
 	public long bubbleSortAL(){
-		mw1.bubbleSort();
-		return mw1.taskTime;
+		mwAL.bubbleSort();
+		return mwAL.taskTime;
 	}
 	
 	public long selectionSortAL(){
-		mw1.selectionSort();
-		return mw1.taskTime;
+		mwAL.selectionSort();
+		return mwAL.taskTime;
 	}
 	
 	public long linearSearchAL(int a){
-		mw1.linearSearch(a);
-		return mw1.taskTime;
+		mwAL.linearSearch(a);
+		return mwAL.taskTime;
 	}
-	
-	public String bigO() {
-	}
+	*/
 	
 	
 	
+	/*
 	public String binarySearchAL(int b){
 		String returnString;
-		mw1.binarySearch(b);
-		returnString = Long.toString(mw1.taskTime);
-		returnString += mw1.timesThrough;
-	}
+		mwAL.binarySearch(b);
+		returnString = Long.toString(mwAL.taskTime);
+		returnString += mwAL.timesThrough;
+	}*/
 
 	/**
 	*@param size Takes an integer and passes it to the BinaryTree instance.
@@ -113,28 +112,28 @@ public class Middleware {
 	*Calls the createBinaryTree, calculatePreorderNodesSearched, calculateInOrderNodesSearched, calculatePreorderSearchDuration, calculateInOrderSearchDuration, calculateBigORelationship, getDatabase, and setDatabase methods.
 	*/
 	public void BinaryTreeMW(){
-		mw2.populateBinaryTreeDB(size);
+		mwBT.populateBinaryTreeDB(size);
 	}
 	
 	public String calculatePreorderNodesSearched() {	
-		return mw2.calculatePreorderNodesSearched(key1, key2, key3);
+		return mwBT.calculatePreorderNodesSearched(key1, key2, key3);
 	}
 	
 	public String calculateInOrderNodesSearched() {
-		return mw2.calculateInOrderNodesSearched(key1, key2, key3);
+		return mwBT.calculateInOrderNodesSearched(key1, key2, key3);
 	
 	}
 	
 	public String calculatePreorderSearchDuration() {
-		return mw2.calculatePreorderSearchDuration(key1, key2, key3);
+		return mwBT.calculatePreorderSearchDuration(key1, key2, key3);
 	}
 	
 	public String calculateInOrderSearchDuration() {
-		return mw2.calculateInOrderSearchDuration(key1, key2, key3);
+		return mwBT.calculateInOrderSearchDuration(key1, key2, key3);
 	}
 	
 	public String calculateBigORelationship() {
-		return mw2.calculateBigORelationship();
+		return mwBT.calculateBigORelationship();
 	}
 
 	/**
@@ -142,15 +141,15 @@ public class Middleware {
 	*Calls the createHashTable, findHashTableValue, and BigONotation methods.
 	*/
 	public void createHashTable(){
-		mw3.createHashTable(n);
+		mwHC.createHashTable(n);
 	}
 	
 	public int findHashTableValue(int value){
-		return mw3.findHashTableValue(value);
+		return mwHC.findHashTableValue(value);
 	}
 	
 	public String bigONotation() {
-		return mw3.bigONotation();
+		return mwHC.bigONotation();
 	}
 	
 	/**
@@ -159,23 +158,24 @@ public class Middleware {
 	*@param array Passes array to the HashFinder instance.
 	*@return the location of the value
 	*/
+	/*
 	public int findHashValue(){
-		mw4.findHashValue(input, size, array);
-	}
+		mwHF.findHashValue(input, size, array);
+	}*/
 	
 	/**
 	*@param param Passes a parameter to the StackCut instance.
 	*/
 	/*public void StackCut() {
-		mw5.StackCut(param);
+		stack.StackCut(param);
 	}
 	
 	public String displayStacks(){
-		return mw5.displayStacks();
+		return stack.displayStacks();
 	}
 	
 	public String peek(){
-		return mw5.peek().toString();
+		return stack.peek().toString();
 	}
 	*/
 	/**
@@ -187,9 +187,107 @@ public class Middleware {
 	*@param TG
 	*Creates a Student Object and pushes it to the stack.
 	*/
-	public void createStudent(int ID, String Name, String Major, double GPA, double TG) {
+	public void createStudent(int ID, String Name, String Major, double GPA, int TG) {
 		Student newStudent = new Student(ID, Name, Major, GPA, TG);
 		stack.push(newStudent);
+	}
+	
+	public void setNumberOfElements(int n) {
+		mwLL = new LinkedListMiddleware(n);
+		mwAL = new MidArrayList(n);
+	}
+	
+	/**
+	* Populate the List.
+	*/
+	public void createArrayList() {
+		mwAL.generateRandomArray();
+	}
+	
+	public void createLinkedList() {
+		
+	}
+	
+	public long sortArrayList(boolean selectionSort) {
+		if(selectionSort)
+		{
+			return mwAL.selectionSort();
+		}
+		else
+		{
+			return mwAL.bubbleSort();
+		}
+	}
+	
+	
+	public long sortLinkedList(boolean selectionSort) {
+		if(selectionSort)
+		{
+			return mwLL.selectSort();
+		}
+		else
+		{
+			return mwLL.bubbleSort();
+		}
+	}
+	
+	public long searchLinkedList(int val, boolean binary) {
+		long time = System.currentTimeMillis();
+		if(binary) 
+		{
+			 mwLL.binarySearch(val);
+		}
+		else
+		{
+			 mwLL.linearSearch(val);
+		}
+		return System.currentTimeMillis() - time;
+	}
+		
+	public long searchArrayList(int val, boolean binary) {
+		long time = System.currentTimeMillis();
+		if(binary) 
+		{
+			mwAL.binarySearch(val);
+		}
+		else
+		{
+			mwAL.linearSearch(val);
+		}
+		return System.currentTimeMillis() - time;
+	}
+	
+	public String bigOAL(boolean selectSort) {
+		if(selectSort)
+		{
+			return mwAL.selectSortBigO(100,500,1000);
+		}
+		else
+		{
+			return mwAL.bubbleSortBigO(100,500,1000);
+		}
+			
+	}
+	
+	public String bigOLL(boolean selectSort) {
+		if(selectSort)
+		{
+			return mwLL.calcSelectBigO(100,500,1000);
+		}
+		else
+		{
+			return mwLL.calcBubbleBigO(100,500,1000);
+		}
+	}
+	
+	public void createHashTable(int n) {
+		mwHC.createHashTable(n);
+	}
+	
+	public long searchValuesAndGetTime(int a) {
+		long start = System.currentTimeMillis();
+		mwHC.findHashTableValue(a);
+		return System.currentTimeMillis() - start;
 	}
 	
 	/**
@@ -199,12 +297,13 @@ public class Middleware {
 		String[] out = new String[count];
 		for(int i = 0; i < count; i++)
 			out[i] = stack.pop().toString();
+		return out;
 	}
 	
 	/**
 	* This method will return an array of Who got Scholarships
 	*/
 	public String[] getScholarships() {
-		
+		return null;
 	}
 }

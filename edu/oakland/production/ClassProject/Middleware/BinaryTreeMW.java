@@ -7,11 +7,13 @@
 
 package edu.oakland.production.ClassProject.Middleware;
 
+
+
 //Import java util framework
 import java.util.*;
 
 //Import BinaryTreeDB.java & Node.java
-import edu.oakland.production.database.*;
+import edu.oakland.production.ClassProject.Database.*;
 
 
 
@@ -449,7 +451,7 @@ public class BinaryTreeMW {
 		bigO += "\nThe time spent searching during each recursion are as follows:\n";
 		
 		//the key is -1 so the search method goes through the entire tree
-		bigO += calculateInOrderTimeElapsed(focusNode, -1, true);
+		bigO += calculateInOrderTimeElapsed( -1);
 		
 		return bigO; 
 	}
@@ -464,40 +466,17 @@ public class BinaryTreeMW {
  	 * 
  	 * @return time String value that returns data regarding time spent during each recursion of the method.
  	 */
-	private String calculateInOrderTimeElapsed(Node focusNode, int key, boolean continueSearching){
+	private long calculateInOrderTimeElapsed(int key){
 		
-		String time = "";
+		long time = 0;
 		
 		//Capture the start time.
-		double startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 		
-		// Ignore the recursion loop if the node is already found, or if the node is non existant.
-		if (!continueSearching){
-			return "";
-		} else if (focusNode == null){
-			return "";
-		}
+		binaryTreeDatabase.findNode(key);
+		long endTime = System.currentTimeMillis();
 		
-		if (focusNode.leftChild != null){
-			time += " ";
-			time += calculateInOrderTimeElapsed(focusNode.leftChild, key, continueSearching);
-		}
-		
-		// If the focus node has the desired key, stop searching
-		if (focusNode.getKey == key){
-			continueSearching = false;
-		}
-		
-		if (focusNode.rightChild != null){
-			time += " ";
-			time += calculateInOrderTimeElapsed(focusNode.rightChild, key, continueSearching);
-		}
-			
-		double endTime = System.currentTimeMillis();
-		
-		time += " ";
-		time += (Double.toString(endTime-startTime));
-		return time;
+		return endTime-startTime;
 	}
 	
 	/*
@@ -541,7 +520,7 @@ public class BinaryTreeMW {
 	 * 
 	 * @param binaryTreeDatabaseBinaryTreeDB object.
 	 */
-	public BinaryTreeDB setBinaryTreeDatabase(BinaryTreeDB binaryTreeDatabase){
+	public void setBinaryTreeDatabase(BinaryTreeDB binaryTreeDatabase){
 		
 		this.binaryTreeDatabase = binaryTreeDatabase;
 	}

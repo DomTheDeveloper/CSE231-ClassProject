@@ -1,4 +1,4 @@
-package edu.oakland.production.Display;
+package edu.oakland.production.ClassProject.Display;
 
 import edu.oakland.production.ClassProject.Middleware.*;
 
@@ -17,7 +17,7 @@ public class Display {
 	private int menuKey;
 	private String menuString;
 	private Middleware middleware = new Middleware();
-	private String returnTime;
+	private long returnTime;
 	
 	private int a = -1;
 	private int b;
@@ -58,12 +58,15 @@ public class Display {
 					switch (menuString) {
 					case "1":
 						System.out.println("You have selected 100,000 elements.");
-						middleware.setNumberOfElements(100000);
-						middleware.createArrayList(middleware.getNumberOfElements());
+						middleware.setNumberOfElements(100);
+						middleware.createArrayList();
 						returnTime = middleware.sortArrayList(true);
 						System.out.println("The search time for arrayList selection sort was: " + returnTime);
-						returnTime = middleware.sortArrayList(false);
-						System.out.println("The search time for arrayList bubble sort was: " + returnTime);
+						returnTime = middleware.sortLinkedList(true);
+						System.out.println("The time for LinkedList selection sort was: " + returnTime);
+						
+						//Show Big Oh
+						System.out.println("The big oh data is:\n\t ArrayList: " + middleware.bigOAL(true) + "\n\t Linked List" + middleware.bigOLL(true));
 						
 						//Show Big Oh
 						//int [] BigO = middleware.getBigOData();
@@ -74,21 +77,14 @@ public class Display {
 						
 						// System.out.println("The big O dependency is " + middleware.bigO);
 						
-						middleware.createLinkedList(middleware.getNumberOfElements());
-						returnTime = middleware.sortLinkedList(true);
-						System.out.println("The search time for LinkedList selection sort was: " + returnTime);
 						returnTime = middleware.sortLinkedList(false);
+						System.out.println("The time for LinkedList bubble sort was: " + returnTime);
+						returnTime = middleware.sortArrayList(false);
+						System.out.println("The search time for arrayList bubble sort was: " + returnTime);
 						//System.out.println("The search time for LinkedListbubble sort was: " + returnTime);
 						
 						//Show Big Oh
-						//int [] BigO = middleware.getBigOData();
-						//System.out.println("The big oh data is: ");
-						//for (int i = 0; i < BigO.length; i++){
-						//	System.out.println(BigO[i];
-						//}
-						
-						// System.out.println("The big O dependency is " + middleware.bigO);
-						
+						System.out.println("The big oh data is:\n\t ArrayList: " + middleware.bigOAL(false) + "\n\t Linked List" + middleware.bigOLL(false));
 						
 						searchOption = true;
 						while (searchOption){
@@ -99,7 +95,16 @@ public class Display {
 								int searchInt = Integer.parseInt(menuString);
 								if (searchInt >= 100 && searchInt <= 1000){
 									//Linear Search
+									returnTime = middleware.searchLinkedList(searchInt, false);
+									System.out.println("The time for LinkedList Linear search was: " + returnTime);
+									returnTime = middleware.searchArrayList(searchInt, false);
+									System.out.println("The time for ArrayList Linear search was: " + returnTime);
 									//Binary Search
+									returnTime = middleware.searchLinkedList(searchInt, true);
+									System.out.println("The time for LinkedList Binary search was: " + returnTime);
+									returnTime = middleware.searchArrayList(searchInt, true);
+									System.out.println("The time for LinkedList Binary search was: " + returnTime);
+									
 									searchOption = false;
 								}
 								else{
@@ -116,7 +121,7 @@ public class Display {
 					case "2":
 						System.out.println("You have selected 200,000 elements.");
 						middleware.setNumberOfElements(200000);
-						middleware.createArrayList(middleware.getNumberOfElements());
+						middleware.createArrayList();
 						returnTime = middleware.sortArrayList(true);
 						
 						arrayList = false;
@@ -125,7 +130,7 @@ public class Display {
 					case "3":
 						System.out.println("You have selected 400,000 elements.");
 						middleware.setNumberOfElements(400000);
-						middleware.createArrayList(middleware.getNumberOfElements());
+						middleware.createArrayList();
 
 						arrayList = false;
 						break;
@@ -270,7 +275,12 @@ public class Display {
 							}
 						}
 						
-						middleware.searchValuesAndGetTime(a, b, c);
+						returnTime = middleware.searchValuesAndGetTime(a);
+						System.out.println("Saarched: " + a + "\tHash Search Took: " + returnTime);
+						returnTime = middleware.searchValuesAndGetTime(b);
+						System.out.println("Saarched: " + b + "\tHash Search Took: " + returnTime);
+						returnTime = middleware.searchValuesAndGetTime(c);
+						System.out.println("Saarched: " + c + "\tHash Search Took: " + returnTime);
 						
 						/*System.out.println("For " + a + " " + middleware.value1time
 								+ " " + middleware.value1itemsearched + " " +

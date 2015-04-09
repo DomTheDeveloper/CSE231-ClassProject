@@ -29,16 +29,16 @@ public class HashFinder {
 	*@param size The size value, assigned to hashSize. Order needs to be changed? -Dean
 	*@param array The array, assigned to table. Order needs to be changed? -Dean
 	*/
-	public int findHashValue(int input, int size, int[] array) {
+	public int findHashValue(int input, int[] array) {
 		
 		System.out.println("The method findValue was called."); //announce method
 		//assigning arguments to variables
 		hashInput = input;
-		hashSize = size;
+		hashSize = array.length;
 		table = array;
 		int items = 0;
 		
-		int arrayIndex = input % (size - 1); //find the original hash key
+		int arrayIndex = input % (hashSize - 1); //find the original hash key
 		
 		while(table[arrayIndex] != -1) { //as long as the slot has something in it
 			if(table[arrayIndex] == input) { //if we found it
@@ -48,7 +48,7 @@ public class HashFinder {
 			}
 			++arrayIndex; //increment the index at each attempt
 			++items; //Increment the number of items searched
-			arrayIndex %= size; //return to table[0] if we can't find it
+			arrayIndex %= hashSize; //return to table[0] if we can't find it
 			break; //end the loop
 		}
 		if(hashOutput != input) { //if there is a mismatch between input and output

@@ -21,15 +21,12 @@ public class HashClient {
 	/**
 	 *See findHashTableValue(); -Dean
 	 */
-	private int[] hashTableArray;	
-	/**
-	 *See findHashTableValue(); -Dean
-	 */
 	private int hashTableArraySize;
 	/**
 	 *See findHashTableValue(); -Dean
 	 */
 	private int hashValue;
+	
 	/**
 	 *Returns the Big O notation for the HashTable.
 	 *@return String
@@ -40,7 +37,6 @@ public class HashClient {
 	}	
 	public void createHashTable(int n) {
 		hashTable = new DatabaseHashTable(n);
-		hashTableArray = hashTable.containerArray;
 	}
 	/**
 	 * Method for searching the hashTable. -Dean
@@ -49,8 +45,8 @@ public class HashClient {
 		hashFinder = new HashFinder();
 		
 		hashValue = value;
-		System.out.println("The hash value to be retrieved is: " + hashValue);
-		int valueIndex = hashFinder.findHashValue(hashValue, hashTableArraySize, hashTableArray);
+		//System.out.println("The hash value to be retrieved is: " + hashValue);
+		int valueIndex = hashTable.getLocation(value);//hashFinder.findHashValue(hashValue, hashTableArraySize, hashTableArray);
 		return valueIndex;
 	}
 	

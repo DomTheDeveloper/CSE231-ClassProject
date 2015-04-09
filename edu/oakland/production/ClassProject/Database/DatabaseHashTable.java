@@ -8,7 +8,7 @@
 
 package edu.oakland.production.ClassProject.Database;
 
-import java.util.Hashtable;
+import java.util.*;
 
 public class DatabaseHashTable {
 	private Hashtable<Integer, Integer> hashTable;
@@ -23,7 +23,7 @@ public class DatabaseHashTable {
 	public DatabaseHashTable( int hashArraySize){
 //		generateHashTable(hashArraySize);
 		hashTableArraySize = hashArraySize;
-		hashTable = new HashTable<Integer,Integer>(hashArraySize);
+		hashTable = new Hashtable<Integer,Integer>(hashArraySize);
 	}
 	
     	/**
@@ -61,6 +61,7 @@ public class DatabaseHashTable {
 				
 	}
 
+	
 	/**
      	* Takes a key and returns the integer value of what is stored at said key.
      	* 

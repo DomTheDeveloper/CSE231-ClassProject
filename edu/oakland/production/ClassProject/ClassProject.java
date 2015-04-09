@@ -14,7 +14,7 @@ import edu.oakland.production.ClassProject.Display.Display;
 public class ClassProject {
 
     public static void main(String[] args) {
-       Display display = new Display();
-       display.mainMenu();
+       Display display = new Display(true);
+       display.runMainMenu();
     }
 }
