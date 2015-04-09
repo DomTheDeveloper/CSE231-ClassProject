@@ -22,6 +22,10 @@ public class LinkedListDB<T> {
 		firstLink = null;
 	}
 	
+	public int size() {
+		return size;
+	}
+	
 	public boolean isEmpty(){
 	
 		return(firstLink == null);
