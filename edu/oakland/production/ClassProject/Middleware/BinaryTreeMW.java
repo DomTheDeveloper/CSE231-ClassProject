@@ -5,7 +5,7 @@
  * Copyright (c) 2015 Gemini Games LLC. >>>>No<<<< rights reserved. None.
  */
 
-package edu.oakland.production.middleware;
+package edu.oakland.production.ClassProject.Middleware;
 
 //Import java util framework
 import java.util.*;

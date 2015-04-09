@@ -1,6 +1,7 @@
-package edu.oakland.production.ClassProject.middleware;
+package edu.oakland.test.ClassProject.Middleware;
 import junit.framework.*;
-import edu.oakland.production.ClassProject.middleware.*;
+import edu.oakland.production.ClassProject.Middleware.*;
+import edu.oakland.production.ClassProject.Database.StackCut;
 //version 2.2
 public class StudentTest extends TestCase{
 	private static Student student1;
