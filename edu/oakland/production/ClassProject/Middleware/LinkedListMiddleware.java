@@ -5,9 +5,8 @@ import edu.oakland.production.ClassProject.Database.LinkedListDB;
 
 /**
 *@author Zack Waldrup
-*Updates: "wasPresent" Method. Proper Methods Called on LinkedListDB
-*@version version 2.6 150408
-*@since version 2.4 150403
+*@version version 2.7 150407
+*@since version 1.0 150323
 */
 public class LinkedListMiddleware {
 	
@@ -20,15 +19,8 @@ public class LinkedListMiddleware {
 	int value;
 	public static int timesThrough;
 	static long startTime, endTime;
-	private boolean valuePresent = false;
+	public boolean valuePresent = false;
 	public LinkedListDB<Integer> db;
-	
-	/**
-	@return True if the previous search was successful
-	*/
-	public boolean wasPresent() {
-		return valuePresent;
-	}
 	
 	/**
 	*Overloaded constructor for the LinkedListMiddleware class.
@@ -39,13 +31,104 @@ public class LinkedListMiddleware {
 		this.listSize = listSize;
 		db = new LinkedListDB<Integer>();
 		this.createLinkedList(listSize);
-	}	
+	}
+	
+	/**
+	*Calculates the Big O value for a selection sort based on 3 sizes
+	*of LinkedList<Integer>. Values for a, b, and c must be in increasing order.
+	*@param a of type "int"
+	*@param b of type "int"
+	*@param c of type "int"
+	*@return Big O N value of type "String"
+	*/
+	public static String calcSelectBigO(int a, int b, int c) {
+		LinkedListMiddleware mwa, mwb, mwc;
+		long taskTimeA, taskTimeB, taskTimeC;
+		long diffAB, diffBC;
+		long nDiffBC, n2DiffBC, lognDiffBC;
+		long smallest;
+		
+		mwa = new LinkedListMiddleware(a);
+		taskTimeA = mwa.selectSort();
+		mwb = new LinkedListMiddleware(b);
+		taskTimeB = mwb.selectSort();
+		mwc = new LinkedListMiddleware(c);
+		taskTimeC = mwc.selectSort();
+		
+		diffBC = taskTimeC - taskTimeB;
+		
+		nDiffBC = diffBC - (c-b);
+		n2DiffBC = diffBC - ((c*c) - (b*b));
+		lognDiffBC = diffBC - (long)(Math.log(c) - Math.log(b));
+		
+		if(nDiffBC<n2DiffBC && nDiffBC<lognDiffBC){
+			smallest = nDiffBC;
+		} else if(n2DiffBC<lognDiffBC && n2DiffBC<nDiffBC){
+			smallest = n2DiffBC;
+		} else {
+			smallest = lognDiffBC;
+		}
+		
+		if(nDiffBC == smallest) {
+			return ("N");
+		} else if(n2DiffBC == smallest){
+			return ("N^2");
+		} else {
+			return ("log(N)");
+		}
+	}
+	
+	/**
+	*Calculates the Big O value for a bubble sort based on 3 sizes
+	*of LinkedList<Integer>. Values for a, b, and c must be in increasing order.
+	*@param a of type "int"
+	*@param b of type "int"
+	*@param c of type "int"
+	*@return Big O N value of type "String"
+	*/
+	public static String calcBubbleBigO(int a, int b, int c) {
+		LinkedListMiddleware mwa, mwb, mwc;
+		long taskTimeA, taskTimeB, taskTimeC;
+		long diffAB, diffBC;
+		long nDiffBC, n2DiffBC, lognDiffBC;
+		long smallest;
+		
+		mwa = new LinkedListMiddleware(a);
+		taskTimeA = mwa.bubbleSort();
+		mwb = new LinkedListMiddleware(b);
+		taskTimeB = mwb.bubbleSort();
+		mwc = new LinkedListMiddleware(c);
+		taskTimeC = mwc.bubbleSort();
+		
+		diffBC = taskTimeC - taskTimeB;
+		
+		nDiffBC = diffBC - (c-b);
+		n2DiffBC = diffBC - ((c*c) - (b*b));
+		lognDiffBC = diffBC - (long)(Math.log(c) - Math.log(b));
+		
+		if(nDiffBC<n2DiffBC && nDiffBC<lognDiffBC){
+			smallest = nDiffBC;
+		} else if(n2DiffBC<lognDiffBC && n2DiffBC<nDiffBC){
+			smallest = n2DiffBC;
+		} else {
+			smallest = lognDiffBC;
+		}
+		
+		if(nDiffBC == smallest) {
+			return ("N");
+		} else if(n2DiffBC == smallest){
+			return ("N^2");
+		} else {
+			return ("log(N)");
+		}
+	}
 	
 	/**
 	*This method performs a Selection Sort on a LinkedList
 	*Big O: O(n^2)
+	*@return taskTime of type "int"
 	*/
-	public void selectSort() {
+	public long selectSort() {
 		startTime = System.currentTimeMillis();
 		
 		for (int j = 0; j < listSize; j++) {
@@ -61,14 +144,15 @@ public class LinkedListMiddleware {
         }
         endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Selection Sort time taken: " + taskTime);
+		return taskTime;
 	}
 	
 	/**
 	*This method performs a Bubble Sort on a LinkedList
 	*Big O: O(n^2)
+	*@return taskTime of type "int"
 	*/
-	public void bubbleSort() {
+	public long bubbleSort() {
 		startTime = System.currentTimeMillis();
 		
 		for (int i = listSize - 1; i > 1; i--) {
@@ -80,15 +164,16 @@ public class LinkedListMiddleware {
 		}
 		endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Bubble Sort time taken: " + taskTime);
+		return taskTime;
 	}
 	
 	/**
 	*This method linearly searches a LinkedList
 	*Big O: O(n)
 	*@param value of type "int"
+	*@return taskTime of type "int"
 	*/
-	public void linearSearch(int value) {
+	public long linearSearch(int value) {
 		this.value = value;
 		valuePresent = false;
 		String indexWithValue = "";
@@ -103,15 +188,16 @@ public class LinkedListMiddleware {
 		System.out.println("Value found: " + valuePresent);
 		endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Linear Search time taken: " + taskTime);
+		return taskTime;
 	}
 	
 	/**
 	*This method conducts a binary searche on a LinkedList
 	*Big O: O(log(n))
 	*@param value of type "int"
+	*@return timesThrough of type "int"
 	*/
-	public void binarySearch(int value) {
+	public int binarySearch(int value) {
 		this.value = value;
 		int lowIndex = 0;
 		int highIndex = listSize - 1;
@@ -136,8 +222,7 @@ public class LinkedListMiddleware {
 		
 		endTime = System.currentTimeMillis();
 		taskTime = endTime - startTime;
-		System.out.println("Binary Search time taken: " + taskTime);
-		System.out.println("Binary Search times through: " + timesThrough);
+		return timesThrough;
 	}
 	
 	/**
@@ -154,7 +239,6 @@ public class LinkedListMiddleware {
 	/**
 	*Method for creating a LinkedList<Integer>
 	*@param listSize of type "int"
-	*@return list1 of type "LinkedList<Integer>"
 	*/
 	public void createLinkedList(int listSize) {
 		this.listSize = listSize;
@@ -175,6 +259,13 @@ public class LinkedListMiddleware {
 		Random rand = new Random();
 		int randomNumber = rand.nextInt((max - min) + 1) + min;
 		return randomNumber;
+	}
+	
+	/**
+	@return True if the previous search was successful
+	*/
+	public boolean wasPresent() {
+		return valuePresent;
 	}
 	
 }

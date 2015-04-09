@@ -6,8 +6,8 @@ import edu.oakland.production.ClassProject.Middleware.*;
 
 /**
 *@author Zack Waldrup
-*@version version 1.2 150408
-*@since version 1.1 150403
+*@version version 1.3 150408
+*@since version 1.0 150401
 */
 public class LLMiddlewareTest extends TestCase {
 	
@@ -16,6 +16,7 @@ public class LLMiddlewareTest extends TestCase {
 	*/
 	int listSize = 10;
 	int searchInt = 200;
+	long taskTime;
 	LinkedListMiddleware mw1;
 	
 	/**
@@ -30,7 +31,7 @@ public class LLMiddlewareTest extends TestCase {
 	*/
 	public void testSelectSort() {
 		boolean goodSort = true;
-		mw1.selectSort();
+		taskTime = mw1.selectSort();
 		for(int i = 0; i < listSize - 1; i++){
 			if(mw1.db.get(i).getData().intValue() > mw1.db.get(i+1).getData().intValue()) {
 				goodSort = false;
@@ -45,7 +46,7 @@ public class LLMiddlewareTest extends TestCase {
 	*/
 	public void testBubbleSort() {
 		boolean goodSort = true;
-		mw1.bubbleSort();
+		taskTime = mw1.bubbleSort();
 		for(int i = 0; i < listSize - 1; i++){
 			if(mw1.db.get(i).getData().intValue() > mw1.db.get(i+1).getData().intValue()) {
 				goodSort = false;
@@ -59,8 +60,8 @@ public class LLMiddlewareTest extends TestCase {
 	*/
 	public void testLinearSearch() {
 		mw1.db.add(searchInt);
-		mw1.selectSort();
-		mw1.linearSearch(searchInt);
+		taskTime = mw1.selectSort();
+		taskTime = mw1.linearSearch(searchInt);
 		assertTrue(mw1.wasPresent());
 	}
 	
@@ -69,8 +70,8 @@ public class LLMiddlewareTest extends TestCase {
 	*/
 	public void testBinarySearch() {
 		mw1.db.add(searchInt);
-		mw1.selectSort();
-		mw1.binarySearch(searchInt);
+		taskTime = mw1.selectSort();
+		taskTime = mw1.binarySearch(searchInt);
 		assertTrue(mw1.wasPresent());
 	}
 	
