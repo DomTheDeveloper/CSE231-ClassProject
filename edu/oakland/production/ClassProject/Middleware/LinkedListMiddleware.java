@@ -5,7 +5,7 @@ import edu.oakland.production.ClassProject.Database.LinkedListDB;
 
 /**
 *@author Zack Waldrup
-*@version version 2.7 150407
+*@version version 2.6 150407
 *@since version 1.0 150323
 */
 public class LinkedListMiddleware {
@@ -17,10 +17,9 @@ public class LinkedListMiddleware {
 	int iMin;
 	long taskTime;
 	int value;
-	public static int timesThrough;
 	static long startTime, endTime;
 	public boolean valuePresent = false;
-	public LinkedListDB<Integer> db;
+	LinkedListDB db;
 	
 	/**
 	*Overloaded constructor for the LinkedListMiddleware class.
@@ -29,7 +28,7 @@ public class LinkedListMiddleware {
 	*/
 	public LinkedListMiddleware(int listSize) {
 		this.listSize = listSize;
-		db = new LinkedListDB<Integer>();
+		db = new LinkedListDB();
 		this.createLinkedList(listSize);
 	}
 	
@@ -59,7 +58,7 @@ public class LinkedListMiddleware {
 		
 		nDiffBC = diffBC - (c-b);
 		n2DiffBC = diffBC - ((c*c) - (b*b));
-		lognDiffBC = diffBC - (long)(Math.log(c) - Math.log(b));
+		lognDiffBC = diffBC - (Math.log(c) - Math.log(b));
 		
 		if(nDiffBC<n2DiffBC && nDiffBC<lognDiffBC){
 			smallest = nDiffBC;
@@ -104,7 +103,7 @@ public class LinkedListMiddleware {
 		
 		nDiffBC = diffBC - (c-b);
 		n2DiffBC = diffBC - ((c*c) - (b*b));
-		lognDiffBC = diffBC - (long)(Math.log(c) - Math.log(b));
+		lognDiffBC = diffBC - (Math.log(c) - Math.log(b));
 		
 		if(nDiffBC<n2DiffBC && nDiffBC<lognDiffBC){
 			smallest = nDiffBC;
@@ -134,7 +133,7 @@ public class LinkedListMiddleware {
 		for (int j = 0; j < listSize; j++) {
 			iMin = j;
 			for (int i = j + 1; i < listSize; i++) {
-       			if (db.get(i).getData().intValue() < db.get(iMin).getData().intValue()) {
+       			if (db.get(i) < db.get(iMin)) {
             		iMin = i;
             	}
             }
@@ -157,7 +156,7 @@ public class LinkedListMiddleware {
 		
 		for (int i = listSize - 1; i > 1; i--) {
 			for (int j = 0; j < i; j++) {
-				if(db.get(j).getData().intValue() > db.get(j + 1).getData().intValue()){
+				if(db.get(j) > db.get(j + 1)){
 					swapValues(j, j+1);
 				}
 			}
@@ -180,7 +179,7 @@ public class LinkedListMiddleware {
 		startTime = System.currentTimeMillis();
 		
 		for (int i = 0; i < listSize; i++) {
-			if(db.get(i).getData().intValue() == value) {
+			if(db.get(i) == value) {
 				valuePresent = true;
 				indexWithValue += i + " ";
 			}
@@ -201,16 +200,16 @@ public class LinkedListMiddleware {
 		this.value = value;
 		int lowIndex = 0;
 		int highIndex = listSize - 1;
-		timesThrough = 0;
+		int timesThrough = 0;
 		startTime = System.currentTimeMillis();
 		
 		while (lowIndex <= highIndex) {
 			int middleIndex = (highIndex + lowIndex) / 2;
-			if(db.get(middleIndex).getData().intValue() < value) {
+			if(db.get(middleIndex) < value) {
 				lowIndex = middleIndex + 1;
-			} else if(db.get(middleIndex).getData().intValue() > value) {
+			} else if(db.get(middleIndex) > value) {
 				highIndex = middleIndex - 1;
-			} else if(db.get(middleIndex).getData().intValue() == value){
+			} else if(db.get(middleIndex) == value){
 				valuePresent = true;
 				System.out.println("Found " + value + "at " + middleIndex);
 				lowIndex = highIndex + 1;
@@ -231,8 +230,8 @@ public class LinkedListMiddleware {
 	*@param indexTwo of type "int"
 	*/
 	public void swapValues(int indexOne, int indexTwo) {
-		Integer temp = db.get(indexOne).getData();
-		db.set(indexOne,db.get(indexTwo).getData());
+		int temp = db.get(indexOne);
+		db.set(indexOne,db.get(indexTwo));
 		db.set(indexTwo, temp);
 	}
 	
@@ -244,7 +243,7 @@ public class LinkedListMiddleware {
 		this.listSize = listSize;
 		
 		for(int i = 0; i < listSize; i++) {
-			db.add((Integer)randomInt(100, 1000));
+			db.add(randomInt(100, 1000));
 		}
 	}
 	
@@ -259,13 +258,6 @@ public class LinkedListMiddleware {
 		Random rand = new Random();
 		int randomNumber = rand.nextInt((max - min) + 1) + min;
 		return randomNumber;
-	}
-	
-	/**
-	@return True if the previous search was successful
-	*/
-	public boolean wasPresent() {
-		return valuePresent;
 	}
 	
 }
