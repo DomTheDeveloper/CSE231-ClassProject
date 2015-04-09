@@ -1,162 +1,125 @@
 package edu.oakland.production.ClassProject.Database;
-
 /**
-* Updates: Returns Data instead of link when "Deleting" a Link. Added Method "getSize". Modified Get to Match Middleware req.
-* Added ToString for Debugging. Added My own version of Set since it was missing.
-*@author Nicholas Herman, Craig Hardy
-*@version 4.0 150408
-*@since version 2.0
+* @version "version 2.0" "150204"
+* @since "version 1.0" "150104"
 */
-
-
-
 
 public class LinkedListDB<T> {
 
-	public Link<T> firstLink;
-	
-	private int size = 0;
-	
-	public LinkedListDB(){
-		size = 0;
-		firstLink = null;
-	}
-	
-	public int size() {
-		return size;
-	}
-	
-	public boolean isEmpty(){
-	
-		return(firstLink == null);
-	}
-	
-	public void add(T obj) {
-		size++;
-		insertFirstLink(obj);
-	}
-	
-	public void insertFirstLink( T obj ){
-	
-		Link<T> newLink = new Link<T>(obj);
-		
-		newLink.next = firstLink;
-		
-		firstLink = newLink;
-	}
-	
-	public T removeFirst(){
-	
-		Link<T> linkReference = firstLink;
-		
-		if(!isEmpty()){
-		
-			firstLink = firstLink.next;
-			size--;
-		}else{
-		
-			System.out.println("Empty LinkedList");
-		}
-		
-		return linkReference.getData();
-	}
-	
-	public Link<T> find(T obj){
-	
-		Link<T> theLink = firstLink;
-		
-		if(!isEmpty()){
-		
-			while(theLink.getData() != obj){
-			
-				if(theLink.next == null){
-				
-					return null;
-				}else {
-				
-					theLink = theLink.next;
-				}
-			}
-		}else {
-		
-			System.out.println("Empty LinkedLint");
-		}
-		return theLink;
-	}
-	
-	public Link<T> removeLink(Link<T> obj){
-	
-		Link<T> currentLink = firstLink;
-		Link<T> previousLink = firstLink;
-		while(currentLink.getData() != obj) {
-		
-			if(currentLink.next == null){
-			
-				return null;
-			}else {
-			
-				previousLink = currentLink;
-				
-				currentLink = currentLink.next;
-				
-			}
-		}
-		
-		if(currentLink == firstLink){
-		
-			firstLink = firstLink.next;
-		}else{
-		
-			System.out.println("FOUND A MATCH");
-			System.out.println("currentLink: " + currentLink);
-			System.out.println("firstLink: " + firstLink);
-			size = size > 0 ? size-- : 0;
-			previousLink.next = currentLink.next;
-		}
-		
-		return currentLink;
-	}
-	
-	public Link<T> get(int id){
-        
-        if (id < 0)
-		{
-            return null;
-		}
+    private Node head;
+    private int listCount;
  
-        Link<T> currentLink = firstLink;
-        for (int i = 0; i < id; i++) {
-            if (currentLink == null)
+    public LinkedListDB() {
+        head = new Node(null);
+        listCount = 0;
+    }
+    /**
+    * Appends the specified element to the end of this list.
+    * @param data Of type Object, add element to list
+    * @return 
+    */
+    public void add(Object data){
+        Node temp = new Node(data);
+        Node current = head;
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+        current.setNext(temp);
+        listCount++;
+    }
+ 
+    /**
+    * Inserts the specified element at the specified position in this list
+    * @param index Location at which you want to place the element
+    * @param data Object you want to add to list at specified index
+    */
+    public void set(int index, Object data){
+        Node temp = new Node(data);
+        Node current = head;
+        for (int i = 1; i < index && current.getNext() != null; i++) {
+            current = current.getNext();
+        }
+        temp.setNext(current.getNext());
+        current.setNext(temp);
+        listCount++;
+    }
+ 
+    /**
+    * Returns the element at the specified position in this list
+    * @param index Location of link you want from the list
+    * @return element at specified position
+    */
+    public Object get(int index){
+        if (index <= 0)
+            return null;
+ 
+        Node current = head.getNext();
+        for (int i = 1; i < index; i++) {
+            if (current.getNext() == null)
                 return null;
  
-            currentLink = currentLink.next;
+            current = current.getNext();
         }
-        return currentLink;
+        return current.getData();
     }
-    
-    public void set(int index, T obj){
-        	//write me plz
-			Link<T> current = firstLink;
-			for(int i = 0; i < index; i++)
-			{
-				current = current.next;
-			}
-			if(current != null)
-				current.setData(obj);
+ 
+    /**
+    * Optional method - if Middleware needs it
+    * Removes the element at the specified position in this list
+    * @param index Location of link you want from the list
+    * @return true or false if element was removed
+    */
+    public boolean remove(int index){
+        if (index < 1 || index > size())
+            return false;
+ 
+        Node current = head;
+        for (int i = 1; i < index; i++) {
+            if (current.getNext() == null)
+                return false;
+ 
+            current = current.getNext();
+        }
+        current.setNext(current.getNext().getNext());
+        listCount--;
+        return true;
     }
-      
-	  
-	public String toString() {
-		Link<T> current = firstLink;
-		String output = "Linked DB:";
-		while(current != null)
-		{
-			output += current.toString();
-			current = current.next;
-		}
-		return output;
-	}
+ 
+    /**
+    * @return size of linked list
+    */
+    public int size(){
+        return listCount;
+    }
+ 
+    private class Node {
+        Node next;
+        Object data;
+ 
+        public Node(Object dataValue) {
+            next = null;
+            data = dataValue;
+        }
+
+        public Node(Object dataValue, Node nextValue) {
+            next = nextValue;
+            data = dataValue;
+        }
+ 
+        public Object getData() {
+            return data;
+        }
+ 
+        public void setData(Object dataValue) {
+            data = dataValue;
+        }
+ 
+        public Node getNext() {
+            return next;
+        }
+ 
+        public void setNext(Node nextValue) {
+            next = nextValue;
+        }
+    }
 }
-
-
-
