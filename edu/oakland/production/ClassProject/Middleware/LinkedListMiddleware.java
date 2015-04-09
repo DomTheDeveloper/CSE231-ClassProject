@@ -1,12 +1,13 @@
-package edu.oakland.production.middleware;
+package edu.oakland.production.ClassProject.Middleware;
 
 import java.util.*;
-//import edu.oakland.production.*;
+import edu.oakland.production.ClassProject.Database.LinkedListDB;
 
 /**
 *@author Zack Waldrup
-*@version version 2.4 150403
-*@since version 1.0 150323
+*Updates: "wasPresent" Method. Proper Methods Called on LinkedListDB
+*@version version 2.6 150408
+*@since version 2.4 150403
 */
 public class LinkedListMiddleware {
 	
@@ -19,8 +20,15 @@ public class LinkedListMiddleware {
 	int value;
 	public static int timesThrough;
 	static long startTime, endTime;
-	public boolean valuePresent = false;
-	LinkedListDB db;
+	private boolean valuePresent = false;
+	public LinkedListDB<Integer> db;
+	
+	/**
+	@return True if the previous search was successful
+	*/
+	public boolean wasPresent() {
+		return valuePresent;
+	}
 	
 	/**
 	*Overloaded constructor for the LinkedListMiddleware class.
@@ -29,7 +37,7 @@ public class LinkedListMiddleware {
 	*/
 	public LinkedListMiddleware(int listSize) {
 		this.listSize = listSize;
-		db = new LinkedListDB();
+		db = new LinkedListDB<Integer>();
 		this.createLinkedList(listSize);
 	}	
 	
@@ -43,7 +51,7 @@ public class LinkedListMiddleware {
 		for (int j = 0; j < listSize; j++) {
 			iMin = j;
 			for (int i = j + 1; i < listSize; i++) {
-       			if (db.get(i) < db.get(iMin)) {
+       			if (db.get(i).getData().intValue() < db.get(iMin).getData().intValue()) {
             		iMin = i;
             	}
             }
@@ -65,7 +73,7 @@ public class LinkedListMiddleware {
 		
 		for (int i = listSize - 1; i > 1; i--) {
 			for (int j = 0; j < i; j++) {
-				if(db.get(j) > db.get(j + 1)){
+				if(db.get(j).getData().intValue() > db.get(j + 1).getData().intValue()){
 					swapValues(j, j+1);
 				}
 			}
@@ -87,7 +95,7 @@ public class LinkedListMiddleware {
 		startTime = System.currentTimeMillis();
 		
 		for (int i = 0; i < listSize; i++) {
-			if(db.get(i) == value) {
+			if(db.get(i).getData().intValue() == value) {
 				valuePresent = true;
 				indexWithValue += i + " ";
 			}
@@ -112,11 +120,11 @@ public class LinkedListMiddleware {
 		
 		while (lowIndex <= highIndex) {
 			int middleIndex = (highIndex + lowIndex) / 2;
-			if(db.get(middleIndex) < value) {
+			if(db.get(middleIndex).getData().intValue() < value) {
 				lowIndex = middleIndex + 1;
-			} else if(db.get(middleIndex) > value) {
+			} else if(db.get(middleIndex).getData().intValue() > value) {
 				highIndex = middleIndex - 1;
-			} else if(db.get(middleIndex) == value){
+			} else if(db.get(middleIndex).getData().intValue() == value){
 				valuePresent = true;
 				System.out.println("Found " + value + "at " + middleIndex);
 				lowIndex = highIndex + 1;
@@ -138,8 +146,8 @@ public class LinkedListMiddleware {
 	*@param indexTwo of type "int"
 	*/
 	public void swapValues(int indexOne, int indexTwo) {
-		int temp = db.get(indexOne);
-		db.set(indexOne,db.get(indexTwo));
+		Integer temp = db.get(indexOne).getData();
+		db.set(indexOne,db.get(indexTwo).getData());
 		db.set(indexTwo, temp);
 	}
 	
@@ -152,7 +160,7 @@ public class LinkedListMiddleware {
 		this.listSize = listSize;
 		
 		for(int i = 0; i < listSize; i++) {
-			db.add(randomInt(100, 1000));
+			db.add((Integer)randomInt(100, 1000));
 		}
 	}
 	
