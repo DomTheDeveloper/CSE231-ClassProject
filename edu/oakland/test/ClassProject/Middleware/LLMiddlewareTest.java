@@ -16,6 +16,7 @@ public class LLMiddlewareTest extends TestCase {
 	*/
 	int listSize = 10;
 	int searchInt = 200;
+	String bigO = "none";
 	long taskTime;
 	LinkedListMiddleware mw1;
 	
@@ -75,4 +76,21 @@ public class LLMiddlewareTest extends TestCase {
 		assertTrue(mw1.wasPresent());
 	}
 	
+	/**
+	*This method tests the calcSelectBigO method to determine that 
+	*it is returning the correct Big O notation
+	*/
+	public void testSelectBigO() {
+		bigO = mw1.calcSelectBigO(5, 10, 20);
+		assertEquals("N^2", bigO);
+	}
+	
+	/**
+	*This method tests the calcBubbleBigO method to determine that 
+	*it is returning the correct Big O notation
+	*/
+	public void testBubbleBigO() {
+		bigO = mw1.calcBubbleBigO(5, 10, 20);
+		assertEquals("N^2", bigO);
+	}
 }
