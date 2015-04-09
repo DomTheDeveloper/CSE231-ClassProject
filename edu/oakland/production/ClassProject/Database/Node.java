@@ -8,8 +8,8 @@ public class Node<T> {
 	int key;
 	T val;
 	
-	Node<T> leftChild;
-	Node<T> rightChild;
+	public Node<T> leftChild;
+	public Node<T> rightChild;
 	
 	Node(int key, T value){
 	

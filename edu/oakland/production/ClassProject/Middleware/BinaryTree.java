@@ -1,10 +1,13 @@
 package edu.oakland.production.ClassProject.Middleware;
+
+import edu.oakland.production.ClassProject.Database.BinaryTreeDB;
+import edu.oakland.production.ClassProject.Database.Node;
 import java.util.*;
 
-public class BinaryTree{
+public class BinaryTree extends BinaryTreeDB<Student>{
 	
-	public Node root;
-	
+	//public Node root;
+	/*
 	public void addNode(String name, double gpa, int tg){
 		Node newNode = new Node(name, gpa, tg);
 			if(root == null){
@@ -56,6 +59,7 @@ public class BinaryTree{
 			}
 			return nodes;
 		}
+		*/
 		/* public List<Node> findNodes(int tgs){
 			Node focusNode = root;
 			
@@ -68,8 +72,9 @@ public class BinaryTree{
 			
 		} */
 		
+		/*
 		public Node findNode(int tg){
-			/* List<Node> lstNodes = new List<Node>(); */
+			// List<Node> lstNodes = new List<Node>(); 
 			
 			Node focusNode = root;
 			while(focusNode.tg != tg){
@@ -82,15 +87,15 @@ public class BinaryTree{
 				} 
 			}
 			return focusNode;
-		}
+		}*/
 		
 		public ArrayList<Node> getLess(int tg) {
 			return getLess(root, tg);
 		}
 		
-		private ArrayList<Node> getLess(Node n, int tg) {
+		private ArrayList<Node> getLess(Node<Student> n, int tg) {
 			ArrayList<Node> nodes = new ArrayList<Node>();
-			if(n.tg < tg) {
+			if(n.getValue().getTG() < tg) {
 				nodes.add(n);
 			}
 			if(n.leftChild != null) {
@@ -106,6 +111,17 @@ public class BinaryTree{
 				}
 			}
 			return nodes;
+		}
+		
+		public static void main(String[] args) {
+			BinaryTree bt = new BinaryTree();
+		//	bt.add(new Student(int gID, String name, String major, double gpa, int tg));
+			bt.addNode(90, new Student(111111, "Jelo", "CSE", 3.8, 88));
+			bt.addNode(88, new Student(222222, "Janet", "CSE", 3.6, 88));
+			bt.addNode(92, new Student(333333, "Jackson", "CSE", 3.4, 92));
+			bt.addNode(77, new Student(444444, "Michael", "CSE", 3.7, 77));
+			bt.addNode(70, new Student(555555, "Allen", "CSE", 3.0, 70));
+			System.out.println(bt.getLess(90));
 		}
 	}
 

@@ -8,7 +8,7 @@ package edu.oakland.production.ClassProject.Database;
 
 public class BinaryTreeDB<T> {
 
-	Node<T> root;
+	protected Node<T> root;
 	
 /**
 *The addNode method adds a node to the binary tree

@@ -32,4 +32,8 @@ public class Student{
         public int getTG(){
             return tg;
         }
+		
+		public String toString() {
+			return gID + name + major + gpa + tg;
+		}
 	}
