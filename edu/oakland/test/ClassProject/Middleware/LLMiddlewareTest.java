@@ -1,12 +1,12 @@
-package edu.oakland.test.ClassProject;
+package edu.oakland.test.ClassProject.Middleware;
 
 import java.util.*;
 import junit.framework.*;
-import edu.oakland.production.ClassProject.*;
+import edu.oakland.production.ClassProject.Middleware.*;
 
 /**
 *@author Zack Waldrup
-*@version version 1.2 150406
+*@version version 1.3 150408
 *@since version 1.0 150401
 */
 public class LLMiddlewareTest extends TestCase {
@@ -16,7 +16,7 @@ public class LLMiddlewareTest extends TestCase {
 	*/
 	int listSize = 10;
 	int searchInt = 200;
-	int timesThrough;
+	String bigO = "none";
 	long taskTime;
 	LinkedListMiddleware mw1;
 	
@@ -33,12 +33,13 @@ public class LLMiddlewareTest extends TestCase {
 	public void testSelectSort() {
 		boolean goodSort = true;
 		taskTime = mw1.selectSort();
-		for(int i = 1; i < listSize; i++){
-			if(mw1.db.get(i) > mw1.db.get(i+1)) {
-				goodsort = false;
+		for(int i = 0; i < listSize - 1; i++){
+			if(mw1.db.get(i).getData().intValue() > mw1.db.get(i+1).getData().intValue()) {
+				goodSort = false;
+				System.out.println(mw1.db);
 			}
 		}
-		assertTrue(goodsort);
+		assertTrue(goodSort);
 	}
 	
 	/**
@@ -47,12 +48,12 @@ public class LLMiddlewareTest extends TestCase {
 	public void testBubbleSort() {
 		boolean goodSort = true;
 		taskTime = mw1.bubbleSort();
-		for(int i = 1; i < listSize; i++){
-			if(mw1.db.get(i) > mw1.db.get(i+1)) {
-				goodsort = false;
+		for(int i = 0; i < listSize - 1; i++){
+			if(mw1.db.get(i).getData().intValue() > mw1.db.get(i+1).getData().intValue()) {
+				goodSort = false;
 			}
 		}
-		assertTrue(goodsort);
+		assertTrue(goodSort);
 	}
 	
 	/**
@@ -62,7 +63,7 @@ public class LLMiddlewareTest extends TestCase {
 		mw1.db.add(searchInt);
 		taskTime = mw1.selectSort();
 		taskTime = mw1.linearSearch(searchInt);
-		assertTrue(valuePresent);
+		assertTrue(mw1.wasPresent());
 	}
 	
 	/**
@@ -71,8 +72,25 @@ public class LLMiddlewareTest extends TestCase {
 	public void testBinarySearch() {
 		mw1.db.add(searchInt);
 		taskTime = mw1.selectSort();
-		timesThrough = mw1.binarySearch(searchInt);
-		assertTrue(valuePresent);
+		taskTime = mw1.binarySearch(searchInt);
+		assertTrue(mw1.wasPresent());
 	}
 	
+	/**
+	*This method tests the calcSelectBigO method to determine that 
+	*it is returning the correct Big O notation
+	*/
+	public void testSelectBigO() {
+		bigO = mw1.calcSelectBigO(5, 10, 20);
+		assertEquals("N^2", bigO);
+	}
+	
+	/**
+	*This method tests the calcBubbleBigO method to determine that 
+	*it is returning the correct Big O notation
+	*/
+	public void testBubbleBigO() {
+		bigO = mw1.calcBubbleBigO(5, 10, 20);
+		assertEquals("N^2", bigO);
+	}
 }
