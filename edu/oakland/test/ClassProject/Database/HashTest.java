@@ -16,22 +16,26 @@ import java.util.*;
 public class HashTest extends TestCase {
 	
 	public void testCreate() {
-		int[] testArray = {1,2,3,4,5,6,7,8,9,10};
 		
-		DatabaseHashTable hash1 = new DatabaseHashTable(testArray, 20);
+		DatabaseHashTable hash1 = new DatabaseHashTable(20);
+		
+		//fill hashtable in order to test database methods
+		for (int i = 0; i < 20; i++) {
+			hash1.insert(i+1);
+		}
 		
 		System.out.println();
-		for (int i = 1; i <= testArray.length; i++){
+		for (int i = 1; i < 20; i++){
 			System.out.print(hash1.select(i) + " ");
 		}
 		
 		System.out.println();
 		//insert for testing
-		hash1.insert(1,101);
+		hash1.insert(101);
 		
 		System.out.println();
 
-		for (int i = 1; i <= testArray.length; i++){
+		for (int i = 1; i < 20; i++){
 			System.out.print(hash1.select(i) + " ");
 		}
 
@@ -46,7 +50,7 @@ public class HashTest extends TestCase {
 		assertEquals(hash1.select(1), -1);
 		
 		System.out.println();
-		for (int i = 1; i <= testArray.length; i++){
+		for (int i = 1; i < 20; i++){
 			System.out.print(hash1.select(i) + " ");
 		}
 	}
