@@ -1,6 +1,9 @@
-package edu.oakland.production.ClassProject.middleware;
+package edu.oakland.test.ClassProject.Middleware;
 import junit.framework.*;
-import edu.oakland.production.ClassProject.middleware.*;
+import edu.oakland.production.ClassProject.Middleware.*;
+import edu.oakland.production.ClassProject.Database.Node;
+import edu.oakland.production.ClassProject.Database.StackCut;
+import java.util.*;
 //version 2.2
 public class StudentTest extends TestCase{
 	private static Student student1;
@@ -13,7 +16,7 @@ public class StudentTest extends TestCase{
 	private static Student student8;
 	private static Student student9;
 	private static Student student10;
-	
+	private static Student[] ltStudent;//Students with Scores less than 90 and GPA less than 3.6
 	public void setUp(){
 		student1 = new Student(677422, "Jones", "IT", 3.82, 95);
 		student2 = new Student(177993, "Smith", "IT", 3.47, 78);
@@ -25,6 +28,10 @@ public class StudentTest extends TestCase{
 		student8 = new Student(855462, "O'Brien", "IT", 3.44, 85);
 		student9 = new Student(223344, "Chamberlain", "CS", 3.99, 96);
 		student10 = new Student(348689, "Grant", "CS", 3.88, 99);
+		ltStudent = new Student[3];
+		ltStudent[0] = student2;
+		ltStudent[1] = student7;
+		ltStudent[2] = student8;
 	}
 	
 	public void testStudent(){
@@ -177,24 +184,34 @@ public class StudentTest extends TestCase{
 	 	  BinaryTree tree = new BinaryTree();
 
 	 	  System.out.println();
-	 	  tree.addNode(student1.getName(),student1.getGPA(),student1.getTG());
-	 	  tree.addNode(student2.getName(),student2.getGPA(),student2.getTG());
-		  tree.addNode(student3.getName(),student3.getGPA(),student3.getTG());
-		  tree.addNode(student4.getName(),student4.getGPA(),student4.getTG());
-		  tree.addNode(student5.getName(),student5.getGPA(),student5.getTG());
-		  tree.addNode(student6.getName(),student6.getGPA(),student6.getTG());
-		  tree.addNode(student7.getName(),student7.getGPA(),student7.getTG());
-		  tree.addNode(student8.getName(),student8.getGPA(),student8.getTG());
-		  tree.addNode(student9.getName(),student9.getGPA(),student9.getTG());
-		  tree.addNode(student10.getName(),student10.getGPA(),student10.getTG());
+	 	  tree.addNode(student1.getTG(),student1);
+	 	  tree.addNode(student2.getTG(),student2);
+	 	  tree.addNode(student3.getTG(),student3);
+	 	  tree.addNode(student4.getTG(),student4);
+	 	  tree.addNode(student5.getTG(),student5);
+	 	  tree.addNode(student6.getTG(),student6);
+	 	  tree.addNode(student7.getTG(),student7);
+	 	  tree.addNode(student8.getTG(),student8);
+	 	  tree.addNode(student9.getTG(),student9);
+	 	  tree.addNode(student10.getTG(),student10);
 		  
-		  tree.preorderTraverseTree(tree.root);
-		  System.out.println();
+		  tree.preorderTraverseTree(tree.getRootNode());
 		  System.out.println();
 		  System.out.println("Students that have GPA < 3.60 and a Thesis grade less than 90 are:");
 		   System.out.println();
-		//  System.out.println(tree.findNode(90));
-		  System.out.println(tree.getLess(90,3.60));
+		   
+		  ArrayList<Node> ltNodes = tree.getLess(90,3.60);
+		  ArrayList<Student> ltStuds = new ArrayList<Student>();
+		  for(int i = 0; i < ltNodes.size(); i++) 
+		  {
+			ltStuds.add((Student)ltNodes.get(i).getValue());
+		  }
+		  System.out.println(ltStuds);
+		  for(int i = 0; i < ltStudent.length; i++) 
+		  {
+			assertTrue(ltStuds.contains(ltStudent[i]));
+		  }
+		  assertEquals(ltStuds.size(), ltStudent.length);
 		  System.out.println();
 		  
 	  }
