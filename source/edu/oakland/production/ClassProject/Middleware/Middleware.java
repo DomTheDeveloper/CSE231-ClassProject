@@ -309,7 +309,7 @@ public class Middleware {
 		Student[] out = new Student[stack.getSize() - 3];
 		for(int i = 0; stack.getSize() > 3; i++)
 		{
-			out[i] = stack.pop();
+			//out[i] = stack.pop();
 		}
 		return out;
 	}
