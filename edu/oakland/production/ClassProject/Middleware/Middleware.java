@@ -304,6 +304,15 @@ public class Middleware {
 	* This method will return an array of Who got Scholarships
 	*/
 	public String[] getScholarships() {
-		return null;
+		String[] out = new String[3];
+		while(stack.getSize() > 3)
+		{
+			stack.pop()
+		}
+		for(int i = 0; stack.getSize() > 0; i++)
+		{
+			out[i] = stack.pop().toString();
+		}
+		return out;
 	}
 }

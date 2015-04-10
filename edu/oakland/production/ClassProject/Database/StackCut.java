@@ -51,4 +51,7 @@ public class StackCut extends Stack<Object>{
 		return null;
     }
 
+	public int getSize() {
+		return topOfStack + 1;
+	}
 }
