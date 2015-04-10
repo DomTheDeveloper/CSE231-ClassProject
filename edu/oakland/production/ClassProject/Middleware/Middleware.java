@@ -293,17 +293,19 @@ public class Middleware {
 	/**
 	* This method cuts the list of s down to size
 	*/
-	public String[] cutStudents(int count) {
-		String[] out = new String[count];
+	public Student[] cutStudents(int count) {
+		StackCut stack = this.stack.clone();
+		Student[] out = new Student[count];
 		for(int i = 0; i < count; i++)
-			out[i] = stack.pop().toString();
+			out[i] = (Student)stack.pop();
 		return out;
 	}
 	
 	/**
 	* This method will return an array of Who got Scholarships
 	*/
-	public String[] getScholarships() {
+	public String[] getNotScholarships() {
+		StackCut stack = this.stack.clone();
 		String[] out = new String[stack.getSize() - 3];
 		for(int i = 0; stack.getSize() > 3; i++)
 		{

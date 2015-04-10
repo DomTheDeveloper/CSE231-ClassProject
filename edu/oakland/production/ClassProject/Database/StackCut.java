@@ -50,6 +50,14 @@ public class StackCut extends Stack<Object>{
 	else
 		return null;
     }
+	
+	public StackCut clone() {
+		StackCut clone = new StackCut(this.stackSize);
+		for(int i = 0; i <= topOfStack; i++) {
+			clone.push(stackArray[i]);
+		}
+		return clone;
+	}
 
 	public int getSize() {
 		return topOfStack + 1;
