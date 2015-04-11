@@ -20,6 +20,15 @@ public class Student{
 	    this.TG = TG;
 	}
 	
+	public String getEverything(){
+		return 
+			"gID: " + gID + ", " +
+			"name:" + name + ", " +
+			"major:" + major + ", " +
+			"GPA:" + GPA + ", " +
+			"TG:" + TG;
+	}
+	
 	public int getID(){
 		return gID;
 	}
@@ -41,19 +50,23 @@ public class Student{
     	}
     	
     	public static void main(String [] args){
-    		Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);
-    		Student student2 = new Student(177993, "Smith", "IT", 3.47, 78);
-		Student student3 = new Student(444811, "Breaux", "CS", 3.95, 98);
-		Student student4 = new Student(113625, "Brady", "CS", 3.77, 92);
-		Student student5 = new Student(382707, "Rominske", "CS", 3.82, 79);
-		Student student6 = new Student(447447, "Hardy", "IT", 3.68, 99);
-		Student student7 = new Student(661284, "Kominsky", "IT", 3.23, 70);
-		Student student8 = new Student(855462, "O'Brien", "IT", 3.44, 85);
-		Student student9 = new Student(223344, "Chamberlain", "CS", 3.99, 96);
-		Student student10 = new Student(348689, "Grant", "CS", 3.88, 99);
+			Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);
+			Student student2 = new Student(177993, "Smith", "IT", 3.47, 78);
+			Student student3 = new Student(444811, "Breaux", "CS", 3.95, 98);
+			Student student4 = new Student(113625, "Brady", "CS", 3.77, 92);
+			Student student5 = new Student(382707, "Rominske", "CS", 3.82, 79);
+			Student student6 = new Student(447447, "Hardy", "IT", 3.68, 99);
+			Student student7 = new Student(661284, "Kominsky", "IT", 3.23, 70);
+			Student student8 = new Student(855462, "O'Brien", "IT", 3.44, 85);
+			Student student9 = new Student(223344, "Chamberlain", "CS", 3.99, 96);
+			Student student10 = new Student(348689, "Grant", "CS", 3.88, 99);
         	StackCut stackcut = new StackCut(10);
 		
-		stackcut.push(student1.getID());
+			//stackcut.push(student1);
+			//Student test = (Student)stackcut.peek();
+			//System.out.println(test.getID());
+			
+			stackcut.push(student1.getID());
         	stackcut.push(student2.getID());
         	stackcut.push(student3.getID());
         	stackcut.push(student4.getID());
@@ -139,7 +152,7 @@ public class Student{
         	System.out.println("The stack after the cut is: ");
         	stackcut.displayStacks();
         	System.out.println();
-        	Object unluckystudentone =stackcut.peek();
+        	Object unluckystudentone = stackcut.peek();
         	stackcut.pop();
         	Object unluckystudenttwo = stackcut.peek();
         	stackcut.pop();

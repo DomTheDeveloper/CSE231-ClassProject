@@ -23,7 +23,7 @@ public class Display {
 	private int b;
 	private int c;
 	
-	private final int E_100K = 5;
+	private final int E_100K = 100000;
 	private final int E_200K = 200000;
 	private final int E_400K = 400000;
 	
@@ -230,10 +230,9 @@ public class Display {
 						//PREORDER SEARCH
 						//ORDER SEARCH
 						
-						binaryOption = false;
-					
-						break;
+						binaryOption = false;		
 				}
+				break;
 			case "3":
 				hashTableOption = true;
 				while (hashTableOption) {
@@ -317,10 +316,15 @@ public class Display {
 
 				}
 				break;
-
+				
+			case "44":
 			case "4":
 				System.out.println("You have selected class schedule. Please enter students data");
-				createClass();
+				
+				if (menuString == "4")
+					createClass();
+				else // (menuString == "44")
+					createClass2();
 
 				studentOption = true;
 				while (studentOption) {
@@ -334,9 +338,13 @@ public class Display {
 					
 					switch(menuString)
 					{
+					case "0":
+					
+						break;
 					case "1":
 						System.out.println("Cut Class the class");
-						//String temp = middleware.CutClass();
+						System.out.println(middleware.cutStudents(5));
+						//printStudents(cutStudents);
 						studentOption = false;
 						break;
 					case "2":
@@ -346,7 +354,7 @@ public class Display {
 						break;
 					case "3":
 						System.out.println("Reset Class");
-						//temp = middlewear.ResetClass();
+						//temp = middleware.ResetClass();
 						studentOption = false;
 						break;
 					case "4":
@@ -359,6 +367,7 @@ public class Display {
 				break;
 			case "5":
 				runnable = false;
+				System.out.println("Goodbye!");
 				break;
 			default:
 				System.out.println("That was not a valid input. Please try again!");
@@ -368,6 +377,34 @@ public class Display {
 		}
 	}
 	
+	/*
+	private void printStudents(Student[] students){
+		for (Student student : students){
+			if (student == null)
+				System.out.println("student null");
+			else
+				System.out.println("student not null");
+		
+			//System.out.println("GrizzID: " + student.getID());
+		}
+			
+	}
+	*/
+
+private boolean createClass2(){
+  middleware.createStudent(1, "1", "1", 1, 1);
+  middleware.createStudent(2, "2", "2", 2, 2);
+  middleware.createStudent(3, "3", "3", 3, 3);
+  middleware.createStudent(4, "4", "4", 4, 4);
+  middleware.createStudent(5, "5", "5", 5, 5);
+  middleware.createStudent(6, "6", "6", 6, 6);
+  middleware.createStudent(7, "7", "7", 7, 7);
+  middleware.createStudent(8, "8", "8", 8, 8);
+  middleware.createStudent(9, "9", "9", 9, 9);
+  middleware.createStudent(10, "10", "10", 10, 10);
+  return true;
+ }
+	
 	private boolean createClass(){
 		
 		boolean stayIn = true;
@@ -376,11 +413,11 @@ public class Display {
 			boolean notSuccessful = true;
 			String tempToParse;
 			String temp;
-			int grizzlyID;
+			int grizzlyID = -1;
 			String name;
 			String major;
-			double gpa;
-			int thesisGrade;
+			double gpa = -1;
+			int thesisGrade = -1;
 			System.out.println("Enter student data:");
 			System.out.println("What is the student's Grizzly ID?");
 			tempToParse = scan.next();
@@ -425,7 +462,8 @@ public class Display {
 			} while (notSuccessful);
 			notSuccessful = true;
 			
-			///Create the student
+			/// Create the student
+			middleware.createStudent(grizzlyID, name, major, gpa, thesisGrade);
 			
 			counter++;
 			if (counter >= 10){

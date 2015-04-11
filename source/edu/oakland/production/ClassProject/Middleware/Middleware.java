@@ -38,7 +38,7 @@ public class Middleware {
 	private BinaryTreeMW mwBT = new BinaryTreeMW();
 	private HashClient mwHC = new HashClient();
 	private HashFinder mwHF = new HashFinder();
-	private StackCut stack = new StackCut(5);
+	private StackCut stack = new StackCut(9);
 	private BinaryTree tree = new BinaryTree();
 
 	/**
@@ -294,12 +294,27 @@ public class Middleware {
 	/**
 	* This method cuts the list of s down to size
 	*/
-	public Student[] cutStudents(int count) {
+	public String cutStudents(int count) {
+		String out = new String();
+	
 		StackCut stack = this.stack.clone();
-		Student[] out = new Student[count];
-		for(int i = 0; i < count; i++)
-			out[i] = (Student)stack.pop();
+		Student[] students = new Student[count];
+		
+		
+		for(int i = 0; i < count-1; i++){
+			students[i] = (Student) stack.peek() ;
+			stack.pop();
+		}
+		
+		for (Student student : students)
+			if (student != null){
+				out += student.getEverything();
+				out += "\n";
+		}
+		
 		return out;
+		
+		
 	}
 
 	/**
@@ -316,31 +331,34 @@ public class Middleware {
 	}
 
 	/**
-	* This method will return an array of studens stored in the binary tree,
-	*and an array of studentss whose thesis grades are below 90 and GPA is below 3.60.
+	* This method will return an array of students stored in the binary tree,
+	*and an array of students whose thesis grades are below 90 and GPA is below 3.60.
 	*/
+	/*
 	public ArrayList<Student> getThesis(){
-	tree.addNode(student1.getTG(),student1);
-	tree.addNode(student2.getTG(),student2);
-	tree.addNode(student3.getTG(),student3);
-	tree.addNode(student4.getTG(),student4);
-	tree.addNode(student5.getTG(),student5);
-	tree.addNode(student6.getTG(),student6);
-	tree.addNode(student7.getTG(),student7);
-	tree.addNode(student8.getTG(),student8);
-	tree.addNode(student9.getTG(),student9);
-	tree.addNode(student10.getTG(),student10);
+		tree.addNode(student1.getTG(),student1);
+		tree.addNode(student2.getTG(),student2);
+		tree.addNode(student3.getTG(),student3);
+		tree.addNode(student4.getTG(),student4);
+		tree.addNode(student5.getTG(),student5);
+		tree.addNode(student6.getTG(),student6);
+		tree.addNode(student7.getTG(),student7);
+		tree.addNode(student8.getTG(),student8);
+		tree.addNode(student9.getTG(),student9);
+		tree.addNode(student10.getTG(),student10);
+		
 
-	tree.preorderTraverseTree(tree.getRootNode());
+		tree.preorderTraverseTree(tree.getRootNode());	
 
-	ArrayList<Node> ltNodes = tree.getLess(90,3.60);
-	ArrayList<Student> ltStuds = new ArrayList<Student>();
+		ArrayList<Node> ltNodes = tree.getLess(90,3.60);
+		ArrayList<Student> ltStuds = new ArrayList<Student>();
 
-	for(int i = 0; i < ltNodes.size(); i++)
-	{
-	ltStuds.add((Student)ltNodes.get(i).getValue());
+		for(int i = 0; i < ltNodes.size(); i++)
+		{
+		ltStuds.add((Student)ltNodes.get(i).getValue());
+		}
+		return ltStuds;
 	}
-	return ltStuds;
-
-	}
+	*/
+	
 }
