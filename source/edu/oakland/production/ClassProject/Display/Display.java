@@ -23,9 +23,9 @@ public class Display {
 	private int b;
 	private int c;
 	
-	private final int E_100K = 100000;
-	private final int E_200K = 200000;
-	private final int E_400K = 400000;
+	private final int E_100K = 100;
+	private final int E_200K = 200;
+	private final int E_400K = 400;
 	
 	public static void main(String[] args){
 		Display display = new Display(true);
@@ -60,9 +60,9 @@ public class Display {
 	}
 	
 	private void printElementChoices(){
-		System.out.println("1. 100,000 elements.");
-		System.out.println("2. 200,000 elements.");		
-		System.out.println("3. 400,000 elements.");
+		System.out.println("1. 100 elements.");
+		System.out.println("2. 200 elements.");		
+		System.out.println("3. 400 elements.");
 	}
 	
 	public void runMainMenu() {
@@ -73,7 +73,7 @@ public class Display {
 				this.isFirstRun = false;
 			}
 			else {
-				System.out.println("Hello again! Please press the corresponding key to enter the JCF container: ");
+				System.out.println("\nHello again! Please press the corresponding key to enter the JCF container: ");
 			}
 			
 			System.out.println("1. ArrayList and Linked List"); // Part 1: A
@@ -82,6 +82,7 @@ public class Display {
 			System.out.println("4. Enter Students."); // Part 2
 			System.out.println("5. Exit.");
 			
+			System.out.print(">> ");
 			menuString = scan.next();
 			switch (menuString) {
 			case "1": /// Part 1: A
@@ -91,6 +92,7 @@ public class Display {
 					
 					/// How many elements does the user want?
 					printElementChoices();
+					System.out.print(">> ");
 					
 					/// Store entered value as int
 					int numOfElements = getNumOfElements( scan.next() );
@@ -105,12 +107,12 @@ public class Display {
 					
 					middleware.createArrayList();
 					returnTime = middleware.sortArrayList(true);
-					System.out.println("The search time for arrayList selection sort was: " + returnTime);
+					System.out.println("The search time for arrayList selection sort was: " + returnTime + " ms");
 					returnTime = middleware.sortLinkedList(true);
-					System.out.println("The time for LinkedList selection sort was: " + returnTime);
+					System.out.println("The time for LinkedList selection sort was: " + returnTime + " ms");
 						
 					///Show Big Oh
-					System.out.println("The big oh data is:\n\t ArrayList: " + middleware.bigOAL(true) + "\n\t Linked List" + middleware.bigOLL(true));
+					System.out.println("The big o data is: \n\t ArrayList: " + middleware.bigOAL(true) + "\n\t Linked List: " + middleware.bigOLL(true));
 						
 					///Show Big Oh
 					//int [] BigO = middleware.getBigOData();
@@ -122,17 +124,18 @@ public class Display {
 					// System.out.println("The big O dependency is " + middleware.bigO);
 						
 					returnTime = middleware.sortLinkedList(false);
-					System.out.println("The time for LinkedList bubble sort was: " + returnTime);
+					System.out.println("The time for LinkedList bubble sort was: " + returnTime + " ms");
 					returnTime = middleware.sortArrayList(false);
-					System.out.println("The search time for arrayList bubble sort was: " + returnTime);
+					System.out.println("The search time for arrayList bubble sort was: " + returnTime + " ms");
 					//System.out.println("The search time for LinkedListbubble sort was: " + returnTime);
 					
 					//Show Big Oh
-					System.out.println("The big oh data is:\n\t ArrayList: " + middleware.bigOAL(false) + "\n\t Linked List" + middleware.bigOLL(false));
+					System.out.println("The big O data is:\n\t ArrayList: " + middleware.bigOAL(false) + "\n\t Linked List: " + middleware.bigOLL(false));
 						
 					searchOption = true;
 					while (searchOption){
-						System.out.println("What is the value you want to search for");
+						System.out.println("What is the value you want to search for?");
+						System.out.print(">> ");
 						menuString = scan.next();
 						try
 						{
@@ -140,14 +143,14 @@ public class Display {
 							if (searchInt >= 100 && searchInt <= 1000){
 								//Linear Search
 								returnTime = middleware.searchLinkedList(searchInt, false);
-								System.out.println("The time for LinkedList Linear search was: " + returnTime);
+								System.out.println("The time for LinkedList Linear search was: " + returnTime + " ms");
 								returnTime = middleware.searchArrayList(searchInt, false);
-								System.out.println("The time for ArrayList Linear search was: " + returnTime);
+								System.out.println("The time for ArrayList Linear search was: " + returnTime + " ms");
 								//Binary Search
 								returnTime = middleware.searchLinkedList(searchInt, true);
-								System.out.println("The time for LinkedList Binary search was: " + returnTime);
+								System.out.println("The time for LinkedList Binary search was: " + returnTime + " ms");
 								returnTime = middleware.searchArrayList(searchInt, true);
-								System.out.println("The time for LinkedList Binary search was: " + returnTime);
+								System.out.println("The time for LinkedList Binary search was: " + returnTime + " ms");
 								
 								searchOption = false;
 							}
@@ -173,6 +176,7 @@ public class Display {
 					
 					/// How many elements does the user want?
 					printElementChoices();
+					System.out.print(">> ");
 					
 					/// Store entered value as int
 					int numOfElements = getNumOfElements( scan.next() );
@@ -188,6 +192,7 @@ public class Display {
 							searchOption = true;
 							while (searchOption){
 								System.out.println("What is the first int to search?");
+								System.out.print(">> ");
 								try{
 									this.a = scan.nextInt();
 									if (a == -1){
@@ -205,6 +210,7 @@ public class Display {
 							searchOption = true;
 							while (searchOption){
 								System.out.println("What is the 2nd int to search?");
+								System.out.print(">> ");
 								try{
 									this.b = scan.nextInt();
 									searchOption = false;
@@ -217,6 +223,7 @@ public class Display {
 							searchOption = true;
 							while (searchOption){
 								System.out.println("What is the 3rd int to search?");
+								System.out.print(">> ");
 								try{
 									this.c = scan.nextInt();
 									searchOption = false;
@@ -240,6 +247,7 @@ public class Display {
 					
 					/// How many elements does the user want?
 					printElementChoices();
+					System.out.print(">> ");
 					
 					/// Store entered value as int
 					int numOfElements = getNumOfElements( scan.next() );
@@ -256,6 +264,7 @@ public class Display {
 							searchOption = true;
 							while (searchOption){
 								System.out.println("What is the first int to search?");
+								System.out.print(">> ");
 								try{
 									this.a = scan.nextInt();
 									if (a == -1){
@@ -273,6 +282,7 @@ public class Display {
 							searchOption = true;
 							while (searchOption){
 								System.out.println("What is the 2nd int to search?");
+								System.out.print(">> ");
 								try{
 									this.b = scan.nextInt();
 									searchOption = false;
@@ -285,6 +295,7 @@ public class Display {
 							searchOption = true;
 							while (searchOption){
 								System.out.println("What is the 3rd int to search?");
+								System.out.print(">> ");
 								try{
 									this.c = scan.nextInt();
 									searchOption = false;
@@ -296,11 +307,11 @@ public class Display {
 						}
 						
 						returnTime = middleware.searchValuesAndGetTime(a);
-						System.out.println("Searched: " + a + "\tHash Search Took: " + returnTime);
+						System.out.println("Searched: " + a + "\tHash Search Took: " + returnTime + " ms");
 						returnTime = middleware.searchValuesAndGetTime(b);
-						System.out.println("Searched: " + b + "\tHash Search Took: " + returnTime);
+						System.out.println("Searched: " + b + "\tHash Search Took: " + returnTime + " ms");
 						returnTime = middleware.searchValuesAndGetTime(c);
-						System.out.println("Searched: " + c + "\tHash Search Took: " + returnTime);
+						System.out.println("Searched: " + c + "\tHash Search Took: " + returnTime + " ms");
 						
 						/*System.out.println("For " + a + " " + middleware.value1time
 								+ " " + middleware.value1itemsearched + " " +
@@ -319,7 +330,7 @@ public class Display {
 				
 			case "44":
 			case "4":
-				System.out.println("You have selected class schedule. Please enter students data");
+				System.out.println("You have selected class schedule. Please enter students data: ");
 				
 				if (menuString == "4")
 					createClass();
@@ -332,7 +343,8 @@ public class Display {
 					System.out.println("1.) Cut Last 5 students");
 					System.out.println("2.) Process Scholarships");
 					System.out.println("3.) Reinstate Students to class");
-					System.out.println("4.) Exit You will lose everything");
+					System.out.println("4.) Exit (You will lose everything)");
+					System.out.print(">> ");
 					
 					menuString = scan.next();
 					
@@ -420,6 +432,7 @@ private boolean createClass2(){
 			int thesisGrade = -1;
 			System.out.println("Enter student data:");
 			System.out.println("What is the student's Grizzly ID?");
+			System.out.print(">> ");
 			tempToParse = scan.next();
 			do{
 				try{
@@ -427,17 +440,21 @@ private boolean createClass2(){
 					notSuccessful = false;
 				} catch (Exception e) {
 					System.out.println("ID Entered is not a valid number, What is the student's Grizzly ID?");
+					System.out.print(">> ");
 					tempToParse = scan.next();
 				}
 			} while (notSuccessful);
 			notSuccessful = true;
 			
 			System.out.println("What is the student's name?");
+			System.out.print(">> ");
 			name = scan.next();
 			System.out.println("What is the major of the student");
+			System.out.print(">> ");
 			major = scan.next();
 		
 			System.out.println("What is the GPA");
+			System.out.print(">> ");
 			tempToParse = scan.next();
 			do{
 				try{
@@ -445,11 +462,13 @@ private boolean createClass2(){
 					notSuccessful = false;
 				} catch (Exception e) {
 					System.out.println("GPA Entered is not a valid number, What is the GPA?");
+					System.out.print(">> ");
 					tempToParse = scan.next();
 				}
 			} while (notSuccessful);
 			notSuccessful = true;
 			System.out.println("Thesis grade?");
+			System.out.print(">> ");
 			tempToParse = scan.next();
 			do{
 				try{
@@ -457,6 +476,7 @@ private boolean createClass2(){
 					notSuccessful = false;
 				} catch (Exception e) {
 					System.out.println("Thesis Entered is not a valid number, What is the student's thesis grade?");
+					System.out.print(">> ");
 					tempToParse = scan.next();
 				}
 			} while (notSuccessful);

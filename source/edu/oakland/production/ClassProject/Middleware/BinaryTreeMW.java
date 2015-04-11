@@ -59,6 +59,7 @@ public class BinaryTreeMW {
 	 * @param binaryTreeDatabase BinaryTreeDB object.
 	 * @return BinaryTreeMW
 	 */
+	@SuppressWarnings("unchecked")
 	public BinaryTreeMW(BinaryTreeDB binaryTreeDatabase){
 		
 		this.binaryTreeDatabase = binaryTreeDatabase;
@@ -520,6 +521,7 @@ public class BinaryTreeMW {
 	 * 
 	 * @param binaryTreeDatabaseBinaryTreeDB object.
 	 */
+	@SuppressWarnings("unchecked")
 	public void setBinaryTreeDatabase(BinaryTreeDB binaryTreeDatabase){
 		
 		this.binaryTreeDatabase = binaryTreeDatabase;
