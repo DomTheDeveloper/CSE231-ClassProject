@@ -1,10 +1,15 @@
 package edu.oakland.production.ClassProject.Display;
 
-import edu.oakland.production.ClassProject.Middleware.*;
+import edu.oakland.production.ClassProject.Middleware.Middleware;
 
 import java.util.*;
 
-
+/**
+ * 
+ * @author Display Group
+ * @version 4.0 Actually closer to working.
+ * @since 3/30/2015
+ */
 public class Display {
 	private boolean runnable;
 	private boolean isFirstRun = true;
@@ -13,12 +18,13 @@ public class Display {
 	private boolean hashTableOption;
 	private boolean studentOption;
 	private boolean searchOption;
-	private Scanner scan = new Scanner(System.in);
+	private Scanner scan;
 	private int menuKey;
 	private String menuString;
 	private Middleware middleware = new Middleware();
 	private long returnTime;
 	
+	// First, second, and third search values.
 	private int a = -1;
 	private int b;
 	private int c;
@@ -27,14 +33,13 @@ public class Display {
 	private final int E_200K = 200;
 	private final int E_400K = 400;
 	
-	public static void main(String[] args){
-		Display display = new Display(true);
-		display.runMainMenu();
+	public Display(String jUnitTesting) {
+		this.scan = new Scanner(jUnitTesting);
 	}
 	
-	
-	public Display(boolean run) {
-		this.runnable = run;
+	public Display() {
+		this.runnable = true;
+		this.scan = new Scanner(System.in);
 	}
 	
 	private int getNumOfElements(String menuString){
@@ -172,7 +177,7 @@ public class Display {
 			case "2": // Part 1: B
 				binaryOption = true;
 				while (binaryOption) {
-					System.out.println("You have selected Hash Tables. Please select the number of elements: ");
+					System.out.println("You have selected a Binary Tree. Please select the number of elements: ");
 					
 					/// How many elements does the user want?
 					printElementChoices();
@@ -361,7 +366,7 @@ public class Display {
 						break;
 					case "2":
 						System.out.println("Scholarship is applied");
-						//temp = middleware.Scholarship();
+						//temp = middleware.getNoScholarships();
 						studentOption = false;
 						break;
 					case "3":
@@ -492,4 +497,26 @@ private boolean createClass2(){
 		} while (stayIn);
 		return true;
 	}
+	
+	/**
+     * Prints a string while checking if it is being tested.
+	 * @param strtoPrint String that is considered for being printed.
+	 * @return String to print, if being tested.
+	 */
+	/*private String print(String strToPrint) {
+		if(testing) { // private boolean testing; Doesn't exist yet. Would be set in the Display() constructor.
+			return strToPrint;
+		}
+		else
+			System.out.print(strtoPrint); // Would require manual use of newlines.
+	}*/
+	// For this to work, mainMenu() would have to be of type string.
+	// Tests classes would do str = display.mainMenu();
+	// They would then process str for whatever information they need.
+	// Important information would be printed out using print()
+	// Which would either transparently print the information or
+	// add it to a string for mainMenu() to return when it completes.
+	// This may not be the best idea, which is why I haven't implemented it
+	// myself. However, I believe it would at least work.
+	
 }

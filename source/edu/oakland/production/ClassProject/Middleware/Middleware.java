@@ -1,16 +1,12 @@
 package edu.oakland.production.ClassProject.Middleware;
 import java.util.*;
 import edu.oakland.production.ClassProject.Database.*;
-/**
-*@author Eldari Gogiashvili
-*@version version 2.0.0 date 150405
-*since version 1.0.0 date 150331
-*/
 
 /**
-*This class represents the middleware.
-*/
-
+ * @author Eldari Gogiashvili
+ * @version version 2.0.0 date 150405
+ * since version 1.0.0 date 150331
+ */
 public class Middleware {
 
 	/**
@@ -320,7 +316,7 @@ public class Middleware {
 	/**
 	* This method will return an array of who didn't get a scholarship.
 	*/
-	public Student[] getNotScholarships() {
+	public Student[] getNoScholarships() {
 		StackCut stack = this.stack.clone();
 		Student[] out = new Student[stack.getSize() - 3];
 		for(int i = 0; stack.getSize() > 3; i++)
