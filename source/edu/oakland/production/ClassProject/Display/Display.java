@@ -302,9 +302,7 @@ public class Display {
 							+ " elements.");
 					
 					middleware.binaryTreeMW(numOfElements);
-					// middleware.createBinary(numOfElements);
 
-					if (a == 1) {
 						searchOption = true;
 						while (searchOption) {
 							System.out
@@ -347,7 +345,7 @@ public class Display {
 								System.out.println("Enter a valid value");
 							}
 						}
-					}
+					
 
 					this.a = 516521;
 					this.b = 767623;
@@ -386,7 +384,6 @@ public class Display {
 					
 					middleware.makeHashTable(numOfElements);
 						
-						if (a == -1){
 							searchOption = true;
 							while (searchOption){
 								System.out.println("What is the first int to search?");
@@ -430,7 +427,7 @@ public class Display {
 									System.out.println("Enter a valid value");
 								}
 							}
-						}
+						
 						
 						returnTime = middleware.searchValuesAndGetTime(a);
 						System.out.println("Searched: " + a + "\tHash Search Took: " + returnTime + " ns");

@@ -443,11 +443,7 @@ public class BinaryTreeMW {
 		double n = size;
 		double n2 = Math.pow(size,2);
 		double logn = Math.log(size)/Math.log(2);
-		double nodes;
-		
-		do {
-			nodes = findNodeNumber(412321);
-		} while (nodes == -1);
+		double nodes = findNodeNumber(412321);;
 		
 		double prop1 = Math.abs(n - nodes);
 		double prop2 = Math.abs(n2 - nodes);
@@ -587,9 +583,9 @@ public class BinaryTreeMW {
 				focusNode = focusNode.rightChild;
 			}	
 			if (focusNode == null)
-				return -1;
+				return nodeCount++; // Maximum nodes.
 			nodeCount++;
-			}
+		}
 		return nodeCount++;	
 	}
 }
