@@ -116,7 +116,7 @@ public class LinkedListDB<T> {
 	 * @param obj The element that needs to be removed from this list.
 	 * @return The link that was removed.
 	 */
-	public Link<T> removeLink(Link<T> obj){
+	public Link<T> removeLink(T obj){
 	
 		Link<T> currentLink = firstLink;
 		Link<T> previousLink = firstLink;
