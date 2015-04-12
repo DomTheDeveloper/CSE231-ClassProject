@@ -2,19 +2,18 @@
  * BinaryTreeMW.java
  * CSE 231 Class Project
  * 
- * Copyright (c) 2015 Gemini Games LLC. >>>>No<<<< rights reserved. None.
+ * Copyright (c) 2015 Joshua Herkness.
  */
 
 package edu.oakland.production.ClassProject.Middleware;
-
 
 
 //Import java util framework
 import java.util.*;
 
 //Import BinaryTreeDB.java & Node.java
-import edu.oakland.production.ClassProject.Database.*;
-
+import edu.oakland.production.ClassProject.Database.BinaryTreeDB;
+import edu.oakland.production.ClassProject.Database.Node;
 
 
 /*
@@ -25,7 +24,7 @@ import edu.oakland.production.ClassProject.Database.*;
  * 
  * @author Joshua Herkness, Middleware
  * @author Trevor Luebbert, Middleware
- * @version Version 2.3
+ * @version Version 2.4
  * @since version 1.0
  */
 public class BinaryTreeMW {
@@ -60,7 +59,7 @@ public class BinaryTreeMW {
 	 * @return BinaryTreeMW
 	 */
 	@SuppressWarnings("unchecked")
-	public BinaryTreeMW(BinaryTreeDB binaryTreeDatabase){
+	public BinaryTreeMW(BinaryTreeDB<String> binaryTreeDatabase){
 		
 		this.binaryTreeDatabase = binaryTreeDatabase;
 	}
@@ -101,10 +100,10 @@ public class BinaryTreeMW {
 		// Populate both key and name lists.
 		nonDuplicateRandomNumberKeys = createNonDuplicateRandomNumbers(minimumKeyValue, 
 																	   maximumKeyValue, 
-																	   size);
+																	   size + 1);
 		nonDuplicateRandomNumberNames = createNonDuplicateRandomNumbers(minimumNameValue, 
 																		maximumNameValue, 
-																		size);
+																		size + 1);
 		
 		for (int i = 0; i < size; i++){
 			
@@ -182,7 +181,7 @@ public class BinaryTreeMW {
 	 * 
 	 * @return int Integer type corresponding to the number of nodes searched through.
 	 */
-	private int calculatePreorderNodesSearched(BinaryTreeDB binaryTreeDatabase, Node focusNode, int key){
+	private int calculatePreorderNodesSearched(BinaryTreeDB<String> binaryTreeDatabase, Node focusNode, int key){
 		
 		int nodesSearched = calculatePreorderNodesSearched(binaryTreeDatabase, focusNode, key, true);
 		
@@ -345,17 +344,17 @@ public class BinaryTreeMW {
 		
 		Node focusNode = this.binaryTreeDatabase.getRootNode();
 		
-		duration += Double.toString(calculatePreorderSearchDuration(this.binaryTreeDatabase, 
+		duration += Long.toString(calculatePreorderSearchDuration(this.binaryTreeDatabase, 
 																	focusNode, 
 																	key1));
 		duration += " ";
 		
-		duration += Double.toString(calculatePreorderSearchDuration(this.binaryTreeDatabase, 
+		duration += Long.toString(calculatePreorderSearchDuration(this.binaryTreeDatabase, 
 																	focusNode, 
 																	key2));
 		duration += " ";
 		
-		duration += Double.toString(calculatePreorderSearchDuration(this.binaryTreeDatabase, 
+		duration += Long.toString(calculatePreorderSearchDuration(this.binaryTreeDatabase, 
 																	focusNode, 
 																	key3));
 		
@@ -378,17 +377,17 @@ public class BinaryTreeMW {
 		
 		Node focusNode = this.binaryTreeDatabase.getRootNode();
 		
-		duration += Double.toString(calculateInOrderSearchDuration(this.binaryTreeDatabase, 
+		duration += Long.toString(calculateInOrderSearchDuration(this.binaryTreeDatabase, 
 																   focusNode, 
 																   key1));
 		duration += " ";
 		
-		duration += Double.toString(calculateInOrderSearchDuration(this.binaryTreeDatabase, 
+		duration += Long.toString(calculateInOrderSearchDuration(this.binaryTreeDatabase, 
 																   focusNode, 
 																   key2));
 		duration += " ";
 		
-		duration += Double.toString(calculateInOrderSearchDuration(this.binaryTreeDatabase, 
+		duration += Long.toString(calculateInOrderSearchDuration(this.binaryTreeDatabase, 
 																   focusNode, 
 																   key3));
 		
@@ -402,13 +401,14 @@ public class BinaryTreeMW {
 	 * @param focusNode Start or begining node of the binary tree.
 	 * @param key Integer value corresponding with desired search value.
 	 * 
-	 * @return double Double type corresponding to time taken to search the binaryTreeDatabase.
+	 * @return long Long type corresponding to time taken to search the binaryTreeDatabase.
 	 */
-	private double calculatePreorderSearchDuration(BinaryTreeDB binaryTreeDatabase, Node focusNode, int key){
+	@SuppressWarnings("unchecked")
+	private long calculatePreorderSearchDuration(BinaryTreeDB binaryTreeDatabase, Node focusNode, int key){
 		
-		double startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 		int temporary = calculatePreorderNodesSearched(binaryTreeDatabase, focusNode, key);
-		double endTime = System.currentTimeMillis();
+		long endTime = System.currentTimeMillis();
 		
 		return (endTime - startTime);
 	}
@@ -420,13 +420,13 @@ public class BinaryTreeMW {
 	 * @param focusNode Start or begining node of the binary tree.
 	 * @param key Integer value corresponding with desired search value.
 	 * 
-	 * @return double Double type corresponding to time taken to search the binaryTreeDatabase.
+	 * @return long Long type corresponding to time taken to search the binaryTreeDatabase.
 	 */
-	private double calculateInOrderSearchDuration(BinaryTreeDB binaryTreeDatabase, Node focusNode, int key){
+	private long calculateInOrderSearchDuration(BinaryTreeDB binaryTreeDatabase, Node focusNode, int key){
 		
-		double startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 		int temporary = calculateInOrderNodesSearched(binaryTreeDatabase, focusNode, key);
-		double endTime = System.currentTimeMillis();
+		long endTime = System.currentTimeMillis();
 		
 		return (endTime - startTime);
 	}
@@ -437,27 +437,42 @@ public class BinaryTreeMW {
 	 * 
  	 * @return bigO String value corresponding to the big O notation and data set as proof.
 	 */
-	public String calculateBigORelationship(){
-		
-		Node focusNode = this.binaryTreeDatabase.getRootNode();
+	public String calculateBigORelationship(int size){
 		
 		String bigO = "";
+		double n = size;
+		double n2 = Math.pow(size,2);
+		double logn = Math.log(size)/Math.log(2);
+		double nodes;
 		
-		// Description of the BigO notation.
-		bigO += "After each recursion, the time spent searching is halved" +
-			"since you can only move down either the left or right child nodes." +
-			"This halving of the data can be represented as O (log N)";
+		do {
+			nodes = findNodeNumber(412321);
+		} while (nodes == -1);
 		
-		// Introduction to the data set
-		bigO += "\nThe time spent searching during each recursion are as follows:\n";
+		double prop1 = Math.abs(n - nodes);
+		double prop2 = Math.abs(n2 - nodes);
+		double prop3 = Math.abs(logn - nodes);
+		double[] small = {prop1, prop2, prop3};
+		double smallest = size + 1;
 		
-		//the key is -1 so the search method goes through the entire tree
-		bigO += calculateInOrderTimeElapsed( -1);
+		for(int i = 0; i < 3; i++) {
+			if(smallest > small[i]) {
+				smallest = small[i];
+			}	
+		}
 		
+		if(smallest == prop1)
+			bigO = "The big O notation for this binary tree is approximately O(n)";
+		else if(smallest == prop2)
+			bigO = "The big O notation for this binary tree is approximately O(n^2)";
+		else if(smallest == prop3)
+			bigO = "The big O notation for this binary tree is approximately O(log(n))";
+
 		return bigO; 
 	}
 
 	/*
+ 	 * Helper method for calculating the Big O relationship.
  	 * Calculates durration of each recursion of the method.
  	 * 
  	 * @param binaryTreeDatabase BinaryTreeDB object.
@@ -467,17 +482,40 @@ public class BinaryTreeMW {
  	 * 
  	 * @return time String value that returns data regarding time spent during each recursion of the method.
  	 */
-	private long calculateInOrderTimeElapsed(int key){
+	private String calculateInOrderTimeElapsed(Node focusNode, int key, boolean continueSearching){
 		
-		long time = 0;
+		String time = "";
 		
 		//Capture the start time.
 		long startTime = System.currentTimeMillis();
 		
-		binaryTreeDatabase.findNode(key);
+		// Ignore the recursion loop if the node is already found, or if the node is non existant.
+		if (!continueSearching){
+			return "";
+		} else if (focusNode == null){
+			return "";
+		}
+		
+		if (focusNode.leftChild != null){
+			time += " ";
+			time += calculateInOrderTimeElapsed(focusNode.leftChild, key, continueSearching);
+		}
+		
+		// If the focus node has the desired key, stop searching
+		if (focusNode.getKey() == key){
+			continueSearching = false;
+		}
+		
+		if (focusNode.rightChild != null){
+			time += " ";
+			time += calculateInOrderTimeElapsed(focusNode.rightChild, key, continueSearching);
+		}
+			
 		long endTime = System.currentTimeMillis();
 		
-		return endTime-startTime;
+		time += " ";
+		time += (Long.toString(endTime-startTime));
+		return time;
 	}
 	
 	/*
@@ -535,5 +573,23 @@ public class BinaryTreeMW {
 	public BinaryTreeDB getBinaryTreeDatabase(){
 		
 		return this.binaryTreeDatabase;
+	}
+	
+	public int findNodeNumber(int key) {
+		Node focusNode = this.binaryTreeDatabase.getRootNode();
+		int nodeCount = 0;
+		
+		while(focusNode.getKey() != key) {
+		
+			if(key < focusNode.getKey()) {
+				focusNode = focusNode.leftChild;
+			} else {
+				focusNode = focusNode.rightChild;
+			}	
+			if (focusNode == null)
+				return -1;
+			nodeCount++;
+			}
+		return nodeCount++;	
 	}
 }

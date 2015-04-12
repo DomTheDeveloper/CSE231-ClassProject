@@ -111,29 +111,29 @@ public class Middleware {
 	*@param key3 Passes random String value to the BinaryTree instance.
 	*Calls the createBinaryTree, calculatePreorderNodesSearched, calculateInOrderNodesSearched, calculatePreorderSearchDuration, calculateInOrderSearchDuration, calculateBigORelationship, getDatabase, and setDatabase methods.
 	*/
-	public void BinaryTreeMW(){
+	public void binaryTreeMW(int size){
 		mwBT.populateBinaryTreeDB(size);
 	}
 
-	public String calculatePreorderNodesSearched() {
+	public String calculatePreorderNodesSearched(int key1, int key2, int key3) {
 		return mwBT.calculatePreorderNodesSearched(key1, key2, key3);
 	}
 
-	public String calculateInOrderNodesSearched() {
+	public String calculateInOrderNodesSearched(int key1, int key2, int key3) {
 		return mwBT.calculateInOrderNodesSearched(key1, key2, key3);
 
 	}
 
-	public String calculatePreorderSearchDuration() {
+	public String calculatePreorderSearchDuration(int key1, int key2, int key3) {
 		return mwBT.calculatePreorderSearchDuration(key1, key2, key3);
 	}
 
-	public String calculateInOrderSearchDuration() {
+	public String calculateInOrderSearchDuration(int key1, int key2, int key3) {
 		return mwBT.calculateInOrderSearchDuration(key1, key2, key3);
 	}
 
-	public String calculateBigORelationship() {
-		return mwBT.calculateBigORelationship();
+	public String calculateBigORelationship(int size) {
+		return mwBT.calculateBigORelationship(size);
 	}
 
 	/**

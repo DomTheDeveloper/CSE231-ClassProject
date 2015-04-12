@@ -301,10 +301,10 @@ public class Display {
 							+ String.format("%,d", numOfElements)
 							+ " elements.");
 					
-					middleware.BinaryTreeMW();
+					middleware.binaryTreeMW(numOfElements);
 					// middleware.createBinary(numOfElements);
 
-					if (a == -1) {
+					if (a == 1) {
 						searchOption = true;
 						while (searchOption) {
 							System.out
@@ -349,10 +349,20 @@ public class Display {
 						}
 					}
 
+					this.a = 516521;
+					this.b = 767623;
+					this.c = 612312;
 					
 					// PREORDER SEARCH
+					System.out.println("Preorder nodes searched: " + middleware.calculatePreorderNodesSearched(this.a, this.b, this.c));
+					System.out.println("Preorder time duration: " + middleware.calculatePreorderSearchDuration(this.a, this.b, this.c));
+					
 					// ORDER SEARCH
+					System.out.println("In order nodes searched: " + middleware.calculateInOrderNodesSearched(this.a, this.b, this.c));
+					System.out.println("In order time duration: " + middleware.calculateInOrderSearchDuration(this.a, this.b, this.c));
 
+					System.out.println(middleware.calculateBigORelationship(numOfElements));
+					
 					binaryOption = false;
 				}
 				break;
