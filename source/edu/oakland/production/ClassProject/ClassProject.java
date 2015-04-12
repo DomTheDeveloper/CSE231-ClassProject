@@ -15,6 +15,7 @@ public class ClassProject {
 
     public static void main(String[] args) {
        Display display = new Display();
-       display.runMainMenu();
+       String hello = display.runMainMenu();
+
     }
 }

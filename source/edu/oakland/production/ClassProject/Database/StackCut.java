@@ -92,4 +92,9 @@ public class StackCut extends Stack<Object>{
 	public int getSize() {
 		return topOfStack + 1;
 	}
+	
+	public void setSize(int newStackSize) {
+		this.stackSize = newStackSize;
+		stackArray = new Object[stackSize];
+	}
 }

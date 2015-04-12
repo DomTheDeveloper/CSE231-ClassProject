@@ -19,6 +19,16 @@ public class Student{
 	    this.GPA = GPA;
 	    this.TG = TG;
 	}
+	@Override
+	public String toString(){
+		return this.getEverything();
+	}
+	
+	public String getBasicInfo(){
+		return 
+			"gID: " + gID + ", " +
+			"name:" + name + "  ";
+	}
 	
 	public String getEverything(){
 		return 

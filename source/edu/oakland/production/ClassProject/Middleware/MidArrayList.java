@@ -28,7 +28,7 @@ public class MidArrayList {
 	*Overloaded constructor to create database. Takes in
 	*a variable of type "int" to specify size.
 	*/
-	MidArrayList(int size){
+	public MidArrayList(int size){
 		arraySize = size;
 		theArray = new ArrayListDatabase(size);
 	}

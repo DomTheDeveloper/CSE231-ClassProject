@@ -34,7 +34,7 @@ public class Middleware {
 	private BinaryTreeMW mwBT = new BinaryTreeMW();
 	private HashClient mwHC = new HashClient();
 	private HashFinder mwHF = new HashFinder();
-	private StackCut stack = new StackCut(9);
+	private StackCut stack = new StackCut(10);
 	private BinaryTree tree = new BinaryTree();
 
 	/**
@@ -188,6 +188,11 @@ public class Middleware {
 		Student newStudent = new Student(ID, Name, Major, GPA, TG);
 		stack.push(newStudent);
 	}
+	
+	public void setStackSize(int newStackSize){
+		stack.setSize(newStackSize);
+	}
+	
 
 	public void setNumberOfElements(int n) {
 		mwLL = new LinkedListMiddleware(n);
@@ -286,31 +291,48 @@ public class Middleware {
 		mwHC.findHashTableValue(a);
 		return System.currentTimeMillis() - start;
 	}
-
+	
 	/**
 	* This method cuts the list of s down to size
 	*/
-	public String cutStudents(int count) {
+	public String cutStudents(int count, boolean cut, int alreadyCutStudents) {
 		String out = new String();
-	
+		
 		StackCut stack = this.stack.clone();
-		Student[] students = new Student[count];
+		int stackSize = stack.getSize();
 		
+		Student[] studentsCut = new Student[stack.getSize()];
+		Student[] studentsNotCut = new Student[stack.getSize()];
 		
-		for(int i = 0; i < count-1; i++){
-			students[i] = (Student) stack.peek() ;
+		for(int i = 0; i < alreadyCutStudents; i++){
 			stack.pop();
 		}
 		
-		for (Student student : students)
+		for(int i = 0; i < count; i++){
+				studentsCut[i] = (Student) stack.peek();
+				stack.pop();
+		}
+		
+		for(int i = 0; i < stackSize - count; i++){
+			studentsNotCut[i] = (Student) stack.peek();
+			stack.pop();
+		}
+		
+		Student[] students = cut ? studentsCut : studentsNotCut;
+		
+		for (int i = 0; i < students.length; i++){
+			Student student = students[i];
 			if (student != null){
-				out += student.getEverything();
+				if ( ((i == count-1) && cut) && alreadyCutStudents == 0)
+					out += student.getEverything();
+				else
+					out += student.getBasicInfo();
+				
 				out += "\n";
 		}
 		
-		return out;
-		
-		
+	}
+		return out;	
 	}
 
 	/**
@@ -330,31 +352,41 @@ public class Middleware {
 	* This method will return an array of students stored in the binary tree,
 	*and an array of students whose thesis grades are below 90 and GPA is below 3.60.
 	*/
-	/*
-	public ArrayList<Student> getThesis(){
-		tree.addNode(student1.getTG(),student1);
-		tree.addNode(student2.getTG(),student2);
-		tree.addNode(student3.getTG(),student3);
-		tree.addNode(student4.getTG(),student4);
-		tree.addNode(student5.getTG(),student5);
-		tree.addNode(student6.getTG(),student6);
-		tree.addNode(student7.getTG(),student7);
-		tree.addNode(student8.getTG(),student8);
-		tree.addNode(student9.getTG(),student9);
-		tree.addNode(student10.getTG(),student10);
-		
+	
+	public String getThesis(){
 
-		tree.preorderTraverseTree(tree.getRootNode());	
+		String out = new String();	
+		
+		StackCut stack = this.stack.clone();
+		int stackSize = stack.getSize();
+		
+		Student[] students = new Student[stack.getSize()];
+		
+		for(int i = 0; i < stackSize; i++){
+				students[i] = (Student) stack.peek();
+				stack.pop();
+		}
+		
+		for (Student student : students)
+			tree.addNode(student.getTG(),student);
+		
+		out += "Traversed:" + "\n";
+		out += tree.preorderTraverseTree(tree.getRootNode()).toString();	
 
 		ArrayList<Node> ltNodes = tree.getLess(90,3.60);
 		ArrayList<Student> ltStuds = new ArrayList<Student>();
 
 		for(int i = 0; i < ltNodes.size(); i++)
 		{
-		ltStuds.add((Student)ltNodes.get(i).getValue());
+			ltStuds.add((Student)ltNodes.get(i).getValue());
 		}
-		return ltStuds;
+		
+		out += "\n" + "The following students failed out:";
+		for(Student student : ltStuds)
+			out += "\n" + student.getEverything();
+		
+		return out;
 	}
-	*/
+	
 	
 }

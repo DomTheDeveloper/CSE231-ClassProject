@@ -25,9 +25,8 @@ public class Node<T> {
 	public int getKey(){
 		return key;
 	}
-	
+	@Override
 	public String toString(){
-	
 		return val + " has a key " + key;
 	}
 }

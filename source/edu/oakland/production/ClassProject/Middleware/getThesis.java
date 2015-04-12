@@ -1,3 +1,4 @@
+/*
 BinaryTree tree = new BinaryTree();
 
 	public void getThesis(){
@@ -26,3 +27,4 @@ BinaryTree tree = new BinaryTree();
 		
 		return ltStuds;
 	}
+*/

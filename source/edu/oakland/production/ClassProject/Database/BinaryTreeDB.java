@@ -74,16 +74,23 @@ public class BinaryTreeDB<T> {
 *The preorderTraverseTree method uses an Pre-Order search and prints out the value of each node as it traverses
 *@param focusNode The node that you want to begin your search at
 */	
-	public void preorderTraverseTree(Node focusNode) {
+		StringBuilder out = new StringBuilder();
+		
+	public StringBuilder preorderTraverseTree(Node focusNode) {
 	
+		
 		if( focusNode != null){
 		
-			System.out.println(focusNode);
+			out.append(focusNode.toString() + "\n");
 		
 			preorderTraverseTree(focusNode.leftChild);
 			
 			preorderTraverseTree(focusNode.rightChild);
 		}	
+		
+		//System.out.println(out);
+		
+		return out;
 	}
 	
 /**

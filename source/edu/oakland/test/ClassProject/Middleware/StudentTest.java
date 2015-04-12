@@ -3,6 +3,7 @@ import junit.framework.*;
 import edu.oakland.production.ClassProject.Middleware.*;
 import edu.oakland.production.ClassProject.Database.Node;
 import edu.oakland.production.ClassProject.Database.StackCut;
+import edu.oakland.production.ClassProject.Database.Student;
 import java.util.*;
 //version 2.2
 public class StudentTest extends TestCase{
