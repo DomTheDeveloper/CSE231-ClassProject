@@ -185,11 +185,12 @@ public class Display {
 		while (runnable) {
 			if (isFirstRun) {
 				System.out
-						.println("Hello. Please press the corresponding key to enter the JCF container: ");
+						.println("Herro. Please press the corresponding key to enter the JCF container: ");
 				this.isFirstRun = false;
 			} else {
 				System.out
-						.println("\nHello again! Please press the corresponding key to enter the JCF container: ");
+						.println("\nHerro again! Please press the corresponding key to enter the JCF container: ");
+
 			}
 
 			System.out.println("1. ArrayList and Linked List"); // Part 1: A
@@ -299,6 +300,8 @@ public class Display {
 					System.out.println("You have selected "
 							+ String.format("%,d", numOfElements)
 							+ " elements.");
+					
+					middleware.BinaryTreeMW();
 					// middleware.createBinary(numOfElements);
 
 					if (a == -1) {
@@ -346,6 +349,7 @@ public class Display {
 						}
 					}
 
+					
 					// PREORDER SEARCH
 					// ORDER SEARCH
 
@@ -437,6 +441,8 @@ public class Display {
 				System.out
 						.println("You have selected class schedule. Please enter students data: ");
 
+				middleware.clearTheStack();
+				
 				if (menuString.equals("4"))
 					createClass();
 				else
@@ -465,7 +471,16 @@ public class Display {
 						while (stayIn){
 							try {
 								cutStudentAmount = Integer.parseInt(tempToParse);
+								if (cutStudentAmount > totalStudentCount){
+									System.out.println(
+											"Need to enter valid number to cut students.");
+									System.out.print(">> ");
+									tempToParse = scan.next();
+								}
+								else{
+									
 								stayIn = false;
+								}
 							} catch (Exception e) {
 								System.out.println(
 										"Need to enter valid number to cut students.");
@@ -581,7 +596,7 @@ public class Display {
 					menuString = scan.next();
 					switch (menuString) {
 					case "1":
-						System.out.println("Reinstate to class");
+						System.out.println("Reinstate to people to the class");
 						
 						returnStuff = (middleware.getThesis());
 						System.out.println(returnStuff);
@@ -597,6 +612,8 @@ public class Display {
 						System.out.println("Invalid entry.");
 						continue;
 					}
+					middleware.clearTheStack();
+					System.out.println("CLASS DONE.");
 				}
 
 				break;

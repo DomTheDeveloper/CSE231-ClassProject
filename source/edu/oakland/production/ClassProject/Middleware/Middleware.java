@@ -36,6 +36,8 @@ public class Middleware {
 	private HashClient mwHC = new HashClient();
 	private HashFinder mwHF = new HashFinder();
 	private StackCut stack = new StackCut(10);
+	
+	//PART 2, BECAUSE MELDARI 
 	private BinaryTree tree = new BinaryTree();
 
 	/**
@@ -192,6 +194,10 @@ public class Middleware {
 	
 	public void setStackSize(int newStackSize){
 		stack.setSize(newStackSize);
+	}
+	
+	public void clearTheStack(){
+		stack = new StackCut(10);
 	}
 	
 

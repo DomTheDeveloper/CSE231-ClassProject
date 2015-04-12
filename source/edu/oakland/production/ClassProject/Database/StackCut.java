@@ -22,6 +22,7 @@ public class StackCut extends Stack<Object>{
         this.stackSize = param;
         stackArray = new Object[stackSize];
     }
+    
 	/**
 	 * Pushes an item onto the top of this stack.
 	 * 
