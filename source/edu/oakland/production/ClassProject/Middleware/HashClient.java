@@ -3,7 +3,7 @@ package edu.oakland.production.ClassProject.Middleware;
 import java.util.*;
 import edu.oakland.production.ClassProject.Database.*;
 /**
- * @author Dean DeHart, Middleware
+ * @author Jesse, Dean, Middleware
  * @version 2.0 150401
  * @since 1.0 150328
  */
@@ -32,11 +32,14 @@ public class HashClient {
 	 *@return String
 	 */
 	public String bigONotation() {
-		String bigO = "The Big O notation for HashTable is O(1)";
+		long hold = hashFinder.getTime();
+		long holdLong = hold / hashTableArraySize;
+		String bigO = Long.toString(holdLong);
 		return bigO;
 	}	
-	public void createHashTable(int n) {
-		hashTable = new DatabaseHashTable(n);
+	public void createHashTable(int size) {
+		hashTable = new DatabaseHashTable(size);
+		hashTable.generateHashTable(size);
 	}
 	/**
 	 * Method for searching the hashTable. -Dean
@@ -44,9 +47,9 @@ public class HashClient {
 	public int findHashTableValue(int value) {
 		hashFinder = new HashFinder();
 		
-		hashValue = value;
+		//hashValue = value;
 		//System.out.println("The hash value to be retrieved is: " + hashValue);
-		int valueIndex = hashTable.getLocation(value);//hashFinder.findHashValue(hashValue, hashTableArraySize, hashTableArray);
+		int valueIndex = hashFinder.findHashIndex(value, hashTable.getHashArray());//hashFinder.findHashValue(hashValue, hashTableArraySize, hashTableArray);
 		return valueIndex;
 	}
 	
@@ -54,13 +57,3 @@ public class HashClient {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-

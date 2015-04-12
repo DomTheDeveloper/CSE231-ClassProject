@@ -28,7 +28,8 @@ public class Middleware {
 	private double GPA;
 	private double TG;
 	private String bigO;
-
+	private double totalTime = 0;
+	
 	private LinkedListMiddleware mwLL = new LinkedListMiddleware(10);
 	private MidArrayList mwAL = new MidArrayList(10);
 	private BinaryTreeMW mwBT = new BinaryTreeMW();
@@ -207,7 +208,7 @@ public class Middleware {
 	}
 
 	public void createLinkedList() {
-
+		
 	}
 
 	public long sortArrayList(boolean selectionSort) {
@@ -282,14 +283,16 @@ public class Middleware {
 		}
 	}
 
-	public void createHashTable(int n) {
+	public void makeHashTable(int n) {
 		mwHC.createHashTable(n);
 	}
 
-	public long searchValuesAndGetTime(int a) {
-		long start = System.currentTimeMillis();
+	public double searchValuesAndGetTime(int a) {
+		double start = System.nanoTime();
 		mwHC.findHashTableValue(a);
-		return System.currentTimeMillis() - start;
+		double hold = System.nanoTime() - start; 
+		totalTime += hold; 
+		return hold;
 	}
 	
 	/**
@@ -388,5 +391,7 @@ public class Middleware {
 		return out;
 	}
 	
-	
+	public double getBigO(){
+		return totalTime / 3;
+	}
 }

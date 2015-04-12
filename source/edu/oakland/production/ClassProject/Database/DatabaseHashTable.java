@@ -1,7 +1,7 @@
 /**
 * This class stores the data structure which stores an array of values passed to us by Middleware. 
 *
-* @author Chris Spencer and Mike Opiola
+* @author Chris Spencer, Mike Opiola, Ben Dickman(DS), and Jesse Rominske(MW)
 * @version "version-1.0" "150330"
 * @since "version-1.0"
 */
@@ -12,18 +12,19 @@ import java.util.*;
 
 public class DatabaseHashTable {
 	private Hashtable<Integer, Integer> hashTable;
-	private int[] hashTableArray;
-	private int hashTableArraySize;
+	private int[] hashArray;
+	private int arraySize;
 
 	/**
     	* Constructor for DatabaseHashTable 
     	* Generates the hash table
     	* * @param hashArraySize The size of the hash table to be made. This is changeable to allow more flexibility and possible speed improvements. 
     	*/
-	public DatabaseHashTable( int hashArraySize){
+	public DatabaseHashTable(int hashArraySize){
 //		generateHashTable(hashArraySize);
-		hashTableArraySize = hashArraySize;
+		arraySize = hashArraySize;
 		hashTable = new Hashtable<Integer,Integer>(hashArraySize);
+		//generateHashTable(hashArraySize);
 	}
 	
     	/**
@@ -32,36 +33,25 @@ public class DatabaseHashTable {
     	* @param hashArraySize The size of the hash table to be made. This is changeable to allow more flexibility and 
     	* possible speed improvements. 
     	*/
-	public void generateHashTable(int[] containerArray, int hashArraySize){ 
-		int[] hashTableElementContainer = containerArray;
-		hashTableArraySize = hashArraySize;
-		hashTableArray = new int[hashTableArraySize];
-		
-		hashTable = new Hashtable<Integer, Integer>();
-		
-		for (int i = 0; i < hashTableArray.length; i++){
-			hashTableArray[i] = -1;
-			hashTable.put(i, -1);
-		}
-		
-		for (int j = 0; j < hashTableElementContainer.length; j++){
-			int newElementValue = hashTableElementContainer[j];
-			int hashTableArrayIndex = newElementValue % (hashTableArray.length - 1);
-			
-			System.out.println("Index = " + hashTableArrayIndex + ", Value = " + newElementValue);
-			
-			while(hashTableArray[hashTableArrayIndex] != -1){
-				++hashTableArrayIndex;
-				System.out.println("Collision Occurred. Try " + hashTableArrayIndex + " instead");
-				hashTableArrayIndex %= hashTableArraySize;
+    	public int[] generateHashTable(int sizeOfArray) {
+    		arraySize = sizeOfArray;
+    		hashArray = new int[arraySize];
+    		for (int i = 0; i < hashArray.length; i++) {
+    			hashArray[i] = (int)(Math.random()*arraySize) + (i + 1) + arraySize;
+			//hashTable.put(i, -1);
+    		}
+    		/*for (int j = 0; j < hashArray.length; j++){
+			int newElementValue = hashArray[j];
+			int hashIndex = newElementValue % (hashArray.length - 1);
+			while(hashArray[hashIndex] != -1){
+				++hashIndex;
+				hashIndex %= arraySize;
 			}
-			hashTableArray[hashTableArrayIndex] = newElementValue;
-			hashTable.put(hashTableArrayIndex, newElementValue);
-		}
-				
-	}
-
-	
+			hashArray[hashIndex] = newElementValue;
+			hashTable.put(hashIndex, newElementValue);
+		}*/
+		return hashArray;
+    	}
 	/**
      	* Takes a key and returns the integer value of what is stored at said key.
      	* 
@@ -78,7 +68,7 @@ public class DatabaseHashTable {
 	*/
 	public int getLocation(int value) {
 		if(hashTable.contains(value))
-			return value % hashTableArraySize;
+			return value % arraySize;
 		else
 			return -1;
 	}
@@ -99,6 +89,9 @@ public class DatabaseHashTable {
     	* @param value The value that will be put into the hashtable at the specified key location.
     	*/
 	public void insert(int value){
-		hashTable.put(value % hashTableArraySize, value);
+		hashTable.put(value % arraySize, value);
 	}	
+	public int[] getHashArray(){
+		return hashArray;
+	}
 }

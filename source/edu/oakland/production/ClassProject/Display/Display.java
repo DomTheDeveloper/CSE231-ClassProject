@@ -12,6 +12,9 @@ import java.util.*;
  */
 public class Display {
 	
+	
+	private boolean linkedListOn = true;
+	
 	/**
 	 * boolean runnable
 	 */
@@ -64,7 +67,7 @@ public class Display {
 	/**
 	 * value when we get a return time to put in
 	 */
-	private long returnTime;
+	private double returnTime;
 	
 	/**
 	 * String builder sb for junit test
@@ -91,7 +94,7 @@ public class Display {
 	/**
 	 * final value for 100k
 	 */
-	private final int E_100K = 1000;
+	private final int E_100K = 100000;
 	
 	/**
 	 * final value for 200k
@@ -172,6 +175,7 @@ public class Display {
 		System.out.println("3. 400k elements.");
 	}
 
+
 	/**
 	 * main method for display
 	 * @return String of certain inputs, the students cut and the student on scholarship
@@ -197,101 +201,81 @@ public class Display {
 			System.out.print(">> ");
 			menuString = scan.next();
 			switch (menuString) {
-			case "1": // / Part 1: A
+			case "1": /// Part 1: A
 				arrayList = true;
 				while (arrayList) {
-					System.out
-							.println("You have selected ArrayList and LinkedList. Please select the number of elements: ");
-
-					// / How many elements does the user want?
+					System.out.println("You have selected ArrayList and LinkedList. Please select the number of elements: ");
+					
+					/// How many elements does the user want?
 					printElementChoices();
 					System.out.print(">> ");
-
-					// / Store entered value as int
-					int numOfElements = getNumOfElements(scan.next());
-
-					// / If invalid input, try again
+					
+					/// Store entered value as int
+					int numOfElements = getNumOfElements( scan.next() );
+					
+					/// If invalid input, try again
 					if (numOfElements == -1)
 						continue;
-
-					System.out.println("You have selected "
-							+ String.format("%,d", numOfElements)
-							+ " elements.");
-					middleware.setNumberOfElements(numOfElements);
-					middleware.createArrayList();
-					returnTime = middleware.sortArrayList(true);
-					System.out
-							.println("The search time for arrayList selection sort was: "
-									+ returnTime + " ms");
-					returnTime = middleware.sortLinkedList(true);
-					System.out
-							.println("The time for LinkedList selection sort was: "
-									+ returnTime + " ms");
-
-					// /Show Big Oh
-					System.out.println("The big o data is: \n\t ArrayList: "
-							+ middleware.bigOAL(true) + "\n\t Linked List: "
-							+ middleware.bigOLL(true));
-
-					returnTime = middleware.sortArrayList(false);
-					System.out.println("The search time for arrayList bubble sort was: "+ returnTime + " ms");
 					
-					//returnTime = middleware.sortLinkedList(false);
-					System.out.println("The time for LinkedList bubble sort was: "+ returnTime + " ms");
-
-					// System.out.println("The search time for LinkedListbubble sort was: "
-					// + returnTime);
-
-					// Show Big Oh
-					System.out.println("The big O data is:\n\t ArrayList: "
-							+ middleware.bigOAL(false) + "\n\t Linked List: "
-							+ middleware.bigOLL(false));
-
-
+					System.out.println("You have selected " + String.format("%,d", numOfElements) + " elements.");
+					middleware.setNumberOfElements(numOfElements);
+					
+					
+					middleware.createArrayList();
+					middleware.llMW(numOfElements);
+					returnTime = middleware.sortArrayList(true);
+					System.out.println("The search time for arrayList selection sort was: " + returnTime + " ms");
+					returnTime = middleware.sortLinkedList(true);
+					System.out.println("The time for LinkedList selection sort was: " + returnTime + " ms");
+						
+					///Show Big Oh
+					System.out.println("The big o data is: \n\t ArrayList: " + middleware.bigOAL(true) + "\n\t Linked List: " + middleware.bigOLL(true));
+						
+					returnTime = middleware.sortArrayList(false);
+					System.out.println("The search time for arrayList bubble sort was: " + returnTime + " ms");
+					returnTime = middleware.sortLinkedList(false);
+					System.out.println("The time for LinkedList bubble sort was: " + returnTime + " ms");
+					
+					
+					//Show Big Oh
+					System.out.println("The big O data is:\n\t ArrayList: " + middleware.bigOAL(false) + "\n\t Linked List: " + middleware.bigOLL(false));
+						
 					searchOption = true;
-					while (searchOption) {
-						System.out
-								.println("What is the value you want to search for?");
+					while (searchOption){
+						System.out.println("What is the value you want to search for?");
 						System.out.print(">> ");
 						menuString = scan.next();
-						try {
+						try
+						{
 							int searchInt = Integer.parseInt(menuString);
-							if (searchInt >= 100 && searchInt <= 1000) {
-								// Linear Search
-								returnTime = middleware.searchLinkedList(
-										searchInt, false);
-								System.out
-										.println("The time for LinkedList Linear search was: "
-												+ returnTime + " ms");
-								returnTime = middleware.searchArrayList(
-										searchInt, false);
-								System.out
-										.println("The time for ArrayList Linear search was: "
-												+ returnTime + " ms");
-								// Binary Search
-								returnTime = middleware.searchLinkedList(
-										searchInt, true);
-								System.out
-										.println("The time for LinkedList Binary search was: "
-												+ returnTime + " ms");
-								returnTime = middleware.searchArrayList(
-										searchInt, true);
-								System.out
-										.println("The time for ArrayList Binary search was: "
-												+ returnTime + " ms");
-
+							if (searchInt >= 100 && searchInt <= 1000){
+								//LINKED LIST
+								returnTime = middleware.searchLinkedList(searchInt, true);
+								System.out.println("The time for LinkedList Binary search was: " + returnTime + " ms");
+								returnTime = middleware.searchLinkedList(searchInt, false);
+								System.out.println("The time for LinkedList Linear search was: " + returnTime + " ms");
+								
+								
+								//ARRAY LIST
+								returnTime = middleware.searchArrayList(searchInt, false);
+								System.out.println("The time for ArrayList Linear search was: " + returnTime + " ms");
+								returnTime = middleware.searchArrayList(searchInt, true);
+								System.out.println("The time for ArrayList Binary search was: " + returnTime + " ms");
+								
 								searchOption = false;
-							} else {
+							}
+							else{
 								System.out.println("Not a valid value.");
 							}
-						} catch (Exception e) {
+						}
+						catch (Exception e){
 							System.out.println("Not a numerical value.");
 						}
 					}
 
 					arrayList = false;
 					break;
-
+					
 				}
 				break;
 
@@ -371,97 +355,79 @@ public class Display {
 			case "3":
 				hashTableOption = true;
 				while (hashTableOption) {
-					System.out
-							.println("You have selected Hash Tables. Please select the number of elements: ");
-
-					// / How many elements does the user want?
+					System.out.println("You have selected Hash Tables. Please select the number of elements: ");
+					
+					/// How many elements does the user want?
 					printElementChoices();
 					System.out.print(">> ");
-
-					// / Store entered value as int
-					int numOfElements = getNumOfElements(scan.next());
-
-					// / If invalid input, try again
+					
+					/// Store entered value as int
+					int numOfElements = getNumOfElements( scan.next() );
+					
+					/// If invalid input, try again
 					if (numOfElements == -1)
 						continue;
-
-					System.out.println("You have selected "
-							+ String.format("%,d", numOfElements)
-							+ " elements.");
-
-					middleware.createHashTable(numOfElements);
-
-					if (a == -1) {
-						searchOption = true;
-						while (searchOption) {
-							System.out
-									.println("What is the first int to search?");
-							System.out.print(">> ");
-							try {
-								this.a = scan.nextInt();
-								if (a == -1) {
-									searchOption = true;
-								} else {
+					
+					System.out.println("You have selected " + String.format("%,d", numOfElements) + " elements.");
+					
+					middleware.makeHashTable(numOfElements);
+						
+						if (a == -1){
+							searchOption = true;
+							while (searchOption){
+								System.out.println("What is the first int to search?");
+								System.out.print(">> ");
+								try{
+									this.a = scan.nextInt();
+									if (a == -1){
+										searchOption = true;
+									}
+									else {
+									searchOption = false;
+									}
+								}
+								catch (Exception e){
+									System.out.println("Enter a valid value");
+								}
+							}
+							
+							searchOption = true;
+							while (searchOption){
+								System.out.println("What is the 2nd int to search?");
+								System.out.print(">> ");
+								try{
+									this.b = scan.nextInt();
 									searchOption = false;
 								}
-							} catch (Exception e) {
-								System.out.println("Enter a valid value");
+								catch (Exception e){
+									System.out.println("Enter a valid value");
+								}
+							}
+							
+							searchOption = true;
+							while (searchOption){
+								System.out.println("What is the 3rd int to search?");
+								System.out.print(">> ");
+								try{
+									this.c = scan.nextInt();
+									searchOption = false;
+								}
+								catch (Exception e){
+									System.out.println("Enter a valid value");
+								}
 							}
 						}
-
-						searchOption = true;
-						while (searchOption) {
-							System.out
-									.println("What is the 2nd int to search?");
-							System.out.print(">> ");
-							try {
-								this.b = scan.nextInt();
-								searchOption = false;
-							} catch (Exception e) {
-								System.out.println("Enter a valid value");
-							}
-						}
-
-						searchOption = true;
-						while (searchOption) {
-							System.out
-									.println("What is the 3rd int to search?");
-							System.out.print(">> ");
-							try {
-								this.c = scan.nextInt();
-								searchOption = false;
-							} catch (Exception e) {
-								System.out.println("Enter a valid value");
-							}
-						}
-					}
-
-					returnTime = middleware.searchValuesAndGetTime(a);
-					System.out.println("Searched: " + a
-							+ "\tHash Search Took: " + returnTime + " ms");
-					returnTime = middleware.searchValuesAndGetTime(b);
-					System.out.println("Searched: " + b
-							+ "\tHash Search Took: " + returnTime + " ms");
-					returnTime = middleware.searchValuesAndGetTime(c);
-					System.out.println("Searched: " + c
-							+ "\tHash Search Took: " + returnTime + " ms");
-
-					/*
-					 * System.out.println("For " + a + " " +
-					 * middleware.value1time + " " +
-					 * middleware.value1itemsearched + " " +
-					 * middleware.value1counter + " " + middleware.value1bigO);
-					 * System.out.println("For " + a + " " +
-					 * middleware.value2time + " " +
-					 * middleware.value2itemsearched + " " +
-					 * middleware.value2counter + " " + middleware.value2bigO);
-					 * System.out.println("For " + a + " " +
-					 * middleware.value3time + " " +
-					 * middleware.value3itemsearched + " " +
-					 * middleware.value3counter + " " + middleware.value3bigO);
-					 */
-
-					hashTableOption = false;
+						
+						returnTime = middleware.searchValuesAndGetTime(a);
+						System.out.println("Searched: " + a + "\tHash Search Took: " + returnTime + " ns");
+						returnTime = middleware.searchValuesAndGetTime(b);
+						System.out.println("Searched: " + b + "\tHash Search Took: " + returnTime + " ns");
+						returnTime = middleware.searchValuesAndGetTime(c);
+						System.out.println("Searched: " + c + "\tHash Search Took: " + returnTime + " ns");
+						double hold = middleware.getBigO();
+						System.out.println("BigO: " + hold);
+						System.out.println("1 element searched");
+						hashTableOption = false;
 
 				}
 				break;
