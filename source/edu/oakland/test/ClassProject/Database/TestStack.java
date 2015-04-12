@@ -29,7 +29,6 @@ public class TestStack extends TestCase{
 		stackcut.push(340312);
 		stackcut.push(843098);
 		stackcut.push(954037);
-		System.out.println("Original Stack: ");
 		stackcut.displayStacks();
 	}
 	
@@ -47,7 +46,6 @@ public class TestStack extends TestCase{
 		stackcut.push(340312);
 		stackcut.push(843098);
 		stackcut.push(954037);
-		System.out.println("Clone Stack:");
 		StackCut newStack = stackcut.clone();
 		newStack.displayStacks();
 		assertEquals(stackcut, newStack);
