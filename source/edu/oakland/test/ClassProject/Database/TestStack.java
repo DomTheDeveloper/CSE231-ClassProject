@@ -7,26 +7,59 @@ import junit.framework.*;
  * @author Sam Bell and Binh Ton
  */
 public class TestStack extends TestCase{
-	/*private int getID;*/
-	private Object firstStudent = 677422;
-	private Object lastStudent = 177993;
 	
-	public void testStack(){
-		Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);
-		Student student2 = new Student(177993, "Smith", "IT", 3.47, 78);
-		StackCut stackcut = new StackCut(5);
-		stackcut.push(student1.getID());
-		Object compares2 = stackcut.peek();
-		assertEquals(firstStudent, compares2);
-		stackcut.push(student2.getID());
-		System.out.println(stackcut.peek());
-		stackcut.displayStacks();
-		Object compares = stackcut.pop();
-		//assertEquals(lastStudent, compares); //this is meant to fail
+	Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);
+	Student student2 = new Student(177993, "Smith", "IT", 3.47, 78);
+	StackCut stackcut = new StackCut(5);
+	
+	public void testPush() {
+		Object compare = stackcut.push(student1.getID()); 
+		assertEquals(677422, compare);
 	}
-	/*
-	public int getID(){
-		return getID;
-	}*/
 	
+	public void testPeek() {
+		stackcut.push(student2.getID());
+		Object compare = stackcut.peek();
+		assertEquals(177993, compare);
+	}
+	
+	public void testDisplayStacks() {
+		stackcut.push(student1.getID());
+		stackcut.push(student2.getID());
+		stackcut.push(340312);
+		stackcut.push(843098);
+		stackcut.push(954037);
+		System.out.println("Original Stack: ");
+		stackcut.displayStacks();
+	}
+	
+	public void testPop() {
+		stackcut.push(student1.getID());
+		stackcut.push(student2.getID());
+		stackcut.pop();
+		Object compare = stackcut.peek();
+		assertEquals(677422, compare);
+	}
+	
+	public void testClone() {
+		stackcut.push(student1.getID());
+		stackcut.push(student2.getID());
+		stackcut.push(340312);
+		stackcut.push(843098);
+		stackcut.push(954037);
+		System.out.println("Clone Stack:");
+		StackCut newStack = stackcut.clone();
+		newStack.displayStacks();
+		assertEquals(stackcut, newStack);
+	}
+	
+	public void testGetSize() {
+		stackcut.push(student1.getID());
+		stackcut.push(student2.getID());
+		stackcut.push(340312);
+		stackcut.push(843098);
+		stackcut.push(954037);
+		int size = stackcut.getSize();
+		assertEquals(5, size);
+	}	
 }
