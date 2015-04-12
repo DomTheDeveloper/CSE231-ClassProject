@@ -3,61 +3,56 @@ package edu.oakland.test.ClassProject.Database;
 import edu.oakland.production.ClassProject.Database.*;
 import junit.framework.*;
 /**
+ * .push() tested within initTest()
+ * 
  * @version "version 2.0" "20150104"
  * @author Sam Bell and Binh Ton
  */
 public class TestStack extends TestCase{
 	
-	Student student1 = new Student(677422, "Jones", "IT", 3.82, 95);
-	Student student2 = new Student(177993, "Smith", "IT", 3.47, 78);
-	StackCut stackcut = new StackCut(5);
-	
-	public void testPush() {
-		Object compare = stackcut.push(student1.getID()); 
-		assertEquals(677422, compare);
-	}
+	Student student1;
+	Student student2;
+	StackCut stackcut;
+
 	
 	public void testPeek() {
-		stackcut.push(student2.getID());
-		Object compare = stackcut.peek();
-		assertEquals(177993, compare);
+		initTest();
+		assertEquals(954037, stackcut.peek());
 	}
 	
 	public void testDisplayStacks() {
-		stackcut.push(student1.getID());
-		stackcut.push(student2.getID());
-		stackcut.push(340312);
-		stackcut.push(843098);
-		stackcut.push(954037);
+		initTest();
 		stackcut.displayStacks();
 	}
 	
 	public void testPop() {
-		stackcut.push(student1.getID());
-		stackcut.push(student2.getID());
+		initTest();
 		stackcut.pop();
-		Object compare = stackcut.peek();
-		assertEquals(677422, compare);
+		assertEquals(843098, stackcut.peek());
 	}
 	
 	public void testClone() {
-		stackcut.push(student1.getID());
-		stackcut.push(student2.getID());
-		stackcut.push(340312);
-		stackcut.push(843098);
-		stackcut.push(954037);
+		initTest();
 		StackCut newStack = stackcut.clone();
 		newStack.displayStacks();
 		assertEquals(stackcut, newStack);
 	}
 	
 	public void testGetSize() {
+		initTest();
+		int size = stackcut.getSize();
+		assertEquals(5, size);
+	}	
+	
+	public void initTest(){
+		student1 = new Student(677422, "Jones", "IT", 3.82, 95);
+		student2 = new Student(177993, "Smith", "IT", 3.47, 78);
+		stackcut = new StackCut(5);
+		
 		stackcut.push(student1.getID());
 		stackcut.push(student2.getID());
 		stackcut.push(340312);
 		stackcut.push(843098);
 		stackcut.push(954037);
-		int size = stackcut.getSize();
-		assertEquals(5, size);
-	}	
+	}
 }
