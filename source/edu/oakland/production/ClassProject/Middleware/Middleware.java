@@ -41,6 +41,69 @@ public class Middleware {
 	//PART 2, BECAUSE MELDARI
 	private BinaryTree tree = new BinaryTree();
 
+	/**
+	*Takes an integer and passes it to the MidArrayList instance.
+	*@param listSize
+	*/
+	public void llMW(int listSize){
+		mwLL.createLinkedList(listSize);
+	}
+
+	/**
+	*Takes an integer and passes it to the binaryTreeMW instance.
+	*@param size
+	*/
+	public void binaryTreeMW(int size){
+	mwBT.populateBinaryTreeDB(size);
+	}
+
+	/**
+	*Calculates BigO relationship.
+	*@param size
+	*/
+	public String calculateBigORelationship(int size) {
+		return mwBT.calculateBigORelationship(size);
+	}
+
+	/**
+	*Calculates Preorder Nodes Searched.
+	*@param key1
+	*@param key2
+	*@param key3
+	*/
+	public String calculatePreorderNodesSearched(int key1, int key2, int key3) {
+		return mwBT.calculatePreorderNodesSearched(key1, key2, key3);
+	}
+
+	/**
+	*Calculates Inorder Nodes Searched.
+	*@param key1
+	*@param key2
+	*@param key3
+	*/
+	public String calculateInOrderNodesSearched(int key1, int key2, int key3) {
+		return mwBT.calculateInOrderNodesSearched(key1, key2, key3);
+	}
+
+	/**
+	*Calculates Preorder Search Duration.
+	*@param key1
+	*@param key2
+	*@param key3
+	*/
+	public String calculatePreorderSearchDuration(int key1, int key2, int key3) {
+		return mwBT.calculatePreorderSearchDuration(key1, key2, key3);
+	}
+
+	/**
+	*Calculates Inorder Search Duration.
+	*@param key1
+	*@param key2
+	*@param key3
+	*/
+	public String calculateInOrderSearchDuration(int key1, int key2, int key3) {
+		return mwBT.calculateInOrderSearchDuration(key1, key2, key3);
+	}
 
 	/**
 	*Method for creating a Student.
@@ -51,6 +114,7 @@ public class Middleware {
 	*@param TG
 	*Creates a Student Object and pushes it to the stack.
 	*/
+	
 	public void createStudent(int ID, String Name, String Major, double GPA, int TG) {
 		Student newStudent = new Student(ID, Name, Major, GPA, TG);
 		stack.push(newStudent);

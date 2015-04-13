@@ -5,7 +5,12 @@ import edu.oakland.production.ClassProject.Database.Node;
 import edu.oakland.production.ClassProject.Database.StackCut;
 import edu.oakland.production.ClassProject.Database.Student;
 import java.util.*;
-//version 2.2
+/**
+*StudentTest test class used to test the part 2.
+*@author Blair Sibu
+*@version 1.0
+*@since 1.0
+*/
 public class StudentTest extends TestCase{
 	private static Student student1;
 	private static Student student2;
@@ -18,6 +23,9 @@ public class StudentTest extends TestCase{
 	private static Student student9;
 	private static Student student10;
 	private static Student[] ltStudent;//Students with Scores less than 90 and GPA less than 3.6
+	/**
+	*setUp method sets up the stack to be tested
+	*/
 	public void setUp(){
 		student1 = new Student(677422, "Jones", "IT", 3.82, 95);
 		student2 = new Student(177993, "Smith", "IT", 3.47, 78);
@@ -34,7 +42,9 @@ public class StudentTest extends TestCase{
 		ltStudent[1] = student7;
 		ltStudent[2] = student8;
 	}
-	
+	/**
+	*tetStudent tests that the student name is Jones
+	*/
 	public void testStudent(){
 		
 		final String firstStudentName = "Jones";
@@ -77,7 +87,9 @@ public class StudentTest extends TestCase{
 		student10 = new Student(348689, "Grant", "CS", 3.88, 99);
 		assertEquals(tenthStudentName, student10.getName());
 	}
-	
+	/**
+	*testStack tests the stack
+	*/
 	public void testStack(){
 		  StackCut stackcut = new StackCut(10);
 				stackcut.push(student1.getID());
@@ -181,6 +193,9 @@ public class StudentTest extends TestCase{
 				assertEquals(sgid, 677422);
 				stackcut.pop();
 	}
+	/**
+	*testTree tests the tree
+	*/
 	 public void testTree(){
 	 	  BinaryTree tree = new BinaryTree();
 
@@ -217,8 +232,3 @@ public class StudentTest extends TestCase{
 		  
 	  }
 }
-
-
-
-
-
