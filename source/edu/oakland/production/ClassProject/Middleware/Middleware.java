@@ -114,7 +114,7 @@ public class Middleware {
 	*@param TG
 	*Creates a Student Object and pushes it to the stack.
 	*/
-	
+
 	public void createStudent(int ID, String Name, String Major, double GPA, int TG) {
 		Student newStudent = new Student(ID, Name, Major, GPA, TG);
 		stack.push(newStudent);
