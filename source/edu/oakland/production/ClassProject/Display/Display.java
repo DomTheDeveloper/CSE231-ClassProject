@@ -94,12 +94,11 @@ public class Display {
 	/**
 	 * final value for 100k
 	 */
-	private int E_100K = 100;
-	
+	private int E_100K = 1000;
 	/**
 	 * final value for 200k
 	 */
-	private final int E_200K = 200000;
+	private final int E_200K = 2000;
 	
 	/**
 	 * final value for 400k
@@ -190,9 +189,9 @@ public class Display {
 	 * Method just prints print element choices
 	 */
 	private void printElementChoices() {
-		System.out.println("1. 100k elements.");
-		System.out.println("2. 200k elements.");
-		System.out.println("3. 400k elements.");
+		System.out.println("1. " + String.format("%,d", E_100K) + " elements.");
+		System.out.println("2. " + String.format("%,d", E_200K) + " elements.");
+		System.out.println("3. " + String.format("%,d", E_400K) + " elements.");
 	}
 
 
@@ -288,7 +287,7 @@ public class Display {
 					
 					searchOption = true;
 					while (searchOption){
-						System.out.println("What is the value you want to search for?");
+						System.out.println("What is the value you want to search for? [100,1000]");
 						System.out.print(">> ");
 						menuString = scan.next();
 						try
@@ -296,17 +295,17 @@ public class Display {
 							int searchInt = Integer.parseInt(menuString);
 							if (searchInt >= 100 && searchInt <= 1000){
 								//LINKED LIST
-								returnTime = middleware.searchLinkedList(searchInt, true);
-								System.out.println("The time for LinkedList Binary search was: " + returnTime + " ms");
-								returnTime = middleware.searchLinkedList(searchInt, false);
-								System.out.println("The time for LinkedList Linear search was: " + returnTime + " ms");
+								String timeString = middleware.searchLinkedList(searchInt, true);
+								System.out.println("The time for LinkedList Binary search was: " + timeString);
+								timeString = middleware.searchLinkedList(searchInt, false);
+								System.out.println("The time for LinkedList Linear search was: " + timeString );
 								
 
 								//ARRAY LIST
-								returnTime = middleware.searchArrayList(searchInt, false);
-								System.out.println("The time for ArrayList Linear search was: " + returnTime + " ms");
-								returnTime = middleware.searchArrayList(searchInt, true);
-								System.out.println("The time for ArrayList Binary search was: " + returnTime + " ms");
+								timeString = middleware.searchArrayList(searchInt, false);
+								System.out.println("The time for ArrayList Linear search was: " + timeString);
+								timeString = middleware.searchArrayList(searchInt, true);
+								System.out.println("The time for ArrayList Binary search was: " + timeString);
 								
 								//JUNIT
 								middlewhereStringBuilder.append(middlewhere.searchLinkedList(searchInt, true));
@@ -537,15 +536,14 @@ public class Display {
 
 			case "44":
 			case "4":
-				System.out
-						.println("You have selected class schedule. Please enter students data: ");
+				System.out.println("You have selected class schedule. Please enter students data: ");
 
 				middleware.clearTheStack();
 				
 				if (menuString.equals("4"))
 					createClass();
 				else
-					// (menuString == "44")
+					// if (menuString == "44")
 					createClass2();
 
 

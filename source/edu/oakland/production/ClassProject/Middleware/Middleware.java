@@ -107,7 +107,7 @@ public class Middleware {
 	}
 
 	
-	*Method for creating a Student.
+	/**Method for creating a Student.
 	*@param ID
 	*@param Name
 	*@param Major
