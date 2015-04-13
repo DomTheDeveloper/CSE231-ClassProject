@@ -30,155 +30,18 @@ public class Middleware {
 	private double TG;
 	private String bigO;
 	private double totalTime = 0;
-	
+
 	private LinkedListMiddleware mwLL = new LinkedListMiddleware(10);
 	private MidArrayList mwAL = new MidArrayList(10);
 	private BinaryTreeMW mwBT = new BinaryTreeMW();
 	private HashClient mwHC = new HashClient();
 	private HashFinder mwHF = new HashFinder();
 	private StackCut stack = new StackCut(10);
-	
-	//PART 2, BECAUSE MELDARI 
+
+	//PART 2, BECAUSE MELDARI
 	private BinaryTree tree = new BinaryTree();
 
-	/**
-	*@param ListSize Takes an integer and passes it to the LinkedListMiddleware instance.
-	*Calls the LinkedListMiddleware, selectSort, bubbleSort,linearSearch, and binarySearch methods.
-	*/
-	public void llMW(int listSize){
-		mwLL.createLinkedList(listSize);
-	}
 
-	public long selectSortLL(){
-		mwLL.selectSort();
-		return mwLL.taskTime;
-	}
-
-	public long bubbleSortLL(){
-		mwLL.bubbleSort();
-		return mwLL.taskTime;
-	}
-
-	public long linearSearchLL(int value){
-		mwLL.linearSearch(value);
-		return mwLL.taskTime;
-	}
-
-	public String binarySearchLL(int value){
-		mwLL.binarySearch(value);
-		String stuff = " " + mwLL.taskTime + " " + mwLL.timesThrough;
-		return stuff;
-	}
-
-
-	/**
-	*@param Size Takes an integer and passes it to the MidArrayList instance.
-	*Calls the MidArrayList, bubbleSort, selectionSort, linearSearch, and binarySearch methods.
-	*/
-	/*public void alMW(int size){
-		mwAL.MidArrayList(size);
-	}*/
-	/*
-	public long bubbleSortAL(){
-		mwAL.bubbleSort();
-		return mwAL.taskTime;
-	}
-
-	public long selectionSortAL(){
-		mwAL.selectionSort();
-		return mwAL.taskTime;
-	}
-
-	public long linearSearchAL(int a){
-		mwAL.linearSearch(a);
-		return mwAL.taskTime;
-	}
-	*/
-
-
-
-	/*
-	public String binarySearchAL(int b){
-		String returnString;
-		mwAL.binarySearch(b);
-		returnString = Long.toString(mwAL.taskTime);
-		returnString += mwAL.timesThrough;
-	}*/
-
-	/**
-	*@param size Takes an integer and passes it to the BinaryTree instance.
-	*@param key1 Passes random String value to the BinaryTree instance.
-	*@param key2 Passes random String value to the BniaryTree instance.
-	*@param key3 Passes random String value to the BinaryTree instance.
-	*Calls the createBinaryTree, calculatePreorderNodesSearched, calculateInOrderNodesSearched, calculatePreorderSearchDuration, calculateInOrderSearchDuration, calculateBigORelationship, getDatabase, and setDatabase methods.
-	*/
-	public void binaryTreeMW(int size){
-		mwBT.populateBinaryTreeDB(size);
-	}
-
-	public String calculatePreorderNodesSearched(int key1, int key2, int key3) {
-		return mwBT.calculatePreorderNodesSearched(key1, key2, key3);
-	}
-
-	public String calculateInOrderNodesSearched(int key1, int key2, int key3) {
-		return mwBT.calculateInOrderNodesSearched(key1, key2, key3);
-
-	}
-
-	public String calculatePreorderSearchDuration(int key1, int key2, int key3) {
-		return mwBT.calculatePreorderSearchDuration(key1, key2, key3);
-	}
-
-	public String calculateInOrderSearchDuration(int key1, int key2, int key3) {
-		return mwBT.calculateInOrderSearchDuration(key1, key2, key3);
-	}
-
-	public String calculateBigORelationship(int size) {
-		return mwBT.calculateBigORelationship(size);
-	}
-
-	/**
-	*@param n Takes an integer and passes it to the HashClient instance.
-	*Calls the createHashTable, findHashTableValue, and BigONotation methods.
-	*/
-	public void createHashTable(){
-		mwHC.createHashTable(n);
-	}
-
-	public int findHashTableValue(int value){
-		return mwHC.findHashTableValue(value);
-	}
-
-	public String bigONotation() {
-		return mwHC.bigONotation();
-	}
-
-	/**
-	*@param input Passes integer to the HashFinder instance.
-	*@param size  Passes integer to the HashFinder instance.
-	*@param array Passes array to the HashFinder instance.
-	*@return the location of the value
-	*/
-	/*
-	public int findHashValue(){
-		mwHF.findHashValue(input, size, array);
-	}*/
-
-	/**
-	*@param param Passes a parameter to the StackCut instance.
-	*/
-	/*public void StackCut() {
-		stack.StackCut(param);
-	}
-
-	public String displayStacks(){
-		return stack.displayStacks();
-	}
-
-	public String peek(){
-		return stack.peek().toString();
-	}
-	*/
 	/**
 	*Method for creating a Student.
 	*@param ID
@@ -192,16 +55,26 @@ public class Middleware {
 		Student newStudent = new Student(ID, Name, Major, GPA, TG);
 		stack.push(newStudent);
 	}
-	
+
+	/**
+	*Sets the stackSize.
+	*@param newStackSize
+	*/
 	public void setStackSize(int newStackSize){
 		stack.setSize(newStackSize);
 	}
-	
+
+	/**
+	*Clears the stack.
+	*/
 	public void clearTheStack(){
 		stack = new StackCut(10);
 	}
-	
 
+	/**
+	*Sets the number of elements.
+	*@param n
+	*/
 	public void setNumberOfElements(int n) {
 		mwLL = new LinkedListMiddleware(n);
 		mwAL = new MidArrayList(n);
@@ -214,10 +87,10 @@ public class Middleware {
 		mwAL.generateRandomArray();
 	}
 
-	public void createLinkedList() {
-		
-	}
-
+	/**
+	*Sort the arrayList.
+	*@param selectionSort
+	*/
 	public long sortArrayList(boolean selectionSort) {
 		if(selectionSort)
 		{
@@ -229,7 +102,10 @@ public class Middleware {
 		}
 	}
 
-
+	/**
+	*Sorts the LinkedList.
+	*@param selectionSort
+	*/
 	public long sortLinkedList(boolean selectionSort) {
 		if(selectionSort)
 		{
@@ -241,6 +117,11 @@ public class Middleware {
 		}
 	}
 
+	/**
+	*Searches the LinkedList.
+	*@param val
+	*@param binary
+	*/
 	public long searchLinkedList(int val, boolean binary) {
 		long time = System.currentTimeMillis();
 		if(binary)
@@ -254,6 +135,11 @@ public class Middleware {
 		return System.currentTimeMillis() - time;
 	}
 
+	/**
+	*Searches the ArrayList.
+	*@param val
+	*@param binary
+	*/
 	public long searchArrayList(int val, boolean binary) {
 		long time = System.currentTimeMillis();
 		if(binary)
@@ -267,6 +153,10 @@ public class Middleware {
 		return System.currentTimeMillis() - time;
 	}
 
+	/**
+	*Returns the BigO.
+	*@param selectSort
+	*/
 	public String bigOAL(boolean selectSort) {
 		if(selectSort)
 		{
@@ -279,6 +169,10 @@ public class Middleware {
 
 	}
 
+	/**
+	*Returns the BigO.
+	*@param selectSort
+	*/
 	public String bigOLL(boolean selectSort) {
 		if(selectSort)
 		{
@@ -290,46 +184,57 @@ public class Middleware {
 		}
 	}
 
+	/**
+	*Makes the HashTable.
+	@param n
+	*/
 	public void makeHashTable(int n) {
 		mwHC.createHashTable(n);
 	}
 
+	/**
+	*Searches values and gets the time.
+	@param a
+	*/
 	public double searchValuesAndGetTime(int a) {
 		double start = System.nanoTime();
 		mwHC.findHashTableValue(a);
-		double hold = System.nanoTime() - start; 
-		totalTime += hold; 
+		double hold = System.nanoTime() - start;
+		totalTime += hold;
 		return hold;
 	}
-	
+
 	/**
-	* This method cuts the list of s down to size
+	* This method cuts the list of s down to size.
+	*@param count
+	*@param cut
+	*@param alreadyCutStudents
 	*/
 	public String cutStudents(int count, boolean cut, int alreadyCutStudents) {
 		String out = new String();
-		
+
 		StackCut stack = this.stack.clone();
 		int stackSize = stack.getSize();
-		
+
 		Student[] studentsCut = new Student[stack.getSize()];
 		Student[] studentsNotCut = new Student[stack.getSize()];
-		
+
 		for(int i = 0; i < alreadyCutStudents; i++){
 			stack.pop();
 		}
-		
+
 		for(int i = 0; i < count; i++){
 				studentsCut[i] = (Student) stack.peek();
 				stack.pop();
 		}
-		
+
 		for(int i = 0; i < stackSize - count; i++){
 			studentsNotCut[i] = (Student) stack.peek();
 			stack.pop();
 		}
-		
+
 		Student[] students = cut ? studentsCut : studentsNotCut;
-		
+
 		for (int i = 0; i < students.length; i++){
 			Student student = students[i];
 			if (student != null){
@@ -337,12 +242,12 @@ public class Middleware {
 					out += student.getEverything();
 				else
 					out += student.getBasicInfo();
-				
+
 				out += "\n";
 		}
-		
+
 	}
-		return out;	
+		return out;
 	}
 
 	/**
@@ -362,26 +267,26 @@ public class Middleware {
 	* This method will return an array of students stored in the binary tree,
 	*and an array of students whose thesis grades are below 90 and GPA is below 3.60.
 	*/
-	
+
 	public String getThesis(){
 
-		String out = new String();	
-		
+		String out = new String();
+
 		StackCut stack = this.stack.clone();
 		int stackSize = stack.getSize();
-		
+
 		Student[] students = new Student[stack.getSize()];
-		
+
 		for(int i = 0; i < stackSize; i++){
 				students[i] = (Student) stack.peek();
 				stack.pop();
 		}
-		
+
 		for (Student student : students)
 			tree.addNode(student.getTG(),student);
-		
+
 		out += "Traversed:" + "\n";
-		out += tree.preorderTraverseTree(tree.getRootNode()).toString();	
+		out += tree.preorderTraverseTree(tree.getRootNode()).toString();
 
 		ArrayList<Node> ltNodes = tree.getLess(90,3.60);
 		ArrayList<Student> ltStuds = new ArrayList<Student>();
@@ -390,14 +295,14 @@ public class Middleware {
 		{
 			ltStuds.add((Student)ltNodes.get(i).getValue());
 		}
-		
+
 		out += "\n" + "The following students failed out:";
 		for(Student student : ltStuds)
 			out += "\n" + student.getEverything();
-		
+
 		return out;
 	}
-	
+
 	public double getBigO(){
 		return totalTime / 3;
 	}
