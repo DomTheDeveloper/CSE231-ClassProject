@@ -1,10 +1,5 @@
 package edu.oakland.production.ClassProject.Middleware;
 
-/**
- * @author Blair Sibu
- * @version version 2.0.0 date 150405
- * since version 1.0.0 date 150331
- */
 import edu.oakland.production.ClassProject.Database.*;
 import java.util.*;
 

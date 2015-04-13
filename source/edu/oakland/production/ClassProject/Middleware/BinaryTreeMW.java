@@ -1,5 +1,6 @@
 package edu.oakland.production.ClassProject.Middleware;
 import java.util.*;
+
 import edu.oakland.production.ClassProject.Database.BinaryTreeDB;
 import edu.oakland.production.ClassProject.Database.Node;
 
@@ -17,12 +18,14 @@ import edu.oakland.production.ClassProject.Database.Node;
  */
 public class BinaryTreeMW {
 	
+	/// Minimum possible key value, used with generating a random key.
 	private int minimumKeyValue = 400000;
+	/// Maximum possible key value, used with generating a random key.
 	private int maximumKeyValue = 800000;
 	
-	
+	/// Minimum possible name value, used with generating a random name.
 	private int minimumNameValue = 200000;
-	
+	/// Maximum possible key value, used with generating a random name.
 	private int maximumNameValue = 600000;
 	
 	private BinaryTreeDB<String> binaryTreeDatabase;
@@ -77,15 +80,15 @@ public class BinaryTreeMW {
 	 */
 	public void populateBinaryTreeDB(int size){
 		
-	
+		// Refresh the BinaryTreeDB object.
 		this.binaryTreeDatabase = new BinaryTreeDB<String>();
 		
-	
+		// Create a non-duplicate random number list for keys.
 		List<Integer> nonDuplicateRandomNumberKeys = new ArrayList<Integer>();
-	
+		// Create a non-duplicate random number list for names.
 		List<Integer> nonDuplicateRandomNumberNames = new ArrayList<Integer>();
 		
-	
+		// Populate both key and name lists.
 		nonDuplicateRandomNumberKeys = createNonDuplicateRandomNumbers(minimumKeyValue, 
 																	   maximumKeyValue+1, 
 																	   size + 1);
@@ -95,12 +98,12 @@ public class BinaryTreeMW {
 		
 		for (int i = 0; i < size; i++){
 			
-	
+			// Reference key integer from a given index.
 			int key = nonDuplicateRandomNumberKeys.get(i);
-	
+			// Reference name integer from a given index, then convert to a string.
 			String name = String.valueOf(nonDuplicateRandomNumberNames.get(i));
 			
-	
+			// Add a node to the BinaryTreeDB, given the key and name.
 			this.binaryTreeDatabase.addNode(key, name);	
 			
 		}
@@ -218,20 +221,21 @@ public class BinaryTreeMW {
 	
 	private int calculatePreorderNodesSearched(BinaryTreeDB binaryTreeDatabase, Node focusNode, int key, boolean nothing){
 		
-		
+		// Begin each recursion with zero nodes searched.
 		int nodesSearched = 0;
 		
-	
+		// Ignore the recursion loop if the node is already found, or if the node is non existent.
 		if (!this.continueSearching){
 			return 0;
 		} else if (focusNode == null){
 			return 0;
 		} else {
-	
+			// Count the node.
 			nodesSearched++;
 		}
 		
-	
+		// If the focus node has the desired key, increment the amount of nodesSearched, 
+		// and skip all other recursions.
 		if (focusNode.getKey() == key){
 			this.continueSearching = false;
 			return nodesSearched;
@@ -239,8 +243,8 @@ public class BinaryTreeMW {
 		
 		if (focusNode.leftChild != null){
 			
-	 
-	
+			// Call the recursive method again, 
+			// sending it the reference to continueSearching.
 			nodesSearched += calculatePreorderNodesSearched(binaryTreeDatabase, 
 															focusNode.leftChild, 
 															key, 
@@ -249,14 +253,15 @@ public class BinaryTreeMW {
 		
 		if (focusNode.rightChild != null){
 			
-	
+			// Call the recursive method again, 
+			// sending it the reference to continueSearching.
 			nodesSearched += calculatePreorderNodesSearched(binaryTreeDatabase, 
 															focusNode.rightChild, 
 															key, 
 															continueSearching);
 		}
 		
-	
+		// Return the amount of nodes searched for each recursion.
 		return nodesSearched;
 			
 	}
@@ -294,28 +299,31 @@ public class BinaryTreeMW {
 	 */
 	private int calculateInOrderNodesSearched(BinaryTreeDB binaryTreeDatabase, Node focusNode, int key, boolean continueSearching){
 		
+		// Begin each recursion with zero nodes searched.
 		int nodesSearched = 0;
 		
-	
+		// Ignore the recursion loop if the node is already found, or if the node is non existant.
 		if (!this.continueSearching){
 			return 0;
 		} else if (focusNode == null){
 			return 0;
 		} else {
-	
+			// Count the node.
 			nodesSearched++;
 		}
 		
 		if (focusNode.leftChild != null){
 			
-	
+			// Call the recursive method again, 
+			// sending it the reference to continueSearching.
 			nodesSearched += calculateInOrderNodesSearched(binaryTreeDatabase, 
 														   focusNode.leftChild, 
 														   key, 
 														   this.continueSearching);
 		}
 		
-
+		// If the focus node has the desired key, increament the amount of nodesSearched,
+		// and notify all other recursions to break.
 		if (focusNode.getKey() == key){
 			
 			this.continueSearching = false;
@@ -325,14 +333,15 @@ public class BinaryTreeMW {
 		
 		if (focusNode.rightChild != null){
 			
-
+			// Call the recursive method again, 
+			// sending it the reference to continueSearching.
 			nodesSearched += calculateInOrderNodesSearched(binaryTreeDatabase, 
 														   focusNode.rightChild, 
 														   key, 
 														   this.continueSearching);
 		}
 		
-
+		// Return the amount of nodes searched for each recursion.
 		return nodesSearched;
 	}
 	
@@ -547,29 +556,29 @@ public class BinaryTreeMW {
 	 */
 	private List<Integer> createNonDuplicateRandomNumbers(int minimumValue, int maximumValue, int size){
 		
-	
+		// Create an instance of ArrayList, with type int.
 		ArrayList<Integer> nonDuplicateRandomNumbers = new ArrayList<Integer>();
 		
-	
+		//Test for errors with provided data.  If there arent enough possible numbers, return null.
 		if ((maximumValue - minimumValue) < size){
 			
-	
+			//There has been an error.
 			return null;
 			
 		}
 		
-	
-	
+		// For the range of numbers provided.
+		// Creates an ArrayList of integers from minimumValue to maximumValue.
 		for (int i = minimumValue; i <= maximumValue; i++){
 			
-	
+			// Add that number to the ArrayList.
 			nonDuplicateRandomNumbers.add(i);
 		}
 		
-	
+		// Shuffle the ArrayList, randomizing the numbers.
 		Collections.shuffle(nonDuplicateRandomNumbers);
 		
-	
+		// Return a immutable List object, created from the ArrayList, trimming off unnecessary values.
 		return nonDuplicateRandomNumbers.subList(0, size - 1);
 	}
 	
