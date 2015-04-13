@@ -376,7 +376,7 @@ public class Display {
 
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the 2nd int to search?  DOMAIN: [200000, 800000]");
+							System.out.println("What is the 2nd int to search?  DOMAIN: [400000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();
@@ -480,7 +480,7 @@ public class Display {
 
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the 2nd int to search?  DOMAIN: [200000, 800000]");
+							System.out.println("What is the 2nd int to search?  DOMAIN: [400000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();

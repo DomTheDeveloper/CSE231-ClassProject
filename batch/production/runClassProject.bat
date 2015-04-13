@@ -4,7 +4,7 @@ color 0a
 
 cls
 
-cd C:\Users\Dominic\Documents\GitHub\CSE231-ClassProject
+cd ../../
 
 REM : Compile
 javac -d bin -sourcepath source source\edu\oakland\production\ClassProject\ClassProject.java
