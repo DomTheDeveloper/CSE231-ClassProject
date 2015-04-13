@@ -359,11 +359,11 @@ public class Display {
 					if (a == -1){
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the first int to search?  DOMAIN: [200k, 600k]");
+							System.out.println("What is the first int to search?  DOMAIN: [400000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();
-								if (tempValueHold >= 200000 && tempValueHold <= 600000) {
+								if (tempValueHold >= 400000 && tempValueHold <= 800000) {
 									this.a = tempValueHold;
 									searchOption = false;
 								} else {
@@ -377,11 +377,11 @@ public class Display {
 
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the 2nd int to search?  DOMAIN: [200k, 600k]");
+							System.out.println("What is the 2nd int to search?  DOMAIN: [200000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();
-								if (tempValueHold >= 200000 && tempValueHold <= 600000) {
+								if (tempValueHold >= 400000 && tempValueHold <= 800000) {
 									this.b = tempValueHold;
 									searchOption = false;
 								} else {
@@ -395,11 +395,11 @@ public class Display {
 
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the 3rd int to search?  DOMAIN: [200k, 600k]");
+							System.out.println("What is the 3rd int to search?  DOMAIN: [400000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();
-								if (tempValueHold >= 200000 && tempValueHold <= 600000) {
+								if (tempValueHold >= 400000 && tempValueHold <= 800000) {
 									this.c = tempValueHold;
 									searchOption = false;
 								} else {
@@ -418,15 +418,12 @@ public class Display {
 					//this.c = 612312;
 					
 					// PREORDER SEARCH
-					System.out.println("Preorder nodes searched: " + middleware.calculatePreorderNodesSearched(this.a, this.b, this.c) + "ms.");
-					System.out.println("Preorder time duration: " + middleware.calculatePreorderSearchDuration(this.a, this.b, this.c)+ "ms.");
+					System.out.println("Preorder nodes searched: " + middleware.calculatePreorderNodesSearched(this.a, this.b, this.c));
 					
 					// ORDER SEARCH
-					System.out.println("In order nodes searched: " + middleware.calculateInOrderNodesSearched(this.a, this.b, this.c)+ "ms.");
-					System.out.println("In order time duration: " + middleware.calculateInOrderSearchDuration(this.a, this.b, this.c)+ "ms.");
-
-					System.out.println(middleware.calculateBigORelationship(numOfElements));
+					System.out.println("In order nodes searched: " + middleware.calculateInOrderNodesSearched(this.a, this.b, this.c));
 					
+					System.out.println(middleware.calculateBigORelationship(numOfElements));
 					
 					//JUNIT TEST
 					middlewhereStringBuilder.append(middlewhere.calculatePreorderNodesSearched(this.a, this.b, this.c));
@@ -466,11 +463,11 @@ public class Display {
 					if (a == -1){
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the first int to search?  DOMAIN: [200k, 600k]");
+							System.out.println("What is the first int to search?  DOMAIN: [400000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();
-								if (tempValueHold >= 200000 && tempValueHold <= 600000) {
+								if (tempValueHold >= 400000 && tempValueHold <= 800000) {
 									this.a = tempValueHold;
 									searchOption = false;
 								} else {
@@ -484,11 +481,11 @@ public class Display {
 
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the 2nd int to search?  DOMAIN: [200k, 600k]");
+							System.out.println("What is the 2nd int to search?  DOMAIN: [200000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();
-								if (tempValueHold >= 200000 && tempValueHold <= 600000) {
+								if (tempValueHold >= 400000 && tempValueHold <= 800000) {
 									this.b = tempValueHold;
 									searchOption = false;
 								} else {
@@ -502,11 +499,11 @@ public class Display {
 
 						searchOption = true;
 						while (searchOption) {
-							System.out.println("What is the 3rd int to search?  DOMAIN: [200k, 600k]");
+							System.out.println("What is the 3rd int to search?  DOMAIN: [400000, 800000]");
 							System.out.print(">> ");
 							try {
 								tempValueHold = scan.nextInt();
-								if (tempValueHold >= 200000 && tempValueHold <= 600000) {
+								if (tempValueHold >= 400000 && tempValueHold <= 800000) {
 									this.c = tempValueHold;
 									searchOption = false;
 								} else {

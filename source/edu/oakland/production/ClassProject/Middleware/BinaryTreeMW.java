@@ -131,18 +131,29 @@ public class BinaryTreeMW {
 	 * @return nodesSearched String value corresponding to the number of nodes searched respectively.
 	 */
 	public String calculatePreorderNodesSearched(int key1, int key2, int key3){
-		
 		String nodesSearched = "";
 		
 		Node focusNode = this.binaryTreeDatabase.getRootNode();
+		
+		
 		continueSearching = true;
+		long startTime = System.nanoTime();
 		nodesSearched += String.valueOf(calculatePreorderNodesSearched(this.binaryTreeDatabase, focusNode, key1));
-		nodesSearched += " ";
+		long endTime = System.nanoTime();
+		nodesSearched += " (" + String.valueOf(endTime-startTime) + "ns) ";
+		
+		
 		continueSearching = true;
+		startTime = System.nanoTime();
 		nodesSearched += String.valueOf(calculatePreorderNodesSearched(this.binaryTreeDatabase, focusNode, key2));
-		nodesSearched += " ";
+		endTime = System.nanoTime();
+		nodesSearched += " (" + String.valueOf(endTime-startTime) + "ns) ";
+		
 		continueSearching = true;
+		startTime = System.nanoTime();
 		nodesSearched += String.valueOf(calculatePreorderNodesSearched(this.binaryTreeDatabase, focusNode, key3));
+		endTime = System.nanoTime();
+		nodesSearched += " (" + String.valueOf(endTime-startTime) + "ns) ";
 		
 		return nodesSearched;
 	}
@@ -162,16 +173,31 @@ public class BinaryTreeMW {
 		String nodesSearched = "";
 		
 		Node focusNode = this.binaryTreeDatabase.getRootNode();
+		
+		
 		continueSearching = true;
+		long startTime = System.nanoTime();
 		nodesSearched += String.valueOf(calculateInOrderNodesSearched(this.binaryTreeDatabase, focusNode, key1));
-		nodesSearched += " ";
+		long endTime = System.nanoTime();
+		nodesSearched += " (" + String.valueOf(endTime-startTime) + "ns) ";
+		
+		
 		continueSearching = true;
+		startTime = System.nanoTime();
 		nodesSearched += String.valueOf(calculateInOrderNodesSearched(this.binaryTreeDatabase, focusNode, key2));
-		nodesSearched += " ";
+		endTime = System.nanoTime();
+		nodesSearched += " (" + String.valueOf(endTime-startTime) + "ns) ";
+		
 		continueSearching = true;
+		startTime = System.nanoTime();
 		nodesSearched += String.valueOf(calculateInOrderNodesSearched(this.binaryTreeDatabase, focusNode, key3));
+		endTime = System.nanoTime();
+		nodesSearched += " (" + String.valueOf(endTime-startTime) + "ns) ";
 		
 		return nodesSearched;
+		
+		
+		
 	}
 	
 	/*
