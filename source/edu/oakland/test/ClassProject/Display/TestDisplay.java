@@ -4,7 +4,7 @@ import edu.oakland.production.ClassProject.Display.*;
 import junit.framework.*;
 /**
  * @version Hello
- * @author Mel and Ben for LSI's shitty ass group.
+ * @author Mel and Ben
  */
 public class TestDisplay extends TestCase{
 
