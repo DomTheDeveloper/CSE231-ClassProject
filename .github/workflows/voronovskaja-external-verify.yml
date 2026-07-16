@@ -1,0 +1,131 @@
+name: Temporary Voronovskaja external verification
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/voronovskaja-external-verify.yml'
+      - '.github/voronovskaja-trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out proof repository
+        uses: actions/checkout@v4
+        with:
+          repository: DomTheDeveloper/formal-conjectures
+          ref: solve-voronovskaja-no-sorry
+          fetch-depth: 0
+
+      - name: Reconstruct compiler-tested compatibility snapshot
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git fetch origin verify-voronovskaja-pinned-80ea40e
+          for file in \
+            FormalConjecturesForMathlib/Probability/CentralLimitTheorem.lean \
+            FormalConjecturesForMathlib/MeasureTheory/Measure/CharacteristicFunction/TaylorExpansion.lean \
+            FormalConjecturesForMathlib/MeasureTheory/Measure/LevyConvergence.lean \
+            FormalConjecturesForMathlib/Probability/Distributions/Bernoulli.lean \
+            FormalConjecturesForMathlib/Order/Filter/ENNReal.lean
+          do
+            git show origin/verify-voronovskaja-pinned-80ea40e:"$file" > "$file"
+          done
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('FormalConjectures/Paper/VoronovskajaDefinitions.lean')
+          s = p.read_text()
+          old = 'public import FormalConjectures.Util.ProblemImports'
+          new = ('public import Mathlib.Analysis.SpecialFunctions.Bernstein\n'
+                 'public meta import FormalConjectures.Util.Attributes.Basic')
+          assert old in s
+          p.write_text(s.replace(old, new, 1))
+
+          p = Path('FormalConjectures/Paper/VoronovskajaDiscreteLaw.lean')
+          s = p.read_text()
+          imports = '''import FormalConjectures.Paper.VoronovskajaProof
+          import FormalConjecturesForMathlib.Probability.Distributions.PoweredBinomialLimit
+          import Mathlib.Probability.ProbabilityMassFunction.Constructions
+          import Mathlib.Probability.ProbabilityMassFunction.Integrals
+          '''
+          assert s.count(imports) == 1
+          s = s.replace(imports, '', 1)
+          assert 'module\n' in s
+          s = s.replace('module\n', 'module\n\n' + imports, 1)
+          p.write_text(s)
+          PY
+          git diff --check
+          git diff > /tmp/voronovskaja-verification.patch
+
+      - name: Install exact Lean toolchain
+        shell: bash
+        run: |
+          set -euxo pipefail
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | \
+            sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Fetch official mathlib cache
+        shell: bash
+        run: |
+          set -o pipefail
+          lake exe cache get 2>&1 | tee /tmp/voronovskaja-verify.log
+
+      - name: Reject placeholders
+        shell: bash
+        run: |
+          set -o pipefail
+          if grep -R -nE '(^|[^[:alnum:]_])(sorry|admit)([^[:alnum:]_]|$)|^[[:space:]]*axiom[[:space:]]' \
+              FormalConjectures/Paper/Voronovskaja*.lean \
+              FormalConjecturesForMathlib/Probability/CentralLimitTheorem.lean \
+              FormalConjecturesForMathlib/Probability/CDFConvergence.lean \
+              FormalConjecturesForMathlib/Probability/Distributions/Bernoulli.lean \
+              FormalConjecturesForMathlib/Probability/Distributions/Binomial.lean \
+              FormalConjecturesForMathlib/Probability/Distributions/StandardizedBinomial*.lean \
+              FormalConjecturesForMathlib/Probability/Distributions/PoweredGaussian.lean \
+              FormalConjecturesForMathlib/Probability/Distributions/PoweredBinomial*.lean \
+              FormalConjecturesForMathlib/Order/Filter/ENNReal.lean \
+              FormalConjecturesForMathlib/MeasureTheory/Measure/LevyConvergence.lean \
+              FormalConjecturesForMathlib/MeasureTheory/Measure/CharacteristicFunction/TaylorExpansion.lean; then
+            exit 1
+          fi
+
+      - name: Compile exact theorem chain
+        shell: bash
+        run: |
+          set -o pipefail
+          lake build \
+            FormalConjectures.Paper.VoronovskajaMain \
+            FormalConjectures.Paper.VoronovskajaClassicalMain \
+            FormalConjectures.Paper.VoronovskajaTypeFormula \
+            2>&1 | tee -a /tmp/voronovskaja-verify.log
+
+      - name: Axiom audit
+        shell: bash
+        run: |
+          cat > /tmp/VoronovskajaAxioms.lean <<'EOF'
+          import FormalConjectures.Paper.VoronovskajaTypeFormula
+          #print axioms VoronovskajaTypeFormula.voronovskaja_theorem.bernstein_operators
+          #print axioms VoronovskajaTypeFormula.voronovskaja_theorem.bezier_bernstein_operators
+          #print axioms VoronovskajaTypeFormula.tendsto_bezierBernstein_all
+          #print axioms VoronovskajaTypeFormula.tendsto_classical_bezierBernstein_all
+          EOF
+          set -o pipefail
+          lake env lean /tmp/VoronovskajaAxioms.lean 2>&1 | tee -a /tmp/voronovskaja-verify.log
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: voronovskaja-external-verification
+          path: |
+            /tmp/voronovskaja-verify.log
+            /tmp/voronovskaja-verification.patch
+          if-no-files-found: warn
